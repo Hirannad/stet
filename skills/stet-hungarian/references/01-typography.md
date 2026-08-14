@@ -1,6 +1,6 @@
-# Pass 1 — Tipográfia és helyesírás
+# Pass 1 – Tipográfia és helyesírás
 
-A leginkább determinisztikus réteg: itt nincs ítélet, csak norma. Ezért fut először — nem tud
+A leginkább determinisztikus réteg: itt nincs ítélet, csak norma. Ezért fut először – nem tud
 jelentést változtatni, és letisztítja a képet, hogy utána látszódjon, mennyi az ítéletigényes maradék.
 
 Ezek túlnyomórészt `[FIX]` minták: regisztertől függetlenül javítandók, klaszterküszöb nélkül.
@@ -8,14 +8,14 @@ Kivétel, ahol külön jelezve van.
 
 **Figyelem a megfordult mintákra.** Az angol nyelvű prózajavító listák két tipográfiai szabálya
 itt az ellenkezőjére fordul: a `„…”` idézőjel és a szóközös gondolatjel a **helyes** magyar forma,
-nem AI-jel. Csak az angol `"…"` és az em dash (—) a hiba. Aki mechanikusan alkalmazza egy másik
+nem AI-jel. Csak az angol `"…"` és az em dash (`—`) a hiba. Aki mechanikusan alkalmazza egy másik
 nyelv listáját, elrontja a magyar tipográfiát.
 
 ---
 
 ### HU-T01 · Angol idézőjel magyar szövegben · [FIX] [AI:eros] [kern]
 
-Mi ez: a magyar idézőjel alsó nyitó és felső záró — `„…”`. A belső idézet lúdláb (`»…«`), a
+Mi ez: a magyar idézőjel alsó nyitó és felső záró – `„…”`. A belső idézet lúdláb (`»…«`), a
 harmadik szint félidézőjel (`'…'`).
 Miért írja így a gép: az egyenes `"…"` és az angol tipografált `“…”` a betanító korpusz
 alapértelmezése,
@@ -33,7 +33,7 @@ Mi ez: a magyar gondolatjel félkvirtmínusz (`–`), **szóközökkel** körül
 (`—`) a mai magyar tipográfiában nem használatos, és a kiskötőjel (`-`) sem helyettesíti.
 Miért írja így a gép: az angol em dash szóköz nélkül tapad, és a modell ezt hozza át.
 Jelek: `—`, ` -- `, szóköz nélküli `–`.
-ROSSZ: A terv jó — legalábbis papíron — de a költségek nem stimmelnek.
+ROSSZ: A terv jó – legalábbis papíron – de a költségek nem stimmelnek.
 JÓ:    A terv jó – legalábbis papíron –, de a költségek nem stimmelnek.
 Mikor NE: **a helyes gondolatjelet soha ne töröld.** Ez az a pont, ahol egy angol szabálylista
 mechanikus átvétele kárt okoz: ott a cél a gondolatjel kiirtása, itt a cél a helyes alak
@@ -60,7 +60,7 @@ tükrözött formai hiba.
 Jelek: `1,250,000`, `3.5`, `1,250.5`.
 ROSSZ: A bevétel 1,250,000 forint, a marzs 3.5 százalék.
 JÓ:    A bevétel 1 250 000 forint, a marzs 3,5 százalék.
-Mikor NE: kódban, CSV-ben, API-válaszban, adatbázismezőben — ott az angol formátum a helyes.
+Mikor NE: kódban, CSV-ben, API-válaszban, adatbázismezőben – ott az angol formátum a helyes.
 Verziószámban (`3.5`) sem tizedesjel.
 Forrás: AkH. 12. 288–290.
 
@@ -113,28 +113,28 @@ Forrás: AkH. 12. 187., 194.
 ### HU-T09 · Intézménynév nagy, rendezvénynév kicsi · [FIX-IF: neutral, formal, legal] [AI:kozepes] [kern]
 
 Mi ez: az intézmény többelemű hivatalos nevében minden tagot nagybetűvel kezdünk; a rendezvények,
-programok, mozgalmak nevét viszont kisbetűvel — kivéve az intézményszerű, állandó rendezvényeket
+programok, mozgalmak nevét viszont kisbetűvel – kivéve az intézményszerű, állandó rendezvényeket
 (`Szegedi Szabadtéri Játékok`).
 Miért írja így a gép: felcseréli a kettőt, mert angolul mindkettő Title Case.
 ROSSZ: A Nemzetközi Űrkutatási Konferencia előadói a Magyar tudományos akadémián gyűltek össze.
 JÓ:    A nemzetközi űrkutatási konferencia előadói a Magyar Tudományos Akadémián gyűltek össze.
 Mikor NE: ha a rendezvény bejegyzett, védett név, vagy ha a szervező következetesen nagybetűvel
-használja a saját anyagaiban — akkor márkanév.
+használja a saját anyagaiban – akkor márkanév.
 Forrás: AkH. 12. 187., 191.
 
 ### HU-T10 · Összetett szavak kötőjelezése · [FIX] [AI:eros] [kern]
 
 Mi ez: két szabály együtt.
 **Második mozgószabály:** ha különírt szókapcsolathoz összetételi utótag járul, a szókapcsolatot
-egybeírjuk, és az utótagot kötőjellel kapcsoljuk — `meleg víz` + `csap` → `melegvíz-csap`;
+egybeírjuk, és az utótagot kötőjellel kapcsoljuk – `meleg víz` + `csap` → `melegvíz-csap`;
 `mesterséges intelligencia` + `alapú` → `mesterségesintelligencia-alapú`.
 **6:3-as szabály:** legalább három tagból álló és hat szótagnál hosszabb összetételt a fő
-összetételi határon kötőjellel bontunk — `időjárás-jelentés`, `munkaerő-nyilvántartás`.
+összetételi határon kötőjellel bontunk – `időjárás-jelentés`, `munkaerő-nyilvántartás`.
 Miért írja így a gép: az angol különír vagy szóközzel tagol, és a magyar egybeírási szabályok
 nem transzferálódnak.
 ROSSZ: A délutáni időjárásjelentés alapján a szerelő kicserélte a meleg víz csapot.
 JÓ:    A délutáni időjárás-jelentés alapján a szerelő kicserélte a melegvíz-csapot.
-Mikor NE: a 6:3-as szabály **kétrészes** összetételre nem alkalmazható — `oktatástechnikai`,
+Mikor NE: a 6:3-as szabály **kétrészes** összetételre nem alkalmazható – `oktatástechnikai`,
 nem `oktatás-technikai`, bármilyen hosszú is.
 Forrás: AkH. 12. 139., 141.
 
@@ -145,7 +145,7 @@ teszünk vesszőt. Magyarul nincs Oxford-vessző.
 Miért írja így a gép: az angol szerkesztői konvenció átvétele.
 ROSSZ: A csomagban laptop, dokkoló, és fejhallgató van.
 JÓ:    A csomagban laptop, dokkoló és fejhallgató van.
-Mikor NE: **tagmondathatáron kötelező** a vessző az `és` előtt — `Megérkezett a csomag, és
+Mikor NE: **tagmondathatáron kötelező** a vessző az `és` előtt – `Megérkezett a csomag, és
 azonnal kibontottuk.` Itt két állítmány két külön alannyal áll, ez nem felsorolás.
 Kapcsolódó: HU-B21 (ne tegyél vesszőt gépiesen).
 Forrás: AkH. 12. 243. · helyesiras.mta.hu
@@ -197,7 +197,7 @@ titkosítva tárolja.
 JÓ:    A rendszer kétfaktoros hitelesítést is támogat, és titkosítva tárolja az adatokat.
 Mikor NE: ha a mondatkezdő elem valódi közbevetés vagy megszólítás (`Egyébként, ha jól emlékszem,…`;
 `Kedves Péter,`). Ott a vessző helyes.
-A halmozott kapcsolóelemek összevonása már `06-rhythm.md`, HU-R04 — itt csak a vesszőt vedd ki.
+A halmozott kapcsolóelemek összevonása már `06-rhythm.md`, HU-R04 – itt csak a vesszőt vedd ki.
 Forrás: AkH. 12. 243.
 
 ---
@@ -217,5 +217,5 @@ Forrás: AkH. 12. 243.
 11. mozgószabály és 6:3
 12. Oxford-vessző
 
-Az 1–6. és a 9. gépiesen ellenőrizhető — ezeket futtasd le a kimeneten is, a Pass 6
+Az 1–6. és a 9. gépiesen ellenőrizhető – ezeket futtasd le a kimeneten is, a Pass 6
 önellenőrzés részeként.

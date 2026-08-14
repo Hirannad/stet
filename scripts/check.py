@@ -70,26 +70,42 @@ HEADER = re.compile(
 TAG = re.compile(r"\[([^\]]+)\]")
 
 
-# ---------------------------------------------------------------- HU-T01 regression gate
-# A Hungarian opening quote must close with ” (U+201D), never " or “. Validation round 1 found 69
-# half-fixed pairs in the catalogue's own printed examples, so a run matching the example emitted
-# half-fixed output; round 2 then found one more, wrapped across two lines and inside prose.
+# ------------------------------------------------------- typography the catalogue got wrong itself
+# Two gates, one defect shape: the catalogue printing a form it forbids. Validation round 1 found
+# 69 half-fixed „…" quote pairs in its own examples, so a run matching the printed example emitted
+# half-fixed output. Round 2 found one more that wrapped across two lines, and 271 em dashes in the
+# catalogue's own Hungarian voice while HU-T02 calls the em dash "not used in modern Hungarian
+# typography".
 #
-# Two exemptions, both narrow. Inline code spans are demonstrations of the defect, not instances of
-# it — that is how the pattern files and this README can print the wrong form. In a skill file,
-# Jelek: and ROSSZ: lines and substitution rows (→) demonstrate it without backticks.
-def check_quote_glyphs(rel, text, skill):
-    lines = text.split("\n")
+# Exemptions are narrow and mechanical:
+#   - inline code spans, which is how a pattern file demonstrates a wrong glyph;
+#   - in a skill file, Jelek: and ROSSZ: lines and substitution rows (→), which demonstrate
+#     without backticks;
+#   - YAML frontmatter, whose description is English prose read by an English-speaking router,
+#     so English typography applies there — em dash included.
+# Blanking a line rather than dropping it keeps the reported line numbers honest.
+FRONTMATTER = re.compile(r"\A---\n.*?\n---\n", re.S)
+
+
+def blank_out(text, spans_pattern):
+    """Replace every match with the same number of newlines, so line numbers survive."""
+    return spans_pattern.sub(lambda m: "\n" * m.group(0).count("\n"), text)
+
+
+def check_quote_glyphs(rel, text, skill, hungarian=False):
     scannable = []
-    for line in lines:
-        if skill and (line.startswith(("Jelek:", "ROSSZ:")) or "→" in line):
-            scannable.append("")
-            continue
-        scannable.append(re.sub(r"`[^`]*`", "", line))
-    joined = "\n".join(scannable)
-    for m in re.finditer(r"„[^„”]*[\"“]", joined):
-        n = joined[:m.start()].count("\n") + 1
-        fail(rel, f"line {n}: Hungarian quote closed with the wrong glyph (want ”)")
+    for line in text.split("\n"):
+        demonstrates = skill and (line.startswith(("Jelek:", "ROSSZ:")) or "→" in line)
+        scannable.append("" if demonstrates else re.sub(r"`[^`]*`", "", line))
+    body = blank_out("\n".join(scannable), FRONTMATTER)
+
+    def report(pattern, message):
+        for m in re.finditer(pattern, body):
+            fail(rel, f"line {body[:m.start()].count(chr(10)) + 1}: {message}")
+
+    report(r"„[^„”]*[\"“]", "Hungarian quote closed with the wrong glyph (want ”)")
+    if hungarian:
+        report(r"—", "em dash in Hungarian prose (want a spaced en dash)")
 
 
 def check_skill(skill_dir, cfg, shape):
@@ -200,7 +216,7 @@ def check_skill(skill_dir, cfg, shape):
         fail("SKILL.md", "frontmatter must declare 'method: 1'")
     if "Nyelvi kapu" not in sm:
         fail("SKILL.md", "missing language-guard section")
-    found = re.findall(r"^\*\*Pass (−?-?\d+) —", sm, flags=re.M)
+    found = re.findall(r"^\*\*Pass ([−-]?\d+) [—–-]", sm, flags=re.M)
     passes = sorted({int(p.replace("−", "-")) for p in found})
     if passes != sorted(cfg["passes"]):
         fail("SKILL.md", f"constants declare passes {sorted(cfg['passes'])} "
@@ -217,7 +233,7 @@ def check_skill(skill_dir, cfg, shape):
                 fail(rel, f"broken link: {target}")
 
     for rel, text in all_text.items():
-        check_quote_glyphs(rel, text, skill=True)
+        check_quote_glyphs(rel, text, skill=True, hungarian=True)
 
     # SKILL.md prints three pattern headers as illustrations. They are not definitions — the
     # checker skips them above — but a stale illustration teaches the wrong tag set, which is the
@@ -257,8 +273,11 @@ def check_repo_surface(known_ids):
         # tests/ is data, not prose: the corpus specimens are the measured inputs and must stay
         # byte-identical to what was run, defects included, and the fixture notes quote the defect
         # in order to assert against it. The gate belongs on the repository's own prose.
+        #
+        # A *.hu.md file is Hungarian prose, so the em dash gate applies to it as well — the same
+        # rule the catalogue enforces on itself. The English surface keeps English typography.
         if f.suffix == ".md" and not str(rel).startswith("tests/"):
-            check_quote_glyphs(rel, text, skill=False)
+            check_quote_glyphs(rel, text, skill=False, hungarian=".hu." in f.name)
         for pid in sorted(set(re.findall(r"\bHU-[A-Z]\d{2}\b", text))):
             # HU-X99 is CONTRIBUTING.md's template placeholder for a new pattern header.
             if pid not in known_ids and pid != "HU-X99":

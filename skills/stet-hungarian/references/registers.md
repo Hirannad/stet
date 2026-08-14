@@ -21,7 +21,7 @@ saját kapujukat; ha eltérést látsz, ez a táblázat nyer.
   mehet ki abból a passból.
 - **`csak klaszterben`** = `FIX-IF` minta sem tüzel egymagában, csak ha a bekezdés eléri a küszöböt.
 - **A Pass 5 `formal`-kivétele:** a HU-R09, a HU-R10 és a HU-R11 `formal` profilban is fut, mert
-  ezek **tartalmi**, nem formai minták — nem arról szólnak, hogyan van megírva egy mondat, hanem
+  ezek **tartalmi**, nem formai minták – nem arról szólnak, hogyan van megírva egy mondat, hanem
   hogy megtud-e belőle bármit az olvasó. A Pass 5 többi mintája `formal`-ban áll.
 
 Ha nem tudod eldönteni, a `neutral` az alapértelmezés. Kétség esetén **azt a profilt válaszd,
@@ -54,10 +54,10 @@ A nemtegező viszonyon belül **négy** változat él:
 
 1. `maga`
 2. `Ön`
-3. **névmás nélküli egyes szám 3. személy** — a „névmáskerülő” forma
+3. **névmás nélküli egyes szám 3. személy** – a „névmáskerülő” forma
 4. `tetszik` + főnévi igenév
 
-A gépi szöveg gyakorlatilag csak a (2)-t ismeri, és épp a (3)-at nem használja — pedig az a
+A gépi szöveg gyakorlatilag csak a (2)-t ismeri, és épp a (3)-at nem használja – pedig az a
 leggyakoribb a magyarban. **A magyar természetesség nem az `Ön` helyes megválasztásában áll,
 hanem a névmás elhagyásában.**
 
@@ -68,7 +68,7 @@ legfeltűnőbb gépi hiba.
 ROSSZ: Kedves Felhasználó! Töltsd le az alkalmazást, majd jelentkezzen be a fiókjába.
 JÓ:    Kedves Felhasználó! Töltse le az alkalmazást, majd jelentkezzen be a fiókjába.
 Mikor NE: **a meglévő formát tartsd meg, ne te válaszd meg.** Ha a szöveg túlnyomórészt tegez,
-egységesíts tegezésre; ha önöz, önözésre. A döntés a szerzőé — te csak a következetlenséget
+egységesíts tegezésre; ha önöz, önözésre. A döntés a szerzőé – te csak a következetlenséget
 javítod. Ha nincs benne megszólítás, ne vigyél be.
 Forrás: Microsoft Hungarian Style Guide · Domonkosi Ágnes
 
@@ -83,7 +83,7 @@ ROSSZ: Ha Ön elfelejtette az Ön jelszavát, Ön a beállításokban módosíth
 JÓ:    Ha elfelejtette a jelszavát, a beállításokban módosíthatja.
 Ugyanez a birtokos névmásra és az `ő`-re: lásd HU-F06.
 Mikor NE: szembeállításnál kötelező (`Ön dönt, nem mi.`). Jogi szövegben az `Ön` a fél
-azonosítása lehet — ott hagyd.
+azonosítása lehet – ott hagyd.
 Az `Ön` nagybetűzését ne egységesítsd: HU-B22.
 Forrás: Domonkosi Ágnes, real.mtak.hu/75699
 
@@ -104,18 +104,18 @@ Tegezni gyerek- és játékszoftverben, parancssori eszközben, illetve kifejeze
 márkahangban szabad.
 ROSSZ: Kattints a Tovább gombra, majd add meg a jelszavad.
 JÓ:    Kattintson a Tovább gombra, majd adja meg a jelszavát.
-Mikor NE: **HU-M01 felülírja.** Ha a szöveg már következetesen tegez, ne váltsd át — az a
+Mikor NE: **HU-M01 felülírja.** Ha a szöveg már következetesen tegez, ne váltsd át – az a
 márkahang. Szabad szoftveres súgóban a T/1 felszólítás (`Kattintsunk az OK gombra`) bevett
 harmadik út; ha a szöveg ezt használja, hagyd.
 Forrás: Microsoft Hungarian Style Guide · Mozilla és Ubuntu magyar fordítói útmutató
 
 ### HU-M05 · Megszólításkerülés ismeretlen regiszterben · [SOFT] [AI:kozepes?] [kern]
 
-Mi ez: ha nem tudod, tegező vagy nemtegező a viszony, **kerüld el a megszólítást** — személytelen
+Mi ez: ha nem tudod, tegező vagy nemtegező a viszony, **kerüld el a megszólítást** – személytelen
 szerkezettel, főnevesítéssel vagy `-hat/-het` lehetőséggel.
 ROSSZ: Töltsd ki a kérdőívet, majd Ön küldje el nekünk a megadott címre.
 JÓ:    A kérdőívet kitöltés után a megadott címre lehet elküldeni.
-Ez az egyetlen hely, ahol a főnevesítés **jó** megoldás — a HU-F01 itt nem alkalmazandó.
+Ez az egyetlen hely, ahol a főnevesítés **jó** megoldás – a HU-F01 itt nem alkalmazandó.
 Mikor NE: ha a szöveg regisztere egyértelmű, vagy ha a felhasználó megmondta. Akkor nem kerülni
 kell a megszólítást, hanem következetesen használni a megállapított formát. `legal` profilban
 szintén nem fut: ott a személytelen szerkezet amúgy is az alapforma.
@@ -145,7 +145,7 @@ JÓ:    `Kedves János!` / `Köszönöm a levelét, hamarosan válaszolok.`
 Mikor NE: a vesszős forma az utóbbi években terjed, és informális e-mailben már nem feltűnő.
 `informal` profilban csak akkor javítsd, ha a szöveg egyébként is formális.
 Az elköszönő formula (`Üdvözlettel`, `Tisztelettel`, vesszővel vagy kettősponttal) **ízlés
-kérdése, nem norma** — ne nyúlj hozzá.
+kérdése, nem norma** – ne nyúlj hozzá.
 Forrás: AkH. 12. · e-nyelv.hu
 
 ### HU-M08 · Amerikai e-mail-keret · [SOFT] [AI:eros?] [2026-08]
@@ -171,7 +171,7 @@ Jelek: `Mi az X?` / `Miért fontos az X?` / `Hogyan működik az X?` alcímsor; 
 Javítás: írd át az alcímeket állító mondatra vagy főnévi szerkezetre, és töröld az átvezető
 kérdéseket.
 Mikor NE: ha a szöveg tényleg GYIK vagy súgó, ahol a kérdés a keresés belépője. Ott funkció.
-Forrás: közvetlen megfigyelés · Wikipedia: Signs of AI writing — „Outline-like sections”,
+Forrás: közvetlen megfigyelés · Wikipedia: Signs of AI writing – „Outline-like sections”,
 „Fragmented headers” (CC BY-SA 4.0)
 
 ### HU-M10 · Közösségi poszt sablon · [SOFT] [AI:eros?] [2026-08]
@@ -188,7 +188,7 @@ Forrás: közvetlen megfigyelés
 ### HU-M11 · Névsorrend és titulushasználat · [FIX] [AI:kozepes] [kern]
 
 Mi ez: magyar névnél a sorrend vezetéknév–keresztnév. Első említéskor teljes név, utána
-vezetéknév vagy teljes név — a csak keresztnévi hivatkozás magyar szövegben bizalmaskodó.
+vezetéknév vagy teljes név – a csak keresztnévi hivatkozás magyar szövegben bizalmaskodó.
 ROSSZ: Anna Kovács elmondta, hogy… Később Anna hozzátette…
 JÓ:    Kovács Anna elmondta, hogy… Később Kovács hozzátette…
 Mikor NE: idegen névnél a forrásnyelvi sorrend marad (`John Smith`). Ha a szöveg tudatosan
@@ -201,9 +201,9 @@ Mi ez: egy fogalmat egy szövegen belül egyféleképpen nevezz. A gépi szöveg
 az angol terminus között, és a szinonimakergetés miatt még variál is.
 ROSSZ: A deployment automatikus. A telepítés éjszaka fut, és a kiszállítás naplózva van.
 JÓ:    A telepítés automatikus, éjszaka fut, és naplózva van.
-Az angol szakszó toldalékolására: `deployment-et`, `API-t`, `commitot` — lásd HU-T12, HU-T13.
+Az angol szakszó toldalékolására: `deployment-et`, `API-t`, `commitot` – lásd HU-T12, HU-T13.
 Mikor NE: **ez nem purizmus** (HU-B16). Nem az a cél, hogy magyarítsd a szakszót, hanem hogy
-következetes legyen. Ha a szakma angolul mondja, maradjon angolul — de végig.
+következetes legyen. Ha a szakma angolul mondja, maradjon angolul – de végig.
 Ez a minta a HU-B13 szóismétlés-tilalmának a párja: a terminust **ismételni kell**.
 Forrás: Fóris Ágota: Hat terminológia lecke
 

@@ -1,4 +1,4 @@
-# Pass 2a — Fordításnyelv
+# Pass 2a – Fordításnyelv
 
 Ez a legerősebb jelforrás. Egy nyelvi modell a magyar szöveget gyakorlatilag latens angolból
 állítja elő, ezért a tükörfordítás jegyei akkor is megjelennek, ha a szöveget senki nem fordította.
@@ -16,7 +16,7 @@ ez a pass magától elviszi az üres fokozók nagy részét.
 ### HU-F01 · Nominalizáció és birtokoslánc · [SOFT] [AI:eros?] [kern]
 
 Mi ez: egymásra halmozott `-ás/-és` főnevek és `-nak/-nek a` birtokos lépcsők. A gyűjtemény
-legnagyobb és legmegbízhatóbb mintája — de éppen ezért a legveszélyesebb is: **egyetlen műveletnek
+legnagyobb és legmegbízhatóbb mintája – de éppen ezért a legveszélyesebb is: **egyetlen műveletnek
 kell tekinteni**, nem öt külön javításnak, különben halmozottan, agresszíven írja át a mondatot.
 Miért írja így a gép: az angol `of`-lánc és a `-tion` főnevesítés szó szerinti útja. Az angolban
 a főnévi szerkezet a semleges forma, magyarul az igei.
@@ -28,14 +28,14 @@ JÓ:    A projekt akkor sikerül, ha a csapat jobban kommunikál.
 Mikor NE: ha a `-ás/-és` főnév **terminus** (`házkutatás`, `teljesítményértékelés`,
 `adatkezelés`), vagy ha a mondat jogi hivatkozás. `legal` profilban ez a minta csak akkor fut,
 ha a lánc háromnál hosszabb.
-**Mintaszintű szigorítás:** ebből a mintából bekezdésenként legfeljebb **egy** javítás mehet ki —
+**Mintaszintű szigorítás:** ebből a mintából bekezdésenként legfeljebb **egy** javítás mehet ki –
 szigorúbb, mint a `SKILL.md` általános bekezdés-korlátja, és felülírja azt lefelé.
 
 **A terminus-teszt.** A „terminus-e?” kérdés eldöntetlenül hagyva kilövi ezt a mintát minden
-olyan szövegen, amely saját fogalmi szótárat épít — pedig ott érne a legtöbbet. Ezért:
+olyan szövegen, amely saját fogalmi szótárat épít – pedig ott érne a legtöbbet. Ezért:
 a főnév akkor terminus, ha **a szövegen kívül is használják** a szakmában, **vagy** ha a szöveg
-első előforduláskor definiálja. Ha egyik sem áll — vagyis a szerző maga találta ki, és nem vezeti
-be —, az **nem terminus**, hanem bevezetetlen coinage: ott ne igésíts, hanem add át a
+első előforduláskor definiálja. Ha egyik sem áll – vagyis a szerző maga találta ki, és nem vezeti
+be –, az **nem terminus**, hanem bevezetetlen coinage: ott ne igésíts, hanem add át a
 `06-rhythm.md` HU-R09 mintájának, amely a konkrét esetet kéri a szó helyett.
 Forrás: Klaudy Kinga: A fordítás elmélete és gyakorlata, grammatikai lesüllyesztés
 
@@ -46,7 +46,7 @@ Miért írja így a gép: az angol szerkezetnek nincs magyar megfelelője, a mod
 Jelek: `az a tény, hogy`, `azt a tényt, hogy`, `annak a ténynek`.
 ROSSZ: A kutatók dokumentálni tudják azt a tényt, hogy az agy egész életen át változik.
 JÓ:    A kutatók ki tudják mutatni, hogy az agy egész életen át változik.
-Mikor NE: ha a `tény` valóban szembeállításban áll — `Nem a vélemény érdekel, hanem a tény, hogy
+Mikor NE: ha a `tény` valóban szembeállításban áll – `Nem a vélemény érdekel, hanem a tény, hogy
 mi történt.` Ott a szó tartalmas.
 Forrás: Klaudy Kinga
 
@@ -59,7 +59,7 @@ képzővel fejeződik ki.
 Jelek: `lehetővé teszi`, `biztosítja, hogy`, `képessé tesz arra`, `segít abban, hogy`.
 ROSSZ: Ez a megoldás lehetővé teszi számunkra, hogy csökkentsük a költségeket.
 JÓ:    Ezzel a megoldással csökkenthetjük a költségeket.
-Mikor NE: ha a **lehetőség maga** az állítás lényege — jogosultság, engedély, hozzáférés.
+Mikor NE: ha a **lehetőség maga** az állítás lényege – jogosultság, engedély, hozzáférés.
 `A licenc lehetővé teszi a kereskedelmi felhasználást.` Itt nem cserélhető.
 Forrás: Klaudy Kinga, átváltási műveletek
 
@@ -67,23 +67,23 @@ Forrás: Klaudy Kinga, átváltási műveletek
 
 Mi ez: az angol `a/an` nem fordul `egy`-gyel. Általános érvényű állításban a magyar névelőtlen
 többes számot vagy határozott névelőt használ.
-Miért írja így a gép: az angol határozatlan névelő kötelező, a magyar nem — a modell mégis kiteszi.
+Miért írja így a gép: az angol határozatlan névelő kötelező, a magyar nem – a modell mégis kiteszi.
 Jelek: `egy` háromnál többször egy bekezdésben; `egy` elvont főnév előtt.
 ROSSZ: Egy parancsikon létrehozása egy egyszerű feladat, és egy fájl másolása is gyorsan megy.
 JÓ:    A parancsikonok létrehozása egyszerű feladat, és a fájlok másolása is gyorsan megy.
 Mikor NE: ha az `egy` tényleg számnév (`egy hibát találtam, nem kettőt`), vagy ha valódi
 határozatlanságot jelöl (`Egy ismerősöm mesélte`). A kötetlen beszélt nyelv is használja
-nyomatékosításra — `ez egy remek ötlet`.
+nyomatékosításra – `ez egy remek ötlet`.
 Forrás: Klaudy Kinga · Microsoft Hungarian Style Guide
 
 ### HU-F05 · Hiányzó határozott névelő · [FIX] [AI:kozepes] [kern]
 
-Mi ez: ahol az angol névelő nélkül áll — márkanév, elvont főnév, általános alany —, a magyarban
+Mi ez: ahol az angol névelő nélkül áll – márkanév, elvont főnév, általános alany –, a magyarban
 ki kell tenni a határozott névelőt.
 Miért írja így a gép: az angol névelőtlen szerkezet közvetlenül átjön.
 ROSSZ: Outlook használata során ügyeljen a beállításokra; kutatók szerint ez a leggyakoribb hibaforrás.
 JÓ:    Az Outlook használata során ügyeljen a beállításokra; a kutatók szerint ez a leggyakoribb hibaforrás.
-Mikor NE: címben, címsorban, gombfeliraton, listaelemben — ott a névelő elhagyása a magyar norma is.
+Mikor NE: címben, címsorban, gombfeliraton, listaelemben – ott a névelő elhagyása a magyar norma is.
 Megszólításban sem (`Kedves Kollégák!`).
 Forrás: Klaudy Kinga · Microsoft Hungarian Style Guide
 
@@ -95,7 +95,7 @@ Miért írja így a gép: az angolban a névmás kötelező, és a modell megtar
 Jelek: `én úgy gondolom`, `az én véleményem szerint`, `ő azt mondta`, `a mi csapatunk`.
 ROSSZ: Én úgy gondolom, hogy az én véleményem szerint mi meg tudjuk oldani az ő problémáját.
 JÓ:    Szerintem meg tudjuk oldani a problémáját.
-Mikor NE: **kontrasztban kötelező** — `Én maradok, te mehetsz.` Nyomatékosításnál is
+Mikor NE: **kontrasztban kötelező** – `Én maradok, te mehetsz.` Nyomatékosításnál is
 (`Ezt én írtam.`). Ha törlöd, jelentést veszítesz.
 Forrás: Klaudy Kinga · É. Kiss Katalin
 
@@ -103,7 +103,7 @@ Forrás: Klaudy Kinga · É. Kiss Katalin
 
 Mi ez: az angol `-ing` és a participiumos mellékmondat nem `-va/-ve`, `lévén`, `figyelembe véve`
 alakban jön át magyarul, hanem önálló tagmondatként (Klaudy: grammatikai felemelés).
-Miért írja így a gép: az angol participium tömör, a magyar igenév látszólag megfelel neki — de a
+Miért írja így a gép: az angol participium tömör, a magyar igenév látszólag megfelel neki – de a
 magyar szívesebben bont mondatra.
 Jelek: `-va/-ve` a mondat élén; `lévén`; `figyelembe véve`; `így téve lehetővé`.
 ROSSZ: A boldogság mindhárom fajtáját megismerve, és így téve lehetővé a teljes életet, a szerző
@@ -122,7 +122,7 @@ Miért írja így a gép: az angol prepozíciós szerkezet (`regarding`, `with r
 `in the case of`) kész magyar névutót keres, és a leghosszabbat találja meg.
 ROSSZ: A határidők vonatkozásában további egyeztetésre van szükség a fejlesztői csapat esetében.
 JÓ:    A határidőkről még egyeztetnünk kell a fejlesztőkkel.
-Mikor NE: **`formal` profilban csak klaszterben, `legal`-ban soha** — lásd HU-B19. Jogi és
+Mikor NE: **`formal` profilban csak klaszterben, `legal`-ban soha** – lásd HU-B19. Jogi és
 hivatali szövegben ezek helyénvalók, és a csere regisztertörést okoz, ami rosszabb hiba, mint a
 terjengősség.
 Forrás: Klaudy Kinga · Lanstyák István (regiszterkorlát)
@@ -137,7 +137,7 @@ ROSSZ: A jelentés a vezetőség által jóváhagyott, a nyugtatók 70–80%-a a
 JÓ:    A jelentést a vezetőség jóváhagyta, a nyugtatók 70–80%-át pedig alvási zavarokra szedik.
 Mikor NE: **ez nem a szenvedő szerkezet tiltása.** A `-va/-ve van` (HU-B01) és a `-tatik/-tetik`
 (HU-B08) érinthetetlen. Itt kizárólag a befejezett melléknévi igenév **állítmányi** használatáról
-van szó — jelzőként teljesen szabályos: `a jóváhagyott jelentés`.
+van szó – jelzőként teljesen szabályos: `a jóváhagyott jelentés`.
 Forrás: Szepesy Gyula (a valódi idegenszerűség elkülönítése) · Klaudy Kinga
 
 ### HU-F10 · Szó szerint fordított fordulatok · [SOFT] [AI:eros?] [2026-08]
@@ -165,7 +165,7 @@ Jelek: `boldogság megtörténik`, `döntést csinál`, `figyelmet fizet`, `erő
 `hatalmas kávé`.
 ROSSZ: A boldogság akkor történik meg, ha megvan az érzelmi kielégülés.
 JÓ:    Akkor vagyunk boldogok, ha érzelmileg is elégedettek vagyunk.
-Mikor NE: ha a szokatlan kapcsolat **szándékos** — szépirodalom, reklámszöveg, szójáték. Ott a
+Mikor NE: ha a szokatlan kapcsolat **szándékos** – szépirodalom, reklámszöveg, szójáték. Ott a
 meghökkentés a cél.
 Forrás: Klaudy Kinga
 
@@ -177,7 +177,7 @@ ott, ahol a magyar melléknevet vagy állítmányt használna.
 Jelek: `magas` + elvont főnév + `-ú/-ű`; `kiemelkedő …-ú`.
 ROSSZ: A pályázó egy magas intelligenciájú, kiemelkedő motivációjú személy.
 JÓ:    A pályázó okos, és nagyon akarja ezt a munkát.
-Mikor NE: **fontos korlát.** A `-ú/-ű` képzős jelzős szerkezet ősi és termékeny magyar minta —
+Mikor NE: **fontos korlát.** A `-ú/-ű` képzős jelzős szerkezet ősi és termékeny magyar minta –
 `nagy tudású`, `jó szívű`, `nagy tapasztalatú`, `barna hajú`. Ezeket soha ne bántsd. Csak a
 `magas / kiemelkedő / alacsony` + elvont főnév kombináció gyanús, és az is csak klaszterben.
 Forrás: NKE: MI és az akadémiai szövegalkotás (a `magas intelligenciájú` példa)
@@ -189,7 +189,7 @@ Mi ez: az angol `cannot be determined` típusú szerkezet magyarul nem mellékn�
 Miért írja így a gép: az angol passzív-modális szerkezet közvetlen tükre.
 ROSSZ: A hely nem meghatározható a rendszer által a megadott adatok alapján.
 JÓ:    A megadott adatok alapján nem határozható meg a hely.
-Mikor NE: ha az igenév valóban jelzői helyzetben van — `a nem meghatározható tényezők`.
+Mikor NE: ha az igenév valóban jelzői helyzetben van – `a nem meghatározható tényezők`.
 Ez a minta a szórendet is érinti: a magyar az új információt az ige elé vagy a mondat végére
 teszi, nem angol SVO-sorrendbe. Lásd `03-grammar.md`, HU-G09.
 Forrás: Klaudy Kinga
@@ -203,4 +203,4 @@ Forrás: Klaudy Kinga
 - **Nem irtja a szenvedő szerkezetet.** Csak a HU-F09 szűk esetét javítja.
 - **Nem bontja mellérendelésre az alárendelést.** Lásd HU-B17.
 - **Nem tesz be idiómát oda, ahol nem volt.** Az idiómasűrűség ugyanúgy fordításízt ad, mint a
-  hiánya. Ez fordítástudományi megfigyelés, nem a mi mérésünk — lásd `sources.md`.
+  hiánya. Ez fordítástudományi megfigyelés, nem a mi mérésünk – lásd `sources.md`.

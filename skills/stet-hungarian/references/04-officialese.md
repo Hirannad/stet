@@ -1,18 +1,18 @@
-# Pass 3 — Hivataloskodás
+# Pass 3 – Hivataloskodás
 
 Ez a pass **teljes egészében regiszterkapun át fut.** A hivatali nyelv nem önmagában hiba: jogi,
 szerződéses és hatósági szövegben a formális névszói szerkezet helyénvaló, és a „közérthetőre”
 cserélés ott jelentést és joghatást veszít.
 
-A profilonkénti kapu a `registers.md` mátrixában áll — itt szándékosan nem ismételjük meg.
+A profilonkénti kapu a `registers.md` mátrixában áll – itt szándékosan nem ismételjük meg.
 Amit itt tudni kell: `legal` profilban ez a pass **nem fut**.
 
 **Precedencia mindenek fölött:** a HU-H08 és a HU-H10 nem javítóminta, hanem őr. Ezek akkor is
-érvényesek, amikor a pass egyébként áll — épp ők azok, amik leállítják. Ha bizonytalan vagy, hogy
+érvényesek, amikor a pass egyébként áll – épp ők azok, amik leállítják. Ha bizonytalan vagy, hogy
 egy szerkezet a regiszter része-e, ne nyúlj hozzá.
 
 **Átfedés más passokkal.** Az `-ás/-és` főnevesítést és a birtokosláncot a HU-F01 kezeli, a
-névutókat (`vonatkozásában`, `tekintetében`) a HU-F08. Itt ne javítsd őket újra — a halmozott
+névutókat (`vonatkozásában`, `tekintetében`) a HU-F08. Itt ne javítsd őket újra – a halmozott
 alkalmazás agresszív átírást okoz.
 
 ---
@@ -40,7 +40,7 @@ Jelek: `elfogadásra kerül`, `megrendezésre kerül`, `beszerzésre kerül`, `k
 ROSSZ: A díjátadó ünnepség június 5-én megrendezésre kerül, a szerződés pedig aláírásra kerül.
 JÓ:    A díjátadó ünnepséget június 5-én megrendezzük, a szerződést pedig aláírjuk.
 Mikor NE: `legal` profilban soha. És akkor sem, ha a cselekvő elhallgatása **szándékos** és a
-szöveg funkciója megkívánja — hatósági határozatban ez gyakran így van.
+szöveg funkciója megkívánja – hatósági határozatban ez gyakran így van.
 Vigyázat a HU-H09-cel: ha az előző mondatnak többes alanya van, a T/3 kétértelmű lesz.
 Forrás: e-nyelv.hu: terpeszkedő szerkezetek · Nyelvművelő kéziszótár
 
@@ -53,9 +53,9 @@ JÓ:    Hetente szerzünk be friss árut, a raktárat pedig hétvégén töltjü
 Mikor NE: ha a `történik` valódi jelentésű (`Mi történt?`), vagy ha a `megvalósul` absztrakt
 folyamatra utal, aminek tényleg nincs egyszemélyű cselekvője (`A terv megvalósult.`).
 
-**Alpont — felelősség-elrejtő `történt` · `[jelöld]`.** Külön eset: `Hibák történtek.`,
+**Alpont – felelősség-elrejtő `történt` · `[jelöld]`.** Külön eset: `Hibák történtek.`,
 `Késések adódtak.`, `Félreértés keletkezett.` Akkor jel, ha a szöveg **máshol megnevezi a
-cselekvőket**, és csak a kínos ponton vált személytelenre — ez a hangváltás az árulkodó, nem a
+cselekvőket**, és csak a kínos ponton vált személytelenre – ez a hangváltás az árulkodó, nem a
 szerkezet.
 **Soha ne írd át magadtól.** A cselekvő beírása olyan felelősségi állítás, ami nincs a forrásban,
 és a tartalmi invariánst sértené. A HU-B06 ráadásul védi az élettelen alanyt: a `döntés született`
@@ -71,7 +71,7 @@ ROSSZ: A műszaki leírás a szerződés elválaszthatatlan részét képezi.
 JÓ:    A műszaki leírás a szerződés elválaszthatatlan része.
 Mikor NE: ha a `jelent` valódi jelentésű (`Ez azt jelenti, hogy…`), vagy ha a `képez` képzésre
 utal (`szakembereket képez`).
-Ez a minta `formal`-ban is fut, mert a csere nem rövidít és nem lazít regisztert — csak egy üres
+Ez a minta `formal`-ban is fut, mert a csere nem rövidít és nem lazít regisztert – csak egy üres
 igét vesz ki.
 Forrás: Nyelvművelő kéziszótár
 
@@ -81,7 +81,7 @@ Mi ez: a főnévi feltételt `ha`-val kezdődő mellékmondatra bontsd, lehetől
 Jelek: `esetén`, `hiányában`, `esetében`, `végett`, `céljából`.
 ROSSZ: Hozzájárulás hiányában az ügyfélszolgálaton történő benyújtás esetén az adatokat töröljük.
 JÓ:    Ha Ön az ügyfélszolgálaton nyújtja be a kérelmet, és nem járul hozzá, töröljük az adatokat.
-Mikor NE: `legal` profilban soha — a jogi szövegben a feltétel főnévi formája pontosabb hatókört
+Mikor NE: `legal` profilban soha – a jogi szövegben a feltétel főnévi formája pontosabb hatókört
 ad, mint a mellékmondat. `formal`-ban csak akkor, ha kettőnél több halmozódik egy mondatban.
 Forrás: Minya Károly: Hivatalosan, terpeszkedve – de közérthetően
 
@@ -92,7 +92,7 @@ ROSSZ: Amennyiben a számlával kapcsolatban kifogása van, tekintettel arra, ho
 kérelem benyújtása szükséges.
 JÓ:    Ha kifogása van a számlával, küldjön kérelmet, mert a határidő már lejárt.
 Mikor NE: **HU-B19.** Ezek nem hibák, csak hosszabbak. `formal`-ban csak klaszterben,
-`legal`-ban soha — ott a lecserélés regisztertörést okoz, ami rosszabb, mint a terjengősség.
+`legal`-ban soha – ott a lecserélés regisztertörést okoz, ami rosszabb, mint a terjengősség.
 Forrás: Lanstyák István · Minya Károly
 
 ### HU-H07 · Hivatali klisék · [FIX-IF: informal, neutral] [AI:kozepes] [2026-08]
@@ -107,11 +107,11 @@ figyelj rá, hogy a `nem áll módunkban` cseréje ne váltson át közvetlen el
 udvariassági funkciója fontos.
 Forrás: Magyar Nyelvőr · Grétsy László
 
-### HU-H08 · Jogi vonzatváltozás — ne igésíts · [NEVER] [kontextus: legal, formal]
+### HU-H08 · Jogi vonzatváltozás – ne igésíts · [NEVER] [kontextus: legal, formal]
 
 Mi ez: ne igésítsd a szerkezetet, ha a szinonim ige **más vonzatot** kíván, és a kötelező tárgy
 kitétele megváltoztatná a jogi tartalmat.
-Példa: `feljelentést tesz` ≠ `feljelenti` — az utóbbi kötelező tárgyat kíván, tehát megnevezi,
+Példa: `feljelentést tesz` ≠ `feljelenti` – az utóbbi kötelező tárgyat kíván, tehát megnevezi,
 kit jelentenek fel. Ez más jogi állítás.
 Mikor alkalmazd: minden `legal` és `formal` szövegben, mielőtt a HU-H01-et futtatnád.
 Forrás: B. Kovács Mária: A funkcióigés szerkezetek a jogi szaknyelvben, Magyar Nyelvőr 123
@@ -119,7 +119,7 @@ Forrás: B. Kovács Mária: A funkcióigés szerkezetek a jogi szaknyelvben, Mag
 ### HU-H09 · A T/3 általános alany kétértelműsége · [FIX] [AI:gyenge] [kern]
 
 Mi ez: ha a HU-H02 javítása után T/3 igét kapsz, és az előző mondatnak **többes számú alanya
-van**, az olvasó ráértheti az alanyt — ilyenkor nevezd meg a cselekvőt, vagy hagyd a főnévi
+van**, az olvasó ráértheti az alanyt – ilyenkor nevezd meg a cselekvőt, vagy hagyd a főnévi
 szerkezetet.
 ROSSZ: A nyomozó hatóságok megállapították, hogy a zsarolás a presszóban zajlott. A váltságdíjat
 is ott adták át. (kik? a hatóságok?)
@@ -148,7 +148,7 @@ Forrás: Lanstyák István: nyelvhelyesség vs. nyelvi helyénvalóság, Fórum 
 ## Sorrend ebben a passban
 
 1. Először HU-H08 és HU-H10: eldől, fut-e egyáltalán a pass.
-2. HU-H01, HU-H02, HU-H03, HU-H04 — a funkcióigés család. **Mondatonként legfeljebb egy.**
-3. HU-H05, HU-H06 — feltétel és kötőszó.
-4. HU-H07 — klisék.
-5. HU-H09 — utólagos ellenőrzés a HU-H02 javításaira.
+2. HU-H01, HU-H02, HU-H03, HU-H04 – a funkcióigés család. **Mondatonként legfeljebb egy.**
+3. HU-H05, HU-H06 – feltétel és kötőszó.
+4. HU-H07 – klisék.
+5. HU-H09 – utólagos ellenőrzés a HU-H02 javításaira.

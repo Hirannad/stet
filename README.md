@@ -1,3 +1,5 @@
+***English** · [Magyar](README.hu.md)*
+
 # stet
 
 **stet** *(proofreader's mark: "let it stand")* — the annotation that cancels a correction.

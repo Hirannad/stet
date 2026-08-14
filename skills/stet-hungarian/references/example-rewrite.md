@@ -1,12 +1,12 @@
-# Mintafutás — a kimenet formátuma
+# Mintafutás – a kimenet formátuma
 
 **Ez formátumpélda, nem illesztési minta.** Az itteni mondatokat ne keresd a saját szövegedben, és
 ne ezekhez hasonlítsd a bemenetet: a jeleket mindig a `01`–`06` referenciafájlokból azonosítsd.
-Ez a fájl egyetlen dolgot tanít meg — **hogyan néz ki a háromrészes kimenet**, és milyen
+Ez a fájl egyetlen dolgot tanít meg – **hogyan néz ki a háromrészes kimenet**, és milyen
 részletességű a változástábla meg a gyanús-lista.
 
 Az alábbi futás `neutral` regiszterben készült. A bemenet **szándékosan elhelyezett jelekből**
-épül — a változástábla minta-ID-i megszámolhatók, tehát a futás ellenőrizhető, nem hivatkozási
+épül – a változástábla minta-ID-i megszámolhatók, tehát a futás ellenőrizhető, nem hivatkozási
 alap. Valós szövegen mért teljesítményről ez a fájl nem állít semmit.
 
 ---
@@ -25,7 +25,7 @@ költséghatékonyabb működés. Ez a megoldás lehetővé teszi számunkra, ho
 kockázatokat, ugyanakkor kihívást is jelent. Emellett a csapat képzése is szükséges. Továbbá, a
 dokumentáció frissítése is feladat.
 
-A projekt menedzsment és az adat vezérelt döntés hozás javította a folyamatot — legalábbis papíron.
+A projekt menedzsment és az adat vezérelt döntés hozás javította a folyamatot – legalábbis papíron.
 A bevétel 1,250,000 forint volt 2026 Augusztus 2-án, a növekedés 3.5%. A kimenetet HTML-el
 állítjuk elő, és a jelentés Hétfőn készül el.
 
@@ -41,7 +41,7 @@ elmondható, hogy a jövő fényes. Remélem, segítettem!
 ## 0. Regiszter
 
 A szöveget `neutral` regiszterként kezelem. (Belső dokumentáció, nincs jogi terminus, a megszólítás
-következetlen — a többségi forma az önözés.)
+következetlen – a többségi forma az önözés.)
 
 ## 1. A javított szöveg
 
@@ -92,17 +92,17 @@ A jelentés szerint „jelentős javulás” történt, ami a csapat elköteleze
 
 ## 3. Gyanús, de nem javítottam
 
-- **HU-L06** — `nem csupán egy jogi kötelezettség, hanem egy teljesen új szemléletmód is`. A
+- **HU-L06** – `nem csupán egy jogi kötelezettség, hanem egy teljesen új szemléletmód is`. A
   bekezdés 2 `SOFT` javítási kerete elfogyott (HU-L04, HU-L01). A szerkezet magyarul egyébként helyes.
-- **HU-F04** — `egy jogi kötelezettség`, `egy teljesen új szemléletmód`: angolos `egy`. Ugyanaz a
+- **HU-F04** – `egy jogi kötelezettség`, `egy teljesen új szemléletmód`: angolos `egy`. Ugyanaz a
   kerethiány.
-- **HU-R03** — a hármas felsorolás. **Szabály szerint nem javítható:** a három tag nem párhuzamos
+- **HU-R03** – a hármas felsorolás. **Szabály szerint nem javítható:** a három tag nem párhuzamos
   `-ás/-és` főnév, és a hármasság nem tér vissza bekezdésenként.
-- **HU-L08** — `kihívást is jelent`, üres igei körülírás. Kerethiány.
-- **HU-F01** — `a csapat képzése` / `a dokumentáció frissítése`: nominalizáció maradt az összevont
+- **HU-L08** – `kihívást is jelent`, üres igei körülírás. Kerethiány.
+- **HU-F01** – `a csapat képzése` / `a dokumentáció frissítése`: nominalizáció maradt az összevont
   mondatban; a HU-R04 után nem fért bele még egy `SOFT`.
-- **HU-G20** — egy `ugyanakkor`. `[jelöld]`, nem ismétlődik.
-- `legalábbis papíron` — **szándékosan megtartva.** Feloldatlan feszültség, emberi jel
+- **HU-G20** – egy `ugyanakkor`. `[jelöld]`, nem ismétlődik.
+- `legalábbis papíron` – **szándékosan megtartva.** Feloldatlan feszültség, emberi jel
   (`06-rhythm.md`, megőrizendő jegyek).
 
 ---
@@ -110,26 +110,26 @@ A jelentés szerint „jelentős javulás” történt, ami a csapat elköteleze
 ## Amit a példa mutat
 
 **A változástábla minden sora minta-ID-ra hivatkozik.** ID nélküli változtatást a Pass 6 diff-audit
-visszavonat — ha nem tudod megnevezni, melyik minta alapján nyúltál hozzá, ne nyúlj hozzá.
+visszavonat – ha nem tudod megnevezni, melyik minta alapján nyúltál hozzá, ne nyúlj hozzá.
 
 **A gyanús-lista nem formalitás.** Ebben a futásban hét tétel került rá, és mind indoklással: hol
 a klaszterküszöb, hol a bekezdésenkénti keret, hol pedig maga a szabály tiltotta a javítást
 (HU-R03). Ez az a szelep, ahol a bizonytalanság kiírható ahelyett, hogy javításba menekülne.
 
-**A `FIX` és a `SOFT` másképp viselkedik.** A tipográfia (HU-T*) végigfut, kerettől függetlenül —
+**A `FIX` és a `SOFT` másképp viselkedik.** A tipográfia (HU-T*) végigfut, kerettől függetlenül –
 ezért látszik itt sok javítás. A stilisztikai (`HU-L*`, `HU-R*`) minták viszont bekezdésenként
 legfeljebb kettőt engednek, és ezért maradt a lista alján **négy** kerethiány miatt el nem végzett
 javítás (HU-L06, HU-F04, HU-L08, HU-F01). A hét tétel közül a többi máshogy állt le: a HU-R03-at a
 saját szabálya, a HU-G20-at a `[jelöld]` címke, a `legalábbis papíron`-t pedig szándékos döntés.
 
-**És ez a futás a szövegszintű plafonon áll — nem alatta.** A bemenet 15 mondat; `SOFT` javítás
+**És ez a futás a szövegszintű plafonon áll – nem alatta.** A bemenet 15 mondat; `SOFT` javítás
 hét mondatot érint, ha a HU-R04 összevonását két érintett mondatnak számoljuk, és hatot, ha egynek.
-A `SKILL.md` szerint a törölt mondat érintett, és az összevonás két mondatot érint — tehát hét. Az
+A `SKILL.md` szerint a törölt mondat érintett, és az összevonás két mondatot érint – tehát hét. Az
 egyik olvasat átvitte volna a szövegszintű keretet, a másik pontosan ráállt, ráhagyás nélkül. A
 konkrét értékek a `SKILL.md`-ben állnak, itt szándékosan nem ismételjük meg őket.
 
 Ez a fájl ezt nem rejti el, mert ez a példa legtanulságosabb része: a bekezdésenkénti keret és a
-szövegszintű plafon **normál magyar prózán ütközik**, nem szélső esetben — a magyar prózabekezdés
+szövegszintű plafon **normál magyar prózán ütközik**, nem szélső esetben – a magyar prózabekezdés
 jellemzően 3–4 mondat, és ennél a keret hamarabb fogy el, mint hinnéd. A feloldás a `SKILL.md`-ben
 áll: a plafon **megelőző**, nem utólagos, és az összevonás számolása ki van mondva. Ez a futás a
 szabály tisztázása **előtt** készült, és szándékosan úgy maradt, hogy látszódjon, mit tisztáz.

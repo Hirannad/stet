@@ -6,14 +6,14 @@ ennél több mérlegelést kíván, az a `0X-*.md` fájlokban van blokk formába
 **Két előfeltétel minden cserére. Ha bármelyik sérül, a sor nem alkalmazható.**
 
 1. **A szerkezet legyen csupasz.** A terpeszkedő és a `kerül`-táblázat sorai csak akkor
-   cserélhetők, ha a főnévi tag **determinálatlan és nem referenciális** — nincs előtte névelő,
+   cserélhetők, ha a főnévi tag **determinálatlan és nem referenciális** – nincs előtte névelő,
    mutató névmás vagy jelző. `döntést hoz` → `dönt`, de az `ezt a döntést meghozni` **marad**:
    ott a `döntés` valódi, visszautaló tárgy, nem a szerkezet üres tagja.
 2. **A vonzatkeret legyen azonos.** Csak akkor cserélj, ha a tartalmas ige ugyanazt a vonzatot
    kívánja, mint a szerkezet. `döntést hoz a pályázatokról` → `dönt a pályázatokról` rendben;
    ha a csere kötelező tárgyat vagy más esetragot hozna be, ne cseréld (HU-H08).
 
-Ha egy sor alkalmazhatóságában bizonytalan vagy, ne cseréld — írd a „gyanús, de nem javítottam”
+Ha egy sor alkalmazhatóságában bizonytalan vagy, ne cseréld – írd a „gyanús, de nem javítottam”
 listára. A HU-B18 (idiomatikus szerkezetek) és a HU-H10 (hivatali regiszter) mindkét előfeltétel
 fölött áll.
 
@@ -21,7 +21,7 @@ fölött áll.
 ahol `F`, ott `formal`-ban is csak klaszterben. Jelöletlen sor minden profilban megy.
 
 **Egyirányúság.** Minden csere egyirányú. A visszafelé csere tilos, akkor is, ha a szöveg
-indokolná — lásd `do-not-touch.md`.
+indokolná – lásd `do-not-touch.md`.
 
 ---
 
@@ -49,7 +49,7 @@ indokolná — lásd `do-not-touch.md`.
 | engedélyt ad | engedélyez | L |
 
 Kivétel: `köszönetet mond`, `zajt csap`, `zokon vesz`, `házkutatást tart`, `feljelentést tesz`,
-`magánindítványt tesz` — ezek idiomatikusak vagy szakszavak. Lásd HU-B18, HU-H08.
+`magánindítványt tesz` – ezek idiomatikusak vagy szakszavak. Lásd HU-B18, HU-H08.
 
 ## `-ásra/-ésre kerül` → cselekvő
 
@@ -134,7 +134,7 @@ Ezek törlése után a mondat a tartalommal kezdődik, és általában nagy kezd
 | tulajdonképpeni | |
 
 **Nem törlendő:** `hát`, `ugye`, `szóval`, `persze`, `tulajdonképpen`, `amúgy`, `izé`, `nos`,
-`bizony`, `csak` — ezek diskurzusjelölők, funkciójuk van (HU-B14), és a HU-B14 `[NEVER]`, tehát ez
+`bizony`, `csak` – ezek diskurzusjelölők, funkciójuk van (HU-B14), és a HU-B14 `[NEVER]`, tehát ez
 nem enyhítés, hanem tilalom. A `ma már`, `visszatér`, `külön-külön` sem törlendő (HU-B15).
 
 A `tulajdonképpeni` **más szó**, és törölhető: melléknév (`a tulajdonképpeni feladat`), nem
@@ -154,14 +154,14 @@ diskurzusjelölő. A kettőt a HU-B14 nem mossa össze, és itt sem szabad.
 | adott | (melyik?) |
 
 Ezek nem egy-az-egyben cserék: a fokozó helyére **konkrét állítás** kerül, nem másik szó.
-Ha nincs konkrétum a forrásban, töröld — új tényt nem találhatsz ki.
+Ha nincs konkrétum a forrásban, töröld – új tényt nem találhatsz ki.
 
 **Ha a törlés megcsonkítja a mondatot** (a fokozó volt az állítmány névszói része, például
 `X kulcsfontosságú`), akkor a törlés nem járható út. Ilyenkor két lehetőséged van, ebben a
 sorrendben: (1) fogalmazd át a mondatot úgy, hogy a forrásban meglévő következményt mondja ki
 (`A visszajelzés kulcsfontosságú` → `Visszajelzés nélkül a csapat nem fejlődik`, **ha** ez a
 következmény szerepel a szövegben); (2) ha nem szerepel, cseréld semleges melléknévre (`fontos`),
-és **írd be a változástáblába, hogy ez kompromisszum** — a fokozás megmaradt, csak halkabban.
+és **írd be a változástáblába, hogy ez kompromisszum** – a fokozás megmaradt, csak halkabban.
 Új tényt egyik úton sem hozhatsz be.
 
 ## Tükörfordított fordulatok
@@ -190,7 +190,7 @@ következmény szerepel a szövegben); (2) ha nem szerepel, cseréld semleges me
 | jelentőséggel bír | fontos | |
 | fontossággal bír | fontos | |
 
-Kivétel: `a törvény úgy rendelkezik` — ott tartalmas.
+Kivétel: `a törvény úgy rendelkezik` – ott tartalmas.
 
 ## Tipográfiai jelcserék
 

@@ -1,11 +1,11 @@
-# Pass 2b — Nyelvtan, szórend, fókusz
+# Pass 2b – Nyelvtan, szórend, fókusz
 
 Ez a réteg a legmagyarabb, és a gépi szöveg itt csúszik meg a legláthatatlanabbul: a mondat
 nyelvtanilag hibátlan lehet, mégis „lapos”, mert elveszett a fókuszjelölés, vagy mert az igeidő
 és az aspektus angol logikát követ.
 
 **Óvatosság.** Több minta itt jelentést változtat, ha rosszul alkalmazod. Ahol `[jelöld]` áll, ott
-az eszköz **nem javít, csak jelez** — kiírja a „gyanús, de nem javítottam” listára.
+az eszköz **nem javít, csak jelez** – kiírja a „gyanús, de nem javítottam” listára.
 
 ---
 
@@ -14,7 +14,7 @@ az eszköz **nem javít, csak jelez** — kiírja a „gyanús, de nem javított
 ### HU-G01 · Igekötő-inverzió fókusz mellett · [FIX] [AI:kozepes] [kern]
 
 Mi ez: ha fókusz áll az ige előtt, az igekötő az ige **mögé** kerül.
-Miért írja így a gép: az angolban a hangsúly intonációval jelölődik, a magyarban szórenddel — a
+Miért írja így a gép: az angolban a hangsúly intonációval jelölődik, a magyarban szórenddel – a
 modell a semleges alakot hagyja ott.
 ROSSZ: A hibát a junior fejlesztő megtalálta, nem a senior.
 JÓ:    A hibát a junior fejlesztő találta meg, nem a senior.
@@ -36,7 +36,7 @@ Forrás: É. Kiss Katalin
 Mi ez: ha az `is`-es elem hatóköre nagyobb a tagadásnál, `sem/se` lép a helyébe, és a `nem` eltűnik.
 ROSSZ: A tesztek is nem futottak le a második környezetben.
 JÓ:    A tesztek sem futottak le a második környezetben.
-Mikor NE: ha a tagadás hatóköre nagyobb (`Az is nem baj, hanem katasztrófa` — ritka, de létezik).
+Mikor NE: ha a tagadás hatóköre nagyobb (`Az is nem baj, hanem katasztrófa` – ritka, de létezik).
 Forrás: É. Kiss Katalin: Tagadás
 
 ### HU-G04 · Az `is` partikula helye · [SOFT] [jelöld] [AI:kozepes?] [kern]
@@ -65,7 +65,7 @@ A gépi szöveg angol SVO-sorrendet tart, és ettől lesz „lapos”.
 ROSSZ: A vállalat bejelentette a döntést hétfőn a sajtótájékoztatón.
 JÓ:    A vállalat hétfőn, a sajtótájékoztatón jelentette be a döntést.
 Mikor NE: **fontos korlát.** A semleges magyar mondatban az ige utáni bővítménysor teljesen
-szabályos, és a sorrendjük szabad — önmagában az, hogy valami az ige után áll, nem hiba. Ez a
+szabályos, és a sorrendjük szabad – önmagában az, hogy valami az ige után áll, nem hiba. Ez a
 minta csak akkor fut, ha a mondatban van azonosító fókusz, ami elveszett. Klaszterben, egyesével.
 Forrás: É. Kiss Katalin · Anyanyelv-pedagógia: Topik? Fókusz?
 
@@ -98,7 +98,7 @@ ROSSZ: Ez a megoldás csökkentené a költségeket, és javítaná a teljesítm
 JÓ:    Ez a megoldás csökkenti a költségeket, és javítja a teljesítményt.
 Mellékszabály: múlt idejű feltételesben a `volna` a helyes (`megtettem volna`), a `lenne` jelen
 idejű. A `meg lettem volna` típusú keveredés hiba.
-Mikor NE: valódi feltétel, udvarias kérés, óvatos állítás — ott a feltételes helyénvaló.
+Mikor NE: valódi feltétel, udvarias kérés, óvatos állítás – ott a feltételes helyénvaló.
 Forrás: Keszler Borbála · e-nyelv.hu
 
 ### HU-G10 · Főnévi igenév felszólító mellékmondat helyett · [SOFT] [AI:eros?] [kern]
@@ -108,19 +108,19 @@ nem főnévi igenevet.
 Miért írja így a gép: az angol `I suggest reviewing / I ask you to check` szerkezetet tükrözi.
 ROSSZ: Javaslom átnézni a szerződést, és kérem visszaigazolni a határidőt.
 JÓ:    Javaslom, hogy nézzük át a szerződést, és kérem, hogy igazolja vissza a határidőt.
-Mikor NE: ha az alany azonos és a szerkezet rövid (`Szeretnék elmenni.`) — ott a főnévi igenév a
+Mikor NE: ha az alany azonos és a szerkezet rövid (`Szeretnék elmenni.`) – ott a főnévi igenév a
 természetes.
 Forrás: Keszler Borbála: Magyar grammatika
 
 ### HU-G11 · Igekötő és befejezettség · [FIX] [AI:kozepes] [kern]
 
 Mi ez: ha az esemény lezárult vagy eredményes, a magyar kiteszi a perfektiváló igekötőt. Az
-igekötő hiánya folyamatosságot vagy eredménytelenséget jelöl — ez **jelentéskülönbség**, nem stílus.
+igekötő hiánya folyamatosságot vagy eredménytelenséget jelöl – ez **jelentéskülönbség**, nem stílus.
 Miért írja így a gép: az angolban az aspektust az igeidő hordozza, nem a szó alakja.
 ROSSZ: Tegnap írtam a jelentést, és küldtem a vezetőnek.
 JÓ:    Tegnap megírtam a jelentést, és elküldtem a vezetőnek.
 Mikor NE: ha tényleg folyamatos (`Tegnap egész nap a jelentést írtam.`), vagy ha fókusz áll az ige
-előtt — akkor az igekötő hátra kerül, de nem tűnik el (HU-G01).
+előtt – akkor az igekötő hátra kerül, de nem tűnik el (HU-G01).
 Forrás: Kiefer Ferenc: Aspektus és akcióminőség
 
 ## Egyeztetés és vonzat
@@ -166,7 +166,7 @@ Miért írja így a gép: az angol `whether/if` szerkezetnek nincs magyar szóre
 ROSSZ: Nem tudom, hogy a jelentés elkészült, és megkérdezem, hogy jön-e ő is vagy nem.
 JÓ:    Nem tudom, hogy elkészült-e a jelentés, és megkérdezem, hogy eljön-e.
 Mikor NE: kiegészítendő kérdésben (`Nem tudom, mikor jön`) nem kell `-e`. Az élőbeszédben
-előfordul a `hogy … vajon` — azt hagyd.
+előfordul a `hogy … vajon` – azt hagyd.
 Forrás: AkH. 12. · Keszler Borbála
 
 ## Mondatszerkezet
@@ -189,7 +189,7 @@ van egyszerűbb mondat.
 ROSSZ: Az a tény, hogy a határidő módosult, azt eredményezte, hogy újra kell terveznünk.
 JÓ:    Módosult a határidő, ezért újra kell terveznünk.
 Mikor NE: az utalószó elhagyhatósága igénként változik, és a `Bízom, hogy sikerül` típus is
-adatolt a sztenderdben. Ne kényszerítsd ki egyik irányt sem — csak a nyilvánvalóan terjengős
+adatolt a sztenderdben. Ne kényszerítsd ki egyik irányt sem – csak a nyilvánvalóan terjengős
 `az a tény, hogy … azt eredményezte, hogy` láncot bontsd.
 Forrás: Keszler Borbála · e-nyelv.hu
 
@@ -199,13 +199,13 @@ Mi ez: kettőnél több tagú birtokoslánc helyett bontsd fel a szerkezetet. A 
 egyszer kitenni, a lánc elején vagy végén.
 ROSSZ: A kerületi önkormányzatnak az oktatási bizottságának az elnökének a beszéde elmaradt.
 JÓ:    Elmaradt a kerületi önkormányzat oktatási bizottsága elnökének a beszéde.
-Mikor NE: a többszörös `-nak/-nek` nem agrammatikus, csak nehézkes — stílusajánlás, nem szabály.
+Mikor NE: a többszörös `-nak/-nek` nem agrammatikus, csak nehézkes – stílusajánlás, nem szabály.
 Ne javítsd `legal` profilban, és ne halmozd a HU-F01-gyel: **a kettő együtt egy művelet.**
 Forrás: Nyelvművelő kéziszótár · e-nyelv.hu: Birtokos jelző
 
 ### HU-G19 · Vessző `illetve`, `valamint`, `továbbá` előtt · [FIX] [AI:gyenge] [kern]
 
-Mi ez: e három kötőszó elé **mindig** vessző kell — felsorolásban is, tagmondatok között is.
+Mi ez: e három kötőszó elé **mindig** vessző kell – felsorolásban is, tagmondatok között is.
 Ez az ellentéte az `és` szabályának (HU-T11).
 ROSSZ: Kérjük a nevét valamint az e-mail-címét, továbbá a telefonszámát.
 JÓ:    Kérjük a nevét, valamint az e-mail-címét, továbbá a telefonszámát.
@@ -234,4 +234,4 @@ Forrás: e-nyelv.hu · A magyar nyelv nagyszótára
 - HU-G18 és HU-F01 **egy művelet**. Ne alkalmazd mindkettőt ugyanarra a mondatra.
 - HU-G16 nem HU-B17. Az alárendelés elvi kerülése tilos; a háromszoros `hogy`-lánc bontása nem az.
 - HU-G04 és HU-G20 `[jelöld]`: soha ne írja át magától.
-- A mondatkezdő `azonban` kérdésében HU-B03 nyer — nincs tiltás.
+- A mondatkezdő `azonban` kérdésében HU-B03 nyer – nincs tiltás.
