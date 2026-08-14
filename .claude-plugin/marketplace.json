@@ -1,0 +1,19 @@
+{
+  "name": "stet",
+  "description": "Prose linters for machine-written text, one skill per language.",
+  "owner": {
+    "name": "József Juhász",
+    "url": "https://github.com/Hirannad"
+  },
+  "plugins": [
+    {
+      "name": "stet",
+      "source": "./",
+      "description": "A prose linter for machine-written text. Currently Hungarian: 118 patterns, register-aware, with a suppression list, a cluster gate and an edit budget.",
+      "version": "0.2.0",
+      "homepage": "https://github.com/Hirannad/stet",
+      "license": "MIT",
+      "keywords": ["writing", "editing", "prose", "style", "hungarian", "magyar", "ai-writing", "linter"]
+    }
+  ]
+}

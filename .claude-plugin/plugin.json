@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "stet",
+  "description": "A prose linter for machine-written text. Finds the tells that mark a text as LLM-generated or machine-translated, and decides which to leave alone. Hungarian; register-aware, with a suppression list, a cluster gate and an edit budget.",
+  "version": "0.2.0",
+  "author": {
+    "name": "József Juhász",
+    "url": "https://github.com/Hirannad"
+  },
+  "homepage": "https://github.com/Hirannad/stet",
+  "repository": "https://github.com/Hirannad/stet",
+  "license": "MIT",
+  "keywords": ["writing", "editing", "prose", "style", "hungarian", "magyar", "ai-writing", "linter"]
+}

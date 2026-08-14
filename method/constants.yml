@@ -1,0 +1,71 @@
+# stet method — the single source for the method's constants.
+#
+# THIS FILE IS AUTHORITATIVE. METHOD.md explains the reasoning; it is not normative.
+# Every value below must appear at most once in a skill's prose — restating a constant in a
+# reference file is how two different answers to the same question get shipped.
+#
+# [checked]  = scripts/check.py reads this value and fails if the prose disagrees.
+# [declared] = single-sourced here by convention only. Nothing enforces it yet, and saying so
+#              is the point: an unenforced convention is only a convention if it admits it.
+#
+# Language-neutral SHAPE lives here. Language-specific VALUES live under skills:.
+# A sibling skill for another language declares its own values; it does not inherit these.
+
+version: 1
+
+shape:
+  # Per-pattern severity. What to do.
+  severity: [FIX, FIX-IF, SOFT, NEVER]           # [checked]
+
+  # Per-pattern evidence strength. How much proof it is worth.
+  # A trailing "?" marks an estimate rather than measured data.
+  evidence: [eros, kozepes, gyenge]               # [checked]
+  estimate_marker: "?"                            # [checked] via measured_patterns
+
+  # Volatility. kern = anchored in a codified norm; YYYY-MM = lexical list with a review date.
+  stability: ["kern", "YYYY-MM"]                  # [checked] presence only, not the value
+
+  # Extra header slot: mark but do not fix.
+  annotations: ["jelöld"]                         # [declared]
+
+  # Required fields on an edit-prescribing pattern. NEVER patterns are exempt —
+  # they are prohibitions, so "when not to apply" is meaningless for them.
+  required_fields: ["Forrás"]                     # [checked]
+  required_fields_non_never: ["Mikor NE"]         # [checked]
+
+  # Every cluster override must name a falsifiable structural test, so that an
+  # estimate-marked pattern can still override without leaning on its AI: value.
+  override_requires_test: true                    # [declared] — reviewed by hand
+
+skills:
+  stet-hungarian:
+    language: hu                                 # [declared]
+    passes: [-1, 0, 1, 2, 3, 4, 5, 6]             # [checked]
+    profiles: [informal, neutral, formal, legal]  # [declared]
+    default_profile: neutral                      # [declared]
+
+    # Cluster gate. Only SOFT hits score; a pattern counts once however many times it fires.
+    cluster_points: {eros: 2, kozepes: 1, gyenge: 0}   # [declared], restatement [checked]
+    cluster_threshold: 3                          # [declared], restatement [checked]
+    cluster_threshold_moderate: 4                 # [declared], restatement [checked]
+
+    # Edit budget. Counts SOFT edits only; FIX and FIX-IF are exempt.
+    soft_per_paragraph: 2                         # [declared]
+    soft_per_paragraph_moderate: 1                # [declared]
+    max_sentence_share: 0.40                      # [declared]
+    min_sentences_for_share: 5                    # [declared]
+
+    audit_questions: 7                            # [checked]
+
+    # Patterns that may carry an evidence value without the estimate marker, because the
+    # AI: value itself traces to measured data. Empty, and deliberately so: the catalogue has
+    # citable linguistic sources, some of them quantitative, but not one citable measurement of
+    # how often a language model produces a given form — which is what an AI: value asserts.
+    # See references/sources.md.
+    measured_patterns: []                         # [checked]
+
+    # Patterns that count as a cluster on their own. Each states its own test.
+    cluster_overrides: [HU-L06, HU-L14, HU-R09, HU-R10, HU-R11]   # [checked]
+
+    # Single source for the pass matrix.
+    pass_matrix_file: references/registers.md     # [checked]

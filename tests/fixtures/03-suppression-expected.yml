@@ -1,0 +1,59 @@
+# Fixture 03 — catch trials for the HU-B do-not-touch list.
+# Every construction below is a Hungarian prescriptive myth the catalogue forbids "fixing".
+# Validation round 1 balloted four of these blind against a native reader: three were rejected
+# confidently (HU-B01, HU-B03, HU-B06). The fourth produced no verdict because the item was invalid
+# by construction — the substituted word differed in lexical quality as well as in the forbidden
+# operation, so it measured word choice. See docs/validation.md, "Two defects in this round's own
+# instrument". The suppression list is still the best-validated part of the catalogue, and this
+# fixture keeps it that way.
+register: neutral
+
+expect_patterns: []
+
+expect_change_count: 0
+
+expect_noop:
+  - what: "`le van zárva`"
+    reason: >-
+      HU-B01. Not a Germanism; attested from the 14th century. Rewriting to `lezárták` turns a state
+      into an event, which is a meaning change. Balloted blind in round 1 against `lezárták` — the
+      original was preferred, confidently.
+  - what: "`Az elemzés kimutatja`, `a szerződés kimondja`"
+    reason: >-
+      HU-B06. Inanimate subject with an active verb. Balloted blind against a version with a
+      personal agent — the original was preferred, confidently.
+  - what: "`De ez nem jelenti azt, hogy…`"
+    reason: >-
+      HU-B03. Sentence-initial `De` is correct. Rewriting it into a trailing `azonban` is
+      hypercorrection and adds two machine signals at once: more officialese and more monotony.
+      Balloted blind against a trailing `azonban` — the original was preferred, confidently.
+  - what: "`nem látott senkit`"
+    reason: HU-B05. Negative concord is obligatory. `nem látott valakit` is ungrammatical, not formal.
+  - what: "`Ami ebből következik`"
+    reason: >-
+      HU-B02. Never swap `ami` for `amely` — in either direction, and never to "unify" a text that
+      uses both. `amely` here would be hypercorrection.
+  - what: "`de viszont`"
+    reason: >-
+      HU-B04. A lexicalised compound conjunction with four distinct senses in *A magyar nyelv
+      nagyszótára*.
+  - what: "`A szemem előtt van`"
+    reason: >-
+      HU-B11. Paired body parts take either number; this is a no-op in both directions. Also do not
+      read it as a HU-B15 pseudo-pleonasm.
+  - what: "`a séma migrációja` three times"
+    reason: >-
+      HU-B13, which overrides every pattern prescribing variety. The repeated term must stay a
+      repeated term. Note the tension with HU-F01: the phrase is a genitive `-ás/-és` nominal, so
+      HU-F01's signs match — and HU-F01's own `Mikor NE` terminus clause is what must stop it.
+      A run that verbalises this is the finding, not the fix.
+  - what: "`ma már`"
+    reason: HU-B15. A pseudo-pleonasm, not redundancy.
+
+expect_no_soft: true
+soft_reason: >-
+  This is the sharpest test in the set, because the surface signals are dense: HU-F01 matches the
+  repeated genitive nominal, HU-L06 could read `nem egytől` as a negative parallelism, and HU-R05
+  sees consecutive sentences opening with a demonstrative. All three must be stopped — by the
+  terminus clause, by the straw-man test, and by the cluster threshold respectively. A SOFT edit
+  anywhere in this fixture means a suppression entry was overrun.

@@ -1,0 +1,53 @@
+# Fixture 02 — the negative fixture. Correct, human-written Hungarian.
+# The most valuable of the three, for a tool whose documented primary failure mode is
+# over-correction: it is the only fixture where any edit at all is a defect.
+# The expected result is NOTHING.
+register: neutral
+
+expect_patterns: []
+
+expect_change_count: 0
+
+expect_noop:
+  - what: "`Hát, ennyi.` and `őszintén szólva`"
+    reason: >-
+      HU-B14 — discourse markers carry pragmatic function and are a large part of what makes the
+      text sound human. Deleting them is forbidden in either direction.
+  - what: "`Nem volt se architekturális hiba, se kapacitásprobléma`"
+    reason: >-
+      HU-B05 — negative concord is obligatory in Hungarian. Not a stylistic choice and not a
+      HU-L06 negative parallelism: there is one contrast, not a stacked frame.
+  - what: "`(Majdnem meg is rendeltem két új node-ot.)`"
+    reason: >-
+      A self-correction in parentheses is on the "megőrizendő jegyek" list in 06-rhythm.md. It
+      blocks the SOFT rhythm patterns for this paragraph.
+  - what: "`gyorsítótár` four times, `feltétel` twice, `egysoros` twice"
+    reason: >-
+      HU-B13 — keyword repetition is the norm in Hungarian technical prose, and a synonym chain is
+      itself the machine tell. HU-B13 overrides every pattern that prescribes variety.
+  - what: "`a gyorsítótár minden kérésre újraépült`"
+    reason: HU-B06 — inanimate subject with an active verb. No such rule exists; never "fix" it.
+  - what: "`Amit ebből megtanultunk, azt nehéz szabályba tenni`"
+    reason: >-
+      Correlative pronoun construction (HU-G17 territory) used correctly and idiomatically, not a
+      hogy-chain. One occurrence is not a signal.
+  - what: "`Nem tudom, meddig tartjuk magunkat ehhez.`"
+    reason: >-
+      Unresolved tension — on the "megőrizendő jegyek" list. Also not HU-L07 hedging: one hedge in
+      a sentence, and it is an epistemic statement rather than a softener.
+  - what: "the spaced en dash in `se kapacitásprobléma – bár`"
+    reason: >-
+      Already the correct Hungarian gondolatjel. HU-T02 converts an em dash to this form; it must
+      never rewrite the already-correct form into anything else. The input carried an em dash until
+      round 2, which made this fixture's expect_change_count unsatisfiable — HU-T02 is FIX and
+      exempt from every budget, so a correct run had to change it.
+  - what: "sentence lengths"
+    reason: >-
+      HU-R01 must not fire. The eleven sentences run 10, 14, 3, 2, 15, 7, 17, 7, 20, 12 and 6 words
+      — a 2-to-20 spread, far outside the ±30 % band that defines uniform rhythm.
+
+expect_no_soft: true
+soft_reason: >-
+  Every paragraph should score 0. Any SOFT edit here is an over-correction. Nothing executes this
+  file — see tests/README.md for why — so it is a specification a reader or an agent checks a run
+  against, not a build gate.

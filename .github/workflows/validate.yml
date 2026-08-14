@@ -1,0 +1,32 @@
+name: validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Structural checks
+        run: python3 scripts/check.py
+
+      - name: Agent Skills discovery
+        run: npx --yes skills@1.5.20 add . --list
+
+      - name: Plugin and marketplace manifests
+        run: |
+          npm install --global @anthropic-ai/claude-code@2.1.229
+          claude plugin validate . --strict

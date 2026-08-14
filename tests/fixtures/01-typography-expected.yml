@@ -1,0 +1,47 @@
+# Fixture 01 — the FIX-class typography and orthography layer.
+# Synthetic input. Purpose: this layer is norm-governed (AkH.), so it is machine-checkable and
+# must not depend on a human judgement call. Validation round 1 found HU-T01 broken in the
+# catalogue's own printed examples; this fixture is what would have caught it.
+register: neutral
+
+expect_patterns:
+  - id: HU-T01
+    count: 2
+    note: >-
+      Straight quotes in a Hungarian sentence become „…” — lower opening, UPPER closing (U+201D).
+      A run that emits „…" with a straight closer is a FAILURE, not a partial pass. This is the
+      exact defect validation round 1 found: the catalogue printed U+0022 as the "correct" closer
+      in 69 places, and a run matching the printed example produced half-fixed output.
+  - id: HU-T02
+    count: 1
+    note: em dash → spaced en dash; the spaces were already correct, only the character changes.
+  - id: HU-T03
+    count: 2
+    note: "`2020-2024` and `Budapest-Bécs` take the en dash, unspaced."
+  - id: HU-T04
+    count: 2
+    note: "decimal point → decimal comma: `2.5` and `0.5`. There is no third English decimal."
+  - id: HU-T05
+    count: 3
+    note: "unit spacing: `8GB` → `8 GB`, `4GB` → `4 GB`, `21°C` → `21 °C`."
+  - id: HU-T07
+    count: 1
+    note: >-
+      `Projekt Áttekintés` is English Title Case inside a Hungarian sentence. It is quoted as a
+      document name, so this is the boundary case: the quotation is an untouchable zone, but the
+      Title Case is the stronger machine signal. A run that changes it must say which rule won;
+      a run that leaves it must put it on the suspect list. Either is acceptable, silence is not.
+
+expect_noop:
+  - what: "the em dash inside `— aki egyébként maga is fejlesztő —`"
+    reason: >-
+      Already the correct spaced gondolatjel after the HU-T02 fix. HU-T01's own Mikor NE clause
+      generalises here: never rewrite the already-correct form into anything else.
+  - what: "`háromszor`, `8`, `4`, `3`, `0.5`, `2.5` as quantities"
+    reason: No number, date or magnitude may change; only its formatting.
+
+expect_no_soft: true
+soft_reason: >-
+  Three prose paragraphs, no LLM vocabulary, no nominalisation chain, no negative parallelism.
+  Every paragraph should score 0 and no SOFT pattern may fire. If one does, the cluster gate is
+  leaking.
