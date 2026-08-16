@@ -9,6 +9,31 @@ magyar”. Nem hibás. Nyelvtanilag rendben van. Csak épp senki nem így beszé
 
 Ez az eszköz azt keresi meg. És ami sokkal fontosabb: **azt is tudja, mihez ne nyúljon hozzá.**
 
+## Kinek való
+
+Ha magyar szöveget írsz vagy íratsz AI-val, és az mások elé kerül: ügyféllevél, dokumentáció,
+termékszöveg, hírlevél, poszt, szabályzat.
+
+A tipikus eset ez: megíratod, elolvasod, jónak tűnik, kiküldöd – aztán valaki visszaszól, hogy
+„ez olyan gépi”. Ez az eszköz megmondja, konkrétan min múlt, mondatonként.
+
+Ha viszont magadnak írsz jegyzetet, vagy a szöveg úgyis csak egy prompt lesz valami másnak, nem
+éri meg a kört.
+
+## Mit kapsz érte
+
+A legutóbbi méréskor kilenc AI-írta magyar szöveget futtattunk át rajta, háromféle modelltől.
+**Mind a kilencben talált tipográfiai vagy helyesírási hibát** – szövegenként 1 és 10 közöttit.
+Nem stílushibát: olyat, ami egyszerűen rossz. Angol idézőjel magyar mondatban, em dash a
+gondolatjel helyett, `1,250,000` a `1 250 000` helyett, `HTML-el` a `HTML-lel` helyett.
+
+Ezek nem attól rosszak, hogy „gépiesek”. Attól, hogy **igénytelennek** mutatják a szöveget, és
+pont az a fajta hiba, amit az ember maga már nem vesz észre a századik átolvasásra.
+
+Ez a megbízható rész, és erős modell szövegén jellemzően ennyi is a dolga: rendbe rakja a
+tipográfiát, és nem nyúl máshoz. A stilisztikai réteg gyengébb modellek szövegén dolgozik
+igazán – és ott sem hibátlan, lásd az *Amit nem tud* részt.
+
 ## Telepítés
 
 ```bash
@@ -120,18 +145,33 @@ ott nemcsak elmulaszt dolgokat, hanem **hibát is visz be.**
 
 ## Mit tudunk róla mérésből
 
-Két mérési kör futott, publikálás előtt. Mindkettő a
-[docs/validation.md](docs/validation.md)-ben van, a korlátaival együtt. A második kör
-szövegkorpusza és minden száma bent van a repóban ([tests/corpus/](tests/corpus/)), tehát
-újrafuttathatod, és nem kell elhinned.
+Három mérési kör futott. Mindegyik a [docs/validation.md](docs/validation.md)-ben van, a
+korlátaival együtt. A szövegkorpusz, minden szám **és maguk a futások** bent vannak a repóban
+([tests/corpus/](tests/corpus/)), tehát újrafuttathatod, és nem kell elhinned.
 
-**A legérdekesebb eredmény:** 9 magyar szöveget generáltunk három Claude modellel, és mindegyiken
-kétszer futtattuk le az eszközt. A Sonnet és az Opus által írt magyaron **12 futásból nullaszor**
-végzett stilisztikai javítást. A tipográfiait viszont mindegyiken elvégezte.
+**A legérdekesebb eredmény, és kétszer is kijött:** 9 magyar szöveget generáltunk három Claude
+modellel. A Sonnet és az Opus által írt magyaron az eszköz **egyetlen** stilisztikai javítást sem
+végzett. A tipográfiait viszont mindegyiken elvégezte. Ugyanez jött ki a második körben és a
+harmadikban is, pedig közben megváltozott, hogyan számoljuk.
 
 Magyarul: **erős modell szövegén ez az eszköz a tipográfiát rakja rendbe, és egyébként csendben
 marad.** Gyengébb vagy gyorsabb modell szövegén dolgozik. Ez egyben azt is jelenti, hogy egy
 „gépi jelek” katalógus mozgó célpont – a szólisták ezért visznek felülvizsgálati dátumot.
+
+A harmadik kör nem stílust mért, hanem azt tette lehetővé, hogy egyáltalán mérni lehessen: a
+kimenetnek fix alakja lett, és egy szkript olvassa. Előtte kézzel kellett átnézni minden futást,
+ami pár tucatnál tovább nem skálázódik.
+
+## Mikor ne használd
+
+- **Ha a szöveg nem magyar.** Van benne nyelvi kapu, ami megáll és átad, de akkor minek indítsd el.
+- **Ha helyesírás-ellenőrzőt keresel.** Nem az, és ez szándékos. Egy elmaradt kettőzés vagy egy
+  kétfelé írt összetett szó átmegy rajta.
+- **Ha azt akarod, hogy egy AI-detektor ne fogja meg a szöveget.** Nem erre való, és nem is
+  működne: a tipográfia rendbetétele semmit nem rejt el.
+- **Ha jogi szöveget akarsz „közérthetőbbre” írni.** Szerződésben a hivatalos névszói szerkezet a
+  helyes alak, és az eszköz ezért kapcsol ki egész passzokat, ha szerződést lát. A közérthető
+  változat külön munka, nem lektorálás.
 
 ## Amit nem tud, és nem is állítja
 

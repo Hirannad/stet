@@ -11,6 +11,32 @@ then — this is the part that makes it different — decides which of them to l
 Currently one language: **Hungarian** (119 patterns). English is planned, and open questions are
 tracked as issues.
 
+## Who it is for
+
+You write Hungarian with an LLM's help, and the result goes in front of other people: customer
+mail, documentation, product copy, a newsletter, a policy.
+
+The usual case is this. You have it written, you read it back, it looks fine, you send it — and
+somebody replies that it reads "machine-made". This tells you which sentence, and why.
+
+If you are writing notes for yourself, or the text is only going to be a prompt for something
+else, it is not worth the round trip.
+
+## What you actually get
+
+The last measurement ran nine LLM-written Hungarian texts, from three models, through the tool.
+**All nine contained a typographic or orthographic error** — between one and ten per text. Not
+matters of taste: things that are simply wrong. An English quotation mark in a Hungarian sentence,
+an em dash where the dash should be a spaced en dash, `1,250,000` for `1 250 000`, `HTML-el` for
+`HTML-lel`.
+
+Those are not bad because they look machine-made. They are bad because they make a text look
+**careless**, and they are exactly the kind of error an author stops seeing on the tenth read.
+
+That is the dependable part, and on a strong model's output it is usually the whole job: fix the
+typography, leave everything else alone. The stylistic layer earns its keep on weaker models'
+output, and even there it is not sound — see *Known limitations*.
+
 ## Install
 
 ```bash
@@ -63,6 +89,18 @@ The method is documented in [METHOD.md](METHOD.md); its values live in
 asserts that the prose agrees with the constants it reads — the constants file marks which of its
 values are checked and which are, for now, only declared.
 
+## When not to reach for it
+
+- **The text is not Hungarian.** There is a language gate that stops and hands off, but then why
+  start it.
+- **You want a spell checker.** It is not one, deliberately. A missing consonant doubling or a
+  compound written as two words goes straight past it.
+- **You want a text to slip past an AI detector.** Not what it is for, and it would not work:
+  fixing typography hides nothing.
+- **You want a contract in plain language.** In a contract the formal nominal construction *is*
+  the correct form, which is why whole passes switch off when the tool sees one. A plain-language
+  version is separate work, not proofreading.
+
 ## What it is not
 
 Not a spell checker, not a grammar checker, not a prescriptive language-nanny, not an AI
@@ -88,6 +126,11 @@ generated specimens, twice each. Across twelve runs on Sonnet- and Opus-written 
 **zero** soft edits. All eighteen soft edits in the round came from Haiku-written text. The
 typographic and orthographic layer, by contrast, fired on every specimen from every model — 137
 changes across the eighteen runs.
+
+**And it replicated.** Round 3 re-ran all nine specimens after the output format changed, which
+also changed how edits are counted — and the sign held: every soft edit still came from
+Haiku-written Hungarian, none from Sonnet's or Opus's. The absolute numbers do not carry across
+the two rounds, and `docs/validation.md` says why.
 
 Read that as guidance, not as a boast: on output from a strong model, expect this tool to fix
 typography and stay quiet otherwise. It also means a catalogue of LLM tells is a moving target,
