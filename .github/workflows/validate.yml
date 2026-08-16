@@ -23,6 +23,11 @@ jobs:
       - name: Structural checks
         run: python3 scripts/check.py
 
+      # No-op until tests/corpus/runs/ has something in it. Once it does, a recorded run that
+      # drifts from the shape SKILL.md specifies fails here instead of being found by hand.
+      - name: Recorded run shapes
+        run: make runs
+
       - name: Agent Skills discovery
         run: npx --yes skills@1.5.20 add . --list
 

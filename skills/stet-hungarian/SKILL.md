@@ -333,9 +333,19 @@ Kézi átnézés lett belőle. A rögzített alak ezt oldja meg.
   - Ha **egy** javítást **több** minta indokol, a minta-ID-k vesszővel egy cellában állnak.
   - Ha **két külön** javítás esik ugyanarra a mondatra, az **két sor**.
   - Az `Eredeti` és az `Új` a **megváltozott legszűkebb részletet** tartalmazza, nem a teljes
-    mondatot – különben az átfedő javítások egymás változásait is mutatnák.
+    mondatot – különben az átfedő javítások egymás változásait is mutatnák. De van alsó határa:
+    a legszűkebb részlet, ami **még azonosítja a helyet.** Egyetlen írásjel nem az.
+  - **Törlésnél az `Új` cella `*(törölve)*`.**
+  - **Egy sor `SOFT`-nak számít, ha bármelyik idézett mintája `SOFT`** – a költségvetés `SOFT`
+    javításokat számol, és a szigorúbb olvasat a biztonságos.
+- **Az 1. szakasz a teljes javított szöveget adja vissza**, a strukturált metaadattal együtt
+  (front matter, property), változatlanul. Az érinthetetlen zóna nem azt jelenti, hogy kimarad,
+  hanem hogy nem módosul.
 - **A 3. szakasz felsorolás.** Minden tétel `- ` jellel kezdődik, utána `**minta-ID**` (többet
   vesszővel, ahogy a 2. szakaszban) vagy `**nincs minta**`, majd ` – `, majd a részlet és az indok.
+  **Egysége ugyanaz, mint a 2. szakaszé: egy minta egy mondatban.** Egy gyanús tétel nem javított
+  javítás, tehát ugyanúgy kell számolni – enélkül ugyanaz a futás 6-ot vagy 11-et is jelenthet.
+  Ezt a szabályt a `parse_run.py` **nem tudja kikényszeríteni**, csak kiírni; itt a fegyelem tartja.
 - **Alcímsor egyik szakaszban sem áll.** „Átnéztem, tiszta volt” típusú alszakasz a
   változástáblában tilos: az a 3. szakaszba tartozik, vagy sehova.
 
