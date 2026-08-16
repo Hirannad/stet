@@ -323,6 +323,9 @@ Kézi átnézés lett belőle. A rögzített alak ezt oldja meg.
 - **A 0. szakasz kettőt mond ki:** a **szöveg nyelvét** és a **regisztert**, a profilnevet
   visszapipálva. Pontosan **egy profilnév** álljon benne – a mondatok száma nem számít. Ha a
   regisztert a hívó rögzítette, írd oda, hogy rögzített: a mérések összevethetősége ezen múlik.
+  **Csapda:** ha indokolni akarod a választást, a többi profilt **ne pipáld vissza** – a
+  *„nem `neutral`, hanem `formal`”* alakú mondat két nevet tesz a szakaszba, és elrontja a
+  beolvasást. Írd névtelenül: *„a szigorúbb profilt választottam, mert…”*
 - **Az 1. szakasz törzse kódblokkban áll.** Ez nem díszítés: a javított szöveg maga is tartalmazhat
   `##` és `###` címsorokat, és fence nélkül azok szakaszhatárnak látszanak.
 - **A 2. szakasz táblázat**, pontosan ezekkel az oszlopokkal, ebben a sorrendben:

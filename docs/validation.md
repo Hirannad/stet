@@ -390,3 +390,99 @@ calibrate the cluster gate and the budget, and a text that actually contains the
 patterns. It also now has eighteen `SOFT` edits on record, all from one model family, which is the
 first concrete material a ballot could be run on — but running that ballot with one interested rater
 would only repeat round 1's binding limitation.
+
+---
+
+## Round 3, part one — 2026-08-15
+
+**This is not a measurement round.** It removes the thing that blocked one. Round 2's finding 4
+recorded that the three-part output had no machine-readable shape, so its eighteen runs were
+counted by hand and no artefact survived from which anyone could re-derive the numbers. Every
+measurement round 3 plans — false-positive rate on human prose, threshold calibration, per-pattern
+frequency — needs hundreds of runs. Hand counting does not reach that.
+
+So: the output shape is fixed, a parser reads it, and nine runs are on disk.
+
+### What changed
+
+`SKILL.md`'s `## Kimenet` now specifies four section headings verbatim, a fenced section 1, the
+change-table columns, and a row unit: **one pattern per sentence**, so a row count reconciles with
+the sentence-based edit budget. The shape was not invented — `example-rewrite.md` already used it
+and had done since it was written. It was simply never required, so runs drifted.
+
+`scripts/parse_run.py` reads that shape. Stdlib-only, reusing `check.py`'s header grammar rather
+than restating it. `make runs` fails if a recorded run drifts, and CI runs it.
+
+### How the specification was arrived at
+
+Three format-validation runs first, not nine. The point was to find the specification's holes
+before scaling, and they found four: no slot for the Pass −1 language declaration, unstated but
+load-bearing fencing of section 1, undefined cell granularity for overlapping edits, and a
+change-row rule that disagreed with the shipped example **by a factor of six on exactly the number
+the round exists to count**. The specification was revised once, all three re-ran clean on the
+first attempt, and the remaining six followed.
+
+A second, narrower set of gaps surfaced in that second pass — a missing row unit for section 3,
+worth 6 suspects or 11 on the same run — and was fixed the same way.
+
+### Counts
+
+| specimen | register | FIX rows/patterns | SOFT rows/patterns | suspects cited/no-pattern |
+|---|---|---|---|---|
+| `haiku-01-code-review` | informal | 10 / 7 | **0 / 0** | 10 / 12 |
+| `haiku-02-devtool` | neutral | 6 / 4 | **3 / 3** | 9 / 7 |
+| `haiku-03-onkormanyzat` | formal | 9 / 5 | **4 / 4** | 13 / 4 |
+| `opus-01-code-review` | informal | 8 / 3 | **0 / 0** | 6 / 1 |
+| `opus-02-devtool` | neutral | 8 / 3 | **0 / 0** | 8 / 1 |
+| `opus-03-onkormanyzat` | formal | 5 / 1 | **0 / 0** | 4 / 2 |
+| `sonnet-01-code-review` | informal | 1 / 1 | **0 / 0** | 6 / 0 |
+| `sonnet-02-devtool` | neutral | 5 / 2 | **0 / 0** | 6 / 2 |
+| `sonnet-03-onkormanyzat` | formal | 2 / 2 | **0 / 0** | 14 / 1 |
+
+**These numbers are not comparable with round 2's.** Round 2 counted by hand with no defined row
+unit; these count one pattern per sentence. That is the whole point of the change, and it means the
+series starts again here.
+
+Two things are worth reading anyway. **Round 2's headline result replicates under the new counting:
+every soft edit came from Haiku-written Hungarian, none from Sonnet's or Opus's.** And rows are
+reported alongside distinct patterns because the row count alone misleads — `opus-03`'s five rows
+are one pattern applied five times.
+
+The suspect split is new and it matters: on `haiku-01`, 12 of 22 entries are defects the catalogue
+has **no pattern for**. A flat suspect total silently mixes "noticed and declined" with "outside
+the tool's scope", and only the first is about calibration.
+
+### The finding that reaches past this round
+
+**The Skill tool serves the installed plugin, not the working copy.** Three runs reported
+independently that invoking `stet:stet-hungarian` loaded `~/.claude/plugins/cache/stet/stet/0.2.0/`,
+whose `SKILL.md` contains none of this and whose catalogue lacks patterns present in the working
+tree. A measurement run driven through the Skill tool measures the *released* version, silently,
+and returns plausible output while doing it. Every run here therefore bypassed the tool and read
+the working copy directly.
+
+This is the `allowed-tools` lesson in a new place: **a native mechanism is not a mechanism until
+you have measured it.**
+
+### Limitations
+
+One run per specimen, not two — replication belongs to the measurement phase, and this round only
+needed material for the parser to read. No rater, so nothing here says whether any edit was good.
+The specimens are round 2's, so the corpus is unchanged and carries all of its caveats. The parser
+was hand-verified against one run in full and against `example-rewrite.md`, whose own published
+arithmetic it reproduces; that is a check, not a proof. The section 3 row unit is stated in
+`SKILL.md` and **cannot be enforced** by the parser, which the file says outright rather than
+implying otherwise.
+
+### Left open, deliberately
+
+The runs surfaced more than was fixed. Recorded here rather than acted on:
+
+- **`HU-T11` requires judgment inside Pass 1**, which `01-typography.md` advertises as "nincs
+  ítélet, csak norma". One run both fixed and flagged it on structurally similar sites.
+- **No reason codes on the suspect list.** Whether an entry was blocked by a register gate, a
+  cluster threshold, a pattern's own exception or uncertainty is the interesting number for
+  calibration, and it is currently free prose.
+- **Is a heading a sentence?** Undefined for the row unit and for the budget denominator.
+- **Gaps with no pattern at all**: abbreviation-plus-compound hyphenation, and superfluous
+  hyphenation — the catalogue fixes a missing hyphen and leaves a spurious one.

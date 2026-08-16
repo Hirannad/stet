@@ -11,7 +11,7 @@ jogi szövegből beszélt nyelvet csinál, a blogból hivatalos levelet. Ezért 
 |---|---|---|---|---|---|---|
 | `informal` | blog, marketing, közösségi poszt, belső chat | teljes | teljes | teljes | teljes | teljes |
 | `neutral` (alap) | dokumentáció, súgó, termékszöveg, e-mail | teljes | teljes | teljes | teljes | mérsékelt |
-| `formal` | üzleti levél, riport, akadémiai szöveg | teljes | teljes | csak klaszterben | teljes, HU-L07 nélkül | ki |
+| `formal` | üzleti levél, riport, akadémiai szöveg | teljes | teljes | csak HU-H04, klaszterben | teljes, HU-L07 nélkül | ki |
 | `legal` | szerződés, hatósági irat, jogszabály, szabályzat | teljes | csak `FIX` | **ki** | csak HU-L03, HU-L12 | ki |
 
 **Ez a mátrix az egyetlen hely, ahol a pass-kapuk állnak.** A pass-fájlok nem ismételhetik meg a
@@ -20,6 +20,12 @@ saját kapujukat; ha eltérést látsz, ez a táblázat nyer.
 - **`mérsékelt`** = a klaszterküszöb 3 helyett **4**, és bekezdésenként legfeljebb **egy** javítás
   mehet ki abból a passból.
 - **`csak klaszterben`** = `FIX-IF` minta sem tüzel egymagában, csak ha a bekezdés eléri a küszöböt.
+- **A Pass 3 `formal`-cellája szűkebb, mint amilyennek látszik.** A `FIX-IF` minta a **saját**
+  profillistája szerint fut, és a Pass 3 mintái közül **egyedül a HU-H04 sorolja fel a `formal`-t**
+  – a HU-H01, HU-H02, HU-H03, HU-H05, HU-H06 és HU-H07 nem. Vagyis a „klaszterben” feltétel a
+  gyakorlatban egyetlen mintára vonatkozik. Ez így szándékos: a hivatali regiszter formális
+  szövegben **nem hiba**, és a Pass 3 kinyitása ott több beavatkozást engedne, amit előbb mérni
+  kellene. A mátrix itt a mintákhoz igazodik, nem fordítva.
 - **A Pass 5 `formal`-kivétele:** a HU-R09, a HU-R10 és a HU-R11 `formal` profilban is fut, mert
   ezek **tartalmi**, nem formai minták – nem arról szólnak, hogyan van megírva egy mondat, hanem
   hogy megtud-e belőle bármit az olvasó. A Pass 5 többi mintája `formal`-ban áll.

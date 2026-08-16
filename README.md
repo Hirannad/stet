@@ -78,9 +78,10 @@ other agent instruction, and keep your text in version control.
 
 ## What it actually does, measured
 
-Two validation rounds ran before this was published. Both are reported in full, with their
-limitations, in [docs/validation.md](docs/validation.md). Round 2's corpus and every count ship in
-[tests/corpus/](tests/corpus/), so you can re-run it and disagree.
+Three validation rounds so far, reported in full with their limitations in
+[docs/validation.md](docs/validation.md). Round 2's corpus and every count ship in
+[tests/corpus/](tests/corpus/), so you can re-run it and disagree — and since round 3 the runs
+themselves ship too, in [tests/corpus/runs/](tests/corpus/runs/), machine-checkable by `make runs`.
 
 **The soft layer barely fires on frontier-model Hungarian.** Round 2 ran the tool over nine
 generated specimens, twice each. Across twelve runs on Sonnet- and Opus-written Hungarian it made
@@ -115,8 +116,9 @@ Measured, published, and not resolved. Each item below is an open issue.
 - **Ordinary human typos are out of reach, by design.** The catalogue is provenance-shaped: it
   hunts machine tells, so a missing consonant doubling or a compound written as two words gets
   past it.
-- **The three-part output has no fixed machine-readable shape**, so the fixtures in
-  [tests/](tests/) are specifications a reader checks a run against, not an automated suite.
+- **The fixtures in [tests/](tests/) are still specifications, not an automated suite.** The output
+  now *has* a fixed shape and `scripts/parse_run.py` reads it, so the blocker is gone — but wiring
+  the fixtures to it is a separate step nobody has taken.
 
 ## Coexisting with an English prose linter
 

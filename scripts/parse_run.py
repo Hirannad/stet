@@ -181,10 +181,22 @@ def parse(text, sev=None):
         "corrected": corrected,
         "changes": changes,
         "suspects": suspects,
+        # Rows and distinct patterns are both reported, because they answer different questions
+        # and the row count alone misleads. A text-wide orthographic habit becomes one row per
+        # sentence, so "5 FIX" can mean one decision applied five times. The row unit is still
+        # right — it is what reconciles with the sentence budget — but it is not the headline.
+        #
+        # Suspects split by whether a pattern was cited at all: a damaged specimen fills the list
+        # with defects the catalogue has no pattern for (22 entries, 13 of them `nincs minta` on
+        # one specimen here), and those are not comparable with blocked-pattern entries.
         "counts": {
             "fix": sum(1 for c in changes if c["kind"] == "FIX"),
             "soft": sum(1 for c in changes if c["kind"] == "SOFT"),
+            "fix_patterns": len({i for c in changes if c["kind"] == "FIX" for i in c["ids"]}),
+            "soft_patterns": len({i for c in changes if c["kind"] == "SOFT" for i in c["ids"]}),
             "suspect": len(suspects),
+            "suspect_cited": sum(1 for s in suspects if s["ids"]),
+            "suspect_nopattern": sum(1 for s in suspects if not s["ids"]),
         },
         "problems": problems,
     }
@@ -207,11 +219,14 @@ def main(argv):
     if as_json:
         print(json.dumps(results, ensure_ascii=False, indent=2))
     else:
-        print(f"{'run':<44} {'reg':<9} {'FIX':>4} {'SOFT':>5} {'susp':>5}  shape")
+        print("rows/patterns for FIX and SOFT; suspects as cited/no-pattern\n")
+        print(f"{'run':<40} {'reg':<9} {'FIX':>7} {'SOFT':>7} {'susp':>8}  shape")
         for name, r in results.items():
             c, n = r["counts"], len(r["problems"])
-            print(f"{Path(name).name:<44} {r['register'] or '?':<9} "
-                  f"{c['fix']:>4} {c['soft']:>5} {c['suspect']:>5}  "
+            print(f"{Path(name).name:<40} {r['register'] or '?':<9} "
+                  f"{str(c['fix']) + '/' + str(c['fix_patterns']):>7} "
+                  f"{str(c['soft']) + '/' + str(c['soft_patterns']):>7} "
+                  f"{str(c['suspect_cited']) + '/' + str(c['suspect_nopattern']):>8}  "
                   f"{'ok' if not n else str(n) + ' problem(s)'}")
     for name, r in results.items():
         for prob in r["problems"]:
