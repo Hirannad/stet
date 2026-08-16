@@ -320,7 +320,7 @@ Ezek a párok nyíltan ellentmondanak egymásnak. A feloldás kötelező, nem m�
 | Mondatkezdő kötőszó szabad (HU-B03) vs. „az `azonban` ne álljon elöl” | HU-B03 nyer. Az MTA-blog maga mondja, hogy az élen álló `azonban` előfordul – nincs tiltás. |
 | Páros testrész egyes vs. többes szám | HU-B11: no-op. Egyik irányba se. |
 | HU-L14 (aforizma) vs. HU-R11 (elvont állítás) – mindkettő illik | Csiszolt, szimmetrikus mondatra HU-L14 nyer; laposan elvontra HU-R11. Egy mondatra soha mindkettőt. A gyógymód azonos: **a bekezdésben** keresett konkrétumra cserélni, ha van; ha nincs, gyanús-lista – egyik sem töröl. |
-| Záró pozícióban álló aforizma: HU-L14 vs. HU-L13 (törölhet!) | HU-L14 nyer, tehát **nem törölhető** – kivéve, ha a mondat illeszkedik a HU-L13 zárt `Jelek` listájára. Ez a pár azért kritikus, mert a HU-L13 az egyetlen minta, amelyik egész mondatot töröl. |
+| Záró pozícióban álló aforizma: HU-L14 vs. HU-L13 (törölhet!) | HU-L14 nyer, tehát **nem törölhető** – kivéve, ha a mondat illeszkedik a HU-L13 zárt `Jelek` listájára. Ez a pár azért kritikus, mert a HU-L13 azon két minta egyike, amelyik egész mondatot töröl (a másik a HU-R10). |
 
 ---
 

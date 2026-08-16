@@ -12,7 +12,7 @@ mint amennyi indokolt.
 ahogy elsőre hangzik, és pontosan ennyit jelent: nyelvészeti forrás van, több is, és van köztük
 számszerű – de egyik sem azt méri, *milyen gyakran ír egy nyelvi modell* egy adott alakot. Márpedig
 az `AI:` érték épp ezt állítja. A `method/constants.yml` `measured_patterns` listája ezért **üres**,
-és a katalógus mind a 46 `SOFT` mintája `?`-jelölt.
+és a katalógus mind a 47 `SOFT` mintája `?`-jelölt.
 
 Példa a különbségre, mert nem elvont: a HU-M02 mögött ott áll Domonkosi Ágnes adata – 240 hivatalos
 levél 78%-ában `Ön`/`Önök`, `real.mtak.hu/75699` –, ami hivatkozható és számszerű. Csak épp azt
@@ -22,13 +22,21 @@ az `Ön`-t. A minta jogosultsága erős, az `AI:eros` becslés marad becslés, �
 Korábban három minta – a HU-L01, a HU-L06 és a HU-L11 – állt `?` nélkül, egyetlen forrásra
 hivatkozva: az SZTE 2026 januári magyar AI-szövegfelismerőjére (Kiss Mihály), amely a
 `kulcsfontosságú`, `már nem pusztán`, `a cél nem`, `ez a gondolkodásmód`, `átfogó képet nyújt`,
-`jelen kutatás célja`, `a kutatás újszerűsége`, `komplex módon` fordulatokat nevesíti. Ehhez a
-forráshoz **nincs hivatkozásunk**: se URL, se kiadás, se lapszám, se módszertani leírás. A
-felismerés maga konzisztens a katalógus többi megfigyelésével, ezért a fordulatok a `Jelek`
-sorokon maradnak – de a **jelöletlen `AI:` érték** ellenőrizhetetlen forrásra épült volna, és a
-katalógus egyetlen szabálya épp ez: *„a modell mért ténynek olvassa a saját irányelvét, és nagyobb
-bizonyossággal javít, mint amennyi indokolt.”* Aki elő tudja keríteni a hivatkozást, egy issue-val
-visszaadhatja a három mintának a mért státuszt.
+`jelen kutatás célja`, `a kutatás újszerűsége`, `komplex módon` fordulatokat nevesíti.
+
+**A fejlesztés azóta beazonosítható, a hivatkozás mégsem áll össze.** Ami előkerült: SZTE-s
+hallgatói fejlesztés, Kiss Mihály, 350 ezer magyar szövegből álló tanítóhalmaz, 2026 januári
+egyetemi és sajtóközlemények (`u-szeged.hu`, `computertrends.hu`, `infostart.hu`). Ez **név,
+dátum és intézmény**, nem módszertan: nincs benne, honnan jön a nyolc fordulat, sem az, hogyan
+mérték. Vagyis a forrás állapota **ellenőrizhetetlen emlékből hivatkozható sajtóhírré** lépett elő,
+és nem méréssé.
+
+A felismerés maga konzisztens a katalógus többi megfigyelésével, ezért a fordulatok a `Jelek`
+sorokon maradnak – de a **jelöletlen `AI:` érték** továbbra sem áll: a katalógus egyetlen szabálya
+épp ez: *„a modell mért ténynek olvassa a saját irányelvét, és nagyobb bizonyossággal javít, mint
+amennyi indokolt.”* A `measured_patterns` üres marad. A szakdolgozat vagy a mögötte álló publikáció
+– módszertannal, mintaszámmal – visszaadhatja a három mintának a mért státuszt; a sajtóközlemény
+nem.
 
 **Nyelvészeti korpuszadat viszont van, csak nem erről.** Klaudy Kinga átváltási műveletei és az
 explicitációs hipotézis korpuszalapúak. Az idiómasűrűség kérdésében is van kísérleti adat: a túl
@@ -107,11 +115,36 @@ műveletet tanít, és a babona-mintáknál ez **visszafelé** tanított volna �
 
 ## Amit nem ellenőriztünk
 
-Néhány könyvforrás cím szerint szerepel, oldalszám nélkül: Kiefer *Aspektus és akcióminőség*,
-Keszler *Magyar grammatika*, Szikszainé *Leíró magyar szövegtan*, Szili Katalin *Tetté vált
-szavak*, Nemesi *Az alakzatok kérdése a pragmatikában*, Fóris *Hat terminológia lecke*, Gyurgyák
-*Szerkesztők és szerzők kézikönyve*. Ezek bevett szakkönyvek, de a rájuk hivatkozó konkrét minták
-szövegszerű ellenőrzése még hátravan.
+Néhány könyvforrás cím szerint szerepel, oldalszám nélkül. Ezek bevett szakkönyvek, de a rájuk
+hivatkozó konkrét minták szövegszerű ellenőrzése még hátravan.
+
+| forrás | függő minták | ebből egyedüli forrás | állapot |
+|---|---|---|---|
+| Keszler *Magyar grammatika* | HU-G07, HU-G09, HU-G10, HU-G12, HU-G13, HU-G14, HU-G15, HU-G17, HU-R06, HU-R07 | HU-G07, HU-G10, HU-G13 | nem ellenőrizve; szabadon elérhető példány nincs |
+| Szikszainé *Leíró magyar szövegtan* | HU-R02, HU-R04, HU-R05, HU-R06 | HU-R05 | nem ellenőrizve |
+| Kiefer *Aspektus és akcióminőség* (2006) | HU-G08, HU-G11 | HU-G11 | nem ellenőrizve; teljes szöveg: `real-eod.mtak.hu/19513` |
+| Gyurgyák *Szerkesztők és szerzők kézikönyve* | HU-R08, HU-M11 | HU-R08 | nem ellenőrizve |
+| Fóris *Hat terminológia lecke* | HU-M12 | HU-M12 | **ellenőrizve**, lásd lent |
+
+**A legélesebb kockázat: három `[FIX]` minta egyedüli forrása olvasatlan könyv** – HU-G07, HU-G11,
+HU-G13. A `[FIX]` némán javít, nem jelöl, tehát ott egy forráshiba `?` nélkül terjed tovább.
+
+**HU-M12 – ellenőrizve.** A Fóris 3.3. szakasza (*Terminológiai és szemantikai norma a
+szaknyelvekben*, 60–61. o.) elkülöníti a terminológiai normát (a helyes, elfogadott terminus
+kerül-e használatra az adott szövegben) és a szemantikai normát, és kimondja, hogy a többféle
+lehetséges elnevezés közül a szakemberek választják ki „azt az egyet (esetleg néhányat)”, amely
+normaként funkcionál. Ez megalapozza a HU-M12-t.
+
+**De egy árnyalattal, amit meg kell tartani:** ugyanez a könyv (1.4.) kifejezetten **tévesnek**
+nevezi azt a nézetet, hogy a szaknyelvekben nincsenek szinonimák, és példákat is hoz rájuk
+(*egyenlet ~ formula ~ összefüggés*, *feszültség ~ potenciál*). A HU-M12 tehát a **szövegen belüli
+következetességre** hivatkozhat, arra nem, hogy egy fogalomnak egyetlen neve volna. A minta
+jelenlegi megfogalmazása és a `Mikor NE: ez nem purizmus` kikötése ezzel összefér – így is kell
+maradnia.
+
+**Két könyv törölve ebből a listából:** Szili *Tetté vált szavak* és Nemesi *Az alakzatok kérdése
+a pragmatikában*. A katalógusban **egyetlen minta sem hivatkozik rájuk** – csak ez a felsorolás
+említette őket, vagyis a fájl a sajátjánál nagyobb kitettséget vallott be.
 
 Ha egy ilyen mintát vitatnak, először a forrást nézd meg, ne a mintát védd.
 

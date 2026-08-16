@@ -139,7 +139,7 @@ marad.** Gyengébb vagy gyorsabb modell szövegén dolgozik. Ez egyben azt is je
   átírt, azt egy anyanyelvi fül elutasította, amit viszont nem mert átírni, azt kilencből nyolc
   esetben elvégezték volna. Ez a rész átdolgozásra vár, és ezt nem takarítjuk el.
 - **Nincs mögötte mért adat arról, hogy egy modell milyen gyakran ír így.** Nyelvészeti forrás van,
-  van köztük számszerű is – de az azt méri, hogyan írnak *emberek*. Ezért a 46 stilisztikai minta
+  van köztük számszerű is – de az azt méri, hogyan írnak *emberek*. Ezért a 47 stilisztikai minta
   **mindegyike** kérdőjelet visel a katalógusban: a jelölés azt mondja, hogy az erősség becslés,
   nem mérés.
 - **Nem helyesírás-ellenőrző.** Szándékosan. A minták arra vannak kiélezve, ami géptől jön, ezért

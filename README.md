@@ -8,7 +8,7 @@ A prose linter for machine-written text, as an [Agent Skill](https://agentskills
 for Claude Code. It finds the tells that mark a text as LLM-generated or machine-translated, and
 then — this is the part that makes it different — decides which of them to leave alone.
 
-Currently one language: **Hungarian** (118 patterns). English is planned, and open questions are
+Currently one language: **Hungarian** (119 patterns). English is planned, and open questions are
 tracked as issues.
 
 ## Install
@@ -43,7 +43,7 @@ should the tool decline to act?**
   correction makes the text stiffer, which is to say *more* machine-like.
 - **Evidence grading** — the marker records how much proof a pattern's *machine* claim is worth,
   which is a narrower question than whether the linguistics is sound. In this catalogue **every one
-  of the 46 soft patterns is estimate-marked.** The sources behind them are real and some are
+  of the 47 soft patterns is estimate-marked.** The sources behind them are real and some are
   quantitative, but a study showing that a construction is a calque is not a measurement of how
   often a model writes it — and the marker grades the second thing. An estimate-marked pattern can
   never justify an edit on its own score; it only contributes to a cluster. The fix-class patterns
@@ -109,7 +109,7 @@ Measured, published, and not resolved. Each item below is an open issue.
   both as hypotheses a second reader may overturn. Disagreement is welcome as an issue.
 - **Nothing here is measured to ±1.** Between two runs of the same specimen on the same catalogue,
   fix counts moved by up to 4 and the suspect list moved 24 %.
-- **No pattern's `AI:` value rests on a citable measurement of machine output.** All 46 soft
+- **No pattern's `AI:` value rests on a citable measurement of machine output.** All 47 soft
   patterns carry the estimate marker and `measured_patterns` is empty. The linguistic sources are
   real, some are quantitative; none of them measures how often a model writes a given form.
 - **Ordinary human typos are out of reach, by design.** The catalogue is provenance-shaped: it
@@ -135,7 +135,7 @@ misrouted run does not merely miss things — it introduces errors. See
 
 | skill | language | patterns |
 |---|---|---|
-| [stet-hungarian](skills/stet-hungarian) | Hungarian | 118 |
+| [stet-hungarian](skills/stet-hungarian) | Hungarian | 119 |
 
 The skill's own documentation is in Hungarian — it is written for the people who will read its
 output. The repository surface is English.

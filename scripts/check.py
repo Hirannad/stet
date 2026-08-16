@@ -117,6 +117,7 @@ def check_skill(skill_dir, cfg, shape):
 
     files = [skill_md] + sorted(skill_dir.glob("references/*.md"))
     seen, overrides_found, all_text, headers_by_id = {}, set(), {}, {}
+    soft_ids = set()
 
     for f in files:
         rel = f.relative_to(ROOT)
@@ -144,6 +145,8 @@ def check_skill(skill_dir, cfg, shape):
             sev = tags[0].split(":")[0].strip() if tags else ""
             if sev not in shape["severity"]:
                 fail(rel, f"{pid}: illegal severity {sev!r}")
+            if sev == "SOFT":
+                soft_ids.add(pid)
 
             ai = [t for t in tags if t.startswith("AI:")]
             stab = [t for t in tags if t == "kern" or re.fullmatch(r"\d{4}-\d{2}", t)]
@@ -251,8 +254,9 @@ def check_skill(skill_dir, cfg, shape):
                              f"      printed:    {line.strip()}\n"
                              f"      defined as: {real}")
 
-    print(f"  {name}: {len(seen)} patterns, {len(overrides_found)} cluster overrides")
-    return set(seen)
+    print(f"  {name}: {len(seen)} patterns "
+          f"({len(soft_ids)} SOFT), {len(overrides_found)} cluster overrides")
+    return set(seen), soft_ids
 
 
 def check_repo_surface(known_ids):
@@ -262,7 +266,7 @@ def check_repo_surface(known_ids):
     flagship quote defect sitting in the README's own Hungarian example — the one place the
     skill-only scan could never reach.
     """
-    files = (sorted(ROOT.glob("*.md")) + sorted(ROOT.glob("docs/*.md"))
+    files = (sorted(ROOT.glob("*.md")) + sorted(ROOT.glob("docs/**/*.md"))
              + sorted(ROOT.glob("tests/**/*.md")) + sorted(ROOT.glob("tests/**/*.yml")))
     for f in files:
         rel = f.relative_to(ROOT)
@@ -284,15 +288,59 @@ def check_repo_surface(known_ids):
                 fail(rel, f"reference to undefined pattern {pid}")
 
 
+COUNT_CLAIMS = [
+    # (regex with one numeric group, which count it must equal)
+    (r"(\d+) `SOFT` mintája", "soft"),
+    (r"(\d+) stilisztikai minta", "soft"),
+    # \s+ not a space: the README wraps "All 47 soft / patterns carry ...".
+    # "N soft patterns" only — "2 soft edits" is the per-paragraph budget, a different number.
+    (r"(\d+) soft\s+patterns?\b", "soft"),
+    (r"\*\*Hungarian\*\* \((\d+) patterns\)", "total"),
+    (r"\| Hungarian \| (\d+) \|", "total"),
+    (r"The (\d+) patterns are not equally measurable", "total"),
+]
+
+
+def check_counts(total, soft):
+    """Prose restatements of the catalogue size must match the catalogue.
+
+    Adding one pattern invalidates every place that prints a count, and nothing here noticed:
+    six restatements of "46 soft" survived a pattern being added, across the README, its
+    Hungarian mirror, SKILL.md, sources.md and the round 3 protocol. That is the same shape as
+    the quote-glyph defect — a printed number contradicting the thing it describes — so it gets
+    the same treatment.
+
+    docs/validation.md is exempt. Its numbers are historical: they record what a round measured
+    at the time, and a validation record edited to match the current code is not a record.
+    """
+    want = {"total": total, "soft": soft}
+    files = (sorted(ROOT.glob("*.md")) + sorted(ROOT.glob("docs/**/*.md"))
+             + sorted(ROOT.glob("skills/*/SKILL.md"))
+             + sorted(ROOT.glob("skills/*/references/*.md")))
+    for f in files:
+        rel = f.relative_to(ROOT)
+        if str(rel) == "docs/validation.md":
+            continue
+        text = f.read_text(encoding="utf-8")
+        for pattern, kind in COUNT_CLAIMS:
+            for found in re.findall(pattern, text):
+                if int(found) != want[kind]:
+                    fail(rel, f"stale {kind} count: prose says {found}, "
+                              f"catalogue has {want[kind]} (matched /{pattern}/)")
+
+
 def main():
     cfgfile = ROOT / "method" / "constants.yml"
     data = load_yaml(cfgfile)
     shape = data["shape"]
     print(f"stet check — method version {data['version']}")
-    known_ids = set()
+    known_ids, soft_ids = set(), set()
     for skill_name, cfg in data["skills"].items():
-        known_ids |= check_skill(ROOT / "skills" / skill_name, cfg, shape)
+        ids, softs = check_skill(ROOT / "skills" / skill_name, cfg, shape)
+        known_ids |= ids
+        soft_ids |= softs
     check_repo_surface(known_ids)
+    check_counts(len(known_ids), len(soft_ids))
 
     if FAIL:
         print(f"\n{len(FAIL)} problem(s):\n")

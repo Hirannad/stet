@@ -151,7 +151,7 @@ Két tengely, mert két külön kérdésre válaszolnak. A `status` azt mondja m
 | `NEVER` | ne nyúlj hozzá |
 | `[jelöld]` | ne javítsd, csak írd a listára |
 
-**A `?` a becslés jele, és fék.** A katalógus **mind a 46 `SOFT` mintája `?`-jelölt.** A `?` nem
+**A `?` a becslés jele, és fék.** A katalógus **mind a 47 `SOFT` mintája `?`-jelölt.** A `?` nem
 azt jelöli, hogy a nyelvészet ingatag – a források valódiak, és van köztük számszerű is. Azt jelöli,
 hogy **a gépi gyakoriságra** nincs hivatkozható mérésünk, márpedig az `AI:` érték épp azt állítja
 (`references/sources.md` kimondja, miért). `?`-jelölt minta **önmagában soha nem indokol javítást a pontszámon keresztül** –
@@ -214,7 +214,8 @@ háromrészes kimenet ilyenkor is teljes.
 40%-ba, ha a bekezdés legalább 5 mondatos – a magyar prózabekezdés viszont jellemzően 3–4. Vagyis
 ez nem szélső eset, hanem a normál eset: a bekezdésenkénti 2 gyakran **elérhetetlen**, mert előbb
 fogy el a szövegszintű keret. Így van jól. A `references/example-rewrite.md` egy olyan futást mutat,
-amelyik pont a plafonon áll, és ki is számolja.
+amelyik a mai elszámolás szerint **átlépi** a plafont, és ki is számolja – az a futás a szabály
+tisztázása előtt készült, és szándékosan úgy maradt.
 
 **A költségvetés csak a `SOFT` javításokat számolja.** A `FIX` és a `FIX-IF` minták – tipográfia,
 helyesírás, nyelvtani hiba, regiszterkapun átment hivataloskodás – **nem esnek a korlát alá**:
@@ -303,12 +304,40 @@ Plusz egy olcsó, objektív ellenőrzés: futtasd újra a Pass 1 tipográfiai li
 
 ## Kimenet
 
-Három rész:
+Három rész, elöl a nyelv és a regiszter kimondásával – amit a nyelvi kapu és a Regiszter szakasz
+amúgy is kötelezővé tesz. **A címsorok szó szerint ezek, `##` szinten, ebben a sorrendben:**
 
-1. **A javított szöveg.**
-2. **Változástábla:** minta-ID, eredeti, új, egysoros indok.
-3. **„Gyanús, de nem javítottam”:** amit észrevettél, de a klaszterküszöb, a regiszterkapu, a
-   költségvetés vagy a bizonytalanság miatt nem írtál át.
+```
+## 0. Nyelv és regiszter
+## 1. A javított szöveg
+## 2. Változástábla
+## 3. Gyanús, de nem javítottam
+```
+
+Ez nem formázási ízlés. A 2. kör azért nem tudta géppel ellenőrizni a saját számait, mert a kimenet
+alakja futásonként változott: az egyik változástábla két sor volt, a másik tizenöt, alszakasszal.
+Kézi átnézés lett belőle. A rögzített alak ezt oldja meg.
+
+- **Mind a négy szakasz megjelenik**, akkor is, ha üres. Üres szakasz törzse egyetlen szó: `nincs`.
+  Így a „megnéztem, nem volt mit javítani” megkülönböztethető attól, hogy a szakasz elmaradt.
+- **A 0. szakasz kettőt mond ki:** a **szöveg nyelvét** és a **regisztert**, a profilnevet
+  visszapipálva. Pontosan **egy profilnév** álljon benne – a mondatok száma nem számít. Ha a
+  regisztert a hívó rögzítette, írd oda, hogy rögzített: a mérések összevethetősége ezen múlik.
+- **Az 1. szakasz törzse kódblokkban áll.** Ez nem díszítés: a javított szöveg maga is tartalmazhat
+  `##` és `###` címsorokat, és fence nélkül azok szakaszhatárnak látszanak.
+- **A 2. szakasz táblázat**, pontosan ezekkel az oszlopokkal, ebben a sorrendben:
+  `| ID | Eredeti | Új | Indok |`.
+  - **Soronként egy minta egy mondatban.** Ugyanannak a mintának több találata **egy mondaton
+    belül** egy sor; **külön mondatban külön sor.** Ez teszi a sorszámot összevethetővé a
+    mondatalapú költségvetéssel.
+  - Ha **egy** javítást **több** minta indokol, a minta-ID-k vesszővel egy cellában állnak.
+  - Ha **két külön** javítás esik ugyanarra a mondatra, az **két sor**.
+  - Az `Eredeti` és az `Új` a **megváltozott legszűkebb részletet** tartalmazza, nem a teljes
+    mondatot – különben az átfedő javítások egymás változásait is mutatnák.
+- **A 3. szakasz felsorolás.** Minden tétel `- ` jellel kezdődik, utána `**minta-ID**` (többet
+  vesszővel, ahogy a 2. szakaszban) vagy `**nincs minta**`, majd ` – `, majd a részlet és az indok.
+- **Alcímsor egyik szakaszban sem áll.** „Átnéztem, tiszta volt” típusú alszakasz a
+  változástáblában tilos: az a 3. szakaszba tartozik, vagy sehova.
 
 A harmadik rész nem formalitás. Ez az a szelep, ahol a bizonytalanságodat kiírhatod ahelyett, hogy
 javításba menekülnél – közvetlenül ez csökkenti a túljavítást.

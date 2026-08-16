@@ -5,6 +5,9 @@ ne ezekhez hasonlítsd a bemenetet: a jeleket mindig a `01`–`06` referenciafá
 Ez a fájl egyetlen dolgot tanít meg – **hogyan néz ki a háromrészes kimenet**, és milyen
 részletességű a változástábla meg a gyanús-lista.
 
+**A szakaszcímek és a táblázatoszlopok kötelező alakja a `SKILL.md` `## Kimenet` szakaszában áll.**
+Ez a futás azt az alakot követi; ha a kettő eltér, a `SKILL.md` nyer, és ez a fájl a hibás.
+
 Az alábbi futás `neutral` regiszterben készült. A bemenet **szándékosan elhelyezett jelekből**
 épül – a változástábla minta-ID-i megszámolhatók, tehát a futás ellenőrizhető, nem hivatkozási
 alap. Valós szövegen mért teljesítményről ez a fájl nem állít semmit.
@@ -38,10 +41,10 @@ elmondható, hogy a jövő fényes. Remélem, segítettem!
 
 ---
 
-## 0. Regiszter
+## 0. Nyelv és regiszter
 
-A szöveget `neutral` regiszterként kezelem. (Belső dokumentáció, nincs jogi terminus, a megszólítás
-következetlen – a többségi forma az önözés.)
+A szöveg magyar. A szöveget `neutral` regiszterként kezelem. (Belső dokumentáció, nincs jogi
+terminus, a megszólítás következetlen – a többségi forma az önözés.)
 
 ## 1. A javított szöveg
 
@@ -102,8 +105,8 @@ A jelentés szerint „jelentős javulás” történt, ami a csapat elköteleze
 - **HU-F01** – `a csapat képzése` / `a dokumentáció frissítése`: nominalizáció maradt az összevont
   mondatban; a HU-R04 után nem fért bele még egy `SOFT`.
 - **HU-G20** – egy `ugyanakkor`. `[jelöld]`, nem ismétlődik.
-- `legalábbis papíron` – **szándékosan megtartva.** Feloldatlan feszültség, emberi jel
-  (`06-rhythm.md`, megőrizendő jegyek).
+- **nincs minta** – `legalábbis papíron`, **szándékosan megtartva.** Feloldatlan feszültség, emberi
+  jel (`06-rhythm.md`, megőrizendő jegyek).
 
 ---
 

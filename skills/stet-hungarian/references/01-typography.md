@@ -200,6 +200,24 @@ Mikor NE: ha a mondatkezdő elem valódi közbevetés vagy megszólítás (`Egy�
 A halmozott kapcsolóelemek összevonása már `06-rhythm.md`, HU-R04 – itt csak a vesszőt vedd ki.
 Forrás: AkH. 12. 243.
 
+### HU-T16 · Idegen nyelvű címsor magyar címsorhierarchiában · [SOFT] [jelöld] [AI:kozepes?] [kern]
+
+Mi ez: magyar címsorok közé ékelt, teljes egészében idegen – jellemzően angol – nyelvű címsor,
+miközben az alatta álló törzsszöveg magyar.
+Miért írja így a gép: a szerkezetet angol vázlatból vagy sablonból építi, és a címsor túl rövid
+ahhoz, hogy visszaváltson magyarra; a bekezdés már magyarul folytatódik.
+Jelek: a hierarchia egy eleme más nyelvű, mint a testvércímsorai és mint a saját törzsszövege.
+Mikor NE: **soha ne fordítsd le, és ne írd át.** Az idegen nyelvű szakasz érinthetetlen zóna, és a
+nyelvi kapu pont azt előzi meg, hogy magyar listát alkalmazzunk idegen szövegre. Nem jel, ha a cím
+terméknév, szabványazonosító, kódrészlet vagy bevett angol szakkifejezés, és nem jel a szándékosan
+kétnyelvű dokumentum, ahol a párhuzamos szerkezet a műfaj része. Ez a minta csak jelzésre való:
+írd ki a listára, és bízd a szerzőre – hogy a cím maradjon-e idegen nyelvű, szerzői döntés, nem
+tipográfiai kérdés.
+Példapár szándékosan nincs: a „javítás” itt fordítás lenne, egy ROSSZ/JÓ pár pedig pont azt a
+műveletet tanítaná meg, amit ez a minta tilt.
+Forrás: közvetlen megfigyelés (1. validációs kör, 6. megfigyelés); a nyelvi kapu és az
+érinthetetlen zónák a `SKILL.md`-ben.
+
 ---
 
 ## Amit ebben a passban keresni kell, sorrendben
@@ -216,6 +234,7 @@ Forrás: AkH. 12. 243.
 10. idegen név toldaléka
 11. mozgószabály és 6:3
 12. Oxford-vessző
+13. idegen nyelvű címsor a magyar hierarchiában → **csak jelöld**, ne fordítsd
 
 Az 1–6. és a 9. gépiesen ellenőrizhető – ezeket futtasd le a kimeneten is, a Pass 6
 önellenőrzés részeként.
