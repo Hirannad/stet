@@ -116,6 +116,10 @@ other agent instruction, and keep your text in version control.
 
 ## What it actually does, measured
 
+This repository is a working plugin and a published measurement record, and the second half is not
+decoration — [docs/programme.md](docs/programme.md) says what the project is for, what is settled,
+and why a tool this size measures itself.
+
 Three validation rounds so far, reported in full with their limitations in
 [docs/validation.md](docs/validation.md). Round 2's corpus and every count ship in
 [tests/corpus/](tests/corpus/), so you can re-run it and disagree — and since round 3 the runs
@@ -146,7 +150,11 @@ Measured, published, and not resolved. Each item below is an open issue.
   needs rework before a 1.0. Round 2 deliberately did not redesign it on one rater's judgement.
 - **The cluster gate and the edit budget are unmeasured.** The catalogue's most novel component
   decided the outcome in one run out of five in round 1; elsewhere every soft candidate was stopped
-  earlier by its own exception clause. Calibrating it needs seeded inputs, not real text.
+  earlier by its own exception clause. Seeded inputs can test whether the gate fires when a cluster
+  is constructed, but they cannot say where the cut belongs — the density of a seeded cluster is
+  chosen by whoever already believes the current threshold is right. Calibration is a question
+  about a distribution, so it needs real text in both arms. Seeded inputs and a corpus are
+  complementary here, not alternatives.
 - **One rater, and it was the author.** Round 1 reports counts, not rates. It establishes no
   precision, no over-correction rate, no false-positive rate on clean Hungarian, and no
   per-pattern accuracy. Round 2 had no rater at all — it measured firing, not correctness. Read
