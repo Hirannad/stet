@@ -44,16 +44,20 @@ expect_noop:
   - what: "`a séma migrációja` three times"
     reason: >-
       HU-B13, which overrides every pattern prescribing variety. The repeated term must stay a
-      repeated term. Note the tension with HU-F01: the phrase is a genitive `-ás/-és` nominal, so
-      HU-F01's signs match — and HU-F01's own `Mikor NE` terminus clause is what must stop it.
-      A run that verbalises this is the finding, not the fix.
+      repeated term. HU-F01 does not reach it, and never did: `migráció` is a Latinate nominal, not
+      an `-ás/-és` deverbal, and the possessive is a single step with a non-deverbal possessor, so
+      the chain sign does not match. HU-F01 is also `[jelöld]`, so it cannot produce an edit
+      anywhere in this file. A run that verbalises this is the finding, not the fix.
   - what: "`ma már`"
     reason: HU-B15. A pseudo-pleonasm, not redundancy.
 
 expect_no_soft: true
 soft_reason: >-
-  This is the sharpest test in the set, because the surface signals are dense: HU-F01 matches the
-  repeated genitive nominal, HU-L06 could read `nem egytől` as a negative parallelism, and HU-R05
-  sees consecutive sentences opening with a demonstrative. All three must be stopped — by the
-  terminus clause, by the straw-man test, and by the cluster threshold respectively. A SOFT edit
-  anywhere in this fixture means a suppression entry was overrun.
+  This is the sharpest test in the set, because the surface signals are dense: HU-L06 could read
+  `nem egytől` as a negative parallelism, and HU-R05 sees consecutive sentences opening with a
+  demonstrative. Both must be stopped — by the straw-man test and by the cluster threshold
+  respectively. HU-F01 is the third temptation, and it stops one step earlier than either: its sign
+  needs a layered possessive with an `-ás/-és` deverbal head, and this file has none. The one
+  sentence where three `-ás/-és` nouns do co-occur (`Az elemzés … a szerződés … a leállás`) is three
+  bare subjects in three clauses, not a chain. A SOFT edit anywhere in this fixture means a
+  suppression entry was overrun.

@@ -103,7 +103,8 @@ A jelentés szerint „jelentős javulás” történt, ami a csapat elköteleze
   `-ás/-és` főnév, és a hármasság nem tér vissza bekezdésenként.
 - **HU-L08** – `kihívást is jelent`, üres igei körülírás. Kerethiány.
 - **HU-F01** – `a csapat képzése` / `a dokumentáció frissítése`: nominalizáció maradt az összevont
-  mondatban; a HU-R04 után nem fért bele még egy `SOFT`.
+  mondatban, de a minta jele nem teljesül – mindkettő egy lépcső, és a birtokos nem deverbális,
+  tehát nem rétegzett lánc. A keret amúgy is elfogyott volna a HU-R04 után.
 - **HU-G20** – egy `ugyanakkor`. `[jelöld]`, nem ismétlődik.
 - **nincs minta** – `legalábbis papíron`, **szándékosan megtartva.** Feloldatlan feszültség, emberi
   jel (`06-rhythm.md`, megőrizendő jegyek).
@@ -121,9 +122,10 @@ a klaszterküszöb, hol a bekezdésenkénti keret, hol pedig maga a szabály til
 
 **A `FIX` és a `SOFT` másképp viselkedik.** A tipográfia (HU-T*) végigfut, kerettől függetlenül –
 ezért látszik itt sok javítás. A stilisztikai (`HU-L*`, `HU-R*`) minták viszont bekezdésenként
-legfeljebb kettőt engednek, és ezért maradt a lista alján **négy** kerethiány miatt el nem végzett
-javítás (HU-L06, HU-F04, HU-L08, HU-F01). A hét tétel közül a többi máshogy állt le: a HU-R03-at a
-saját szabálya, a HU-G20-at a `[jelöld]` címke, a `legalábbis papíron`-t pedig szándékos döntés.
+legfeljebb kettőt engednek, és ezért maradt a lista alján **három** kerethiány miatt el nem végzett
+javítás (HU-L06, HU-F04, HU-L08). A hét tétel közül a többi máshogy állt le: a HU-R03-at és a
+HU-F01-et a saját szabálya, a HU-G20-at a `[jelöld]` címke, a `legalábbis papíron`-t pedig
+szándékos döntés.
 
 **És ez a futás a szövegszintű plafonon áll – nem alatta.** A bemenet 15 mondat; `SOFT` javítás
 hét mondatot érint, ha a HU-R04 összevonását két érintett mondatnak számoljuk, és hatot, ha egynek.

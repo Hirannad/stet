@@ -11,8 +11,11 @@ Amit itt tudni kell: `legal` profilban ez a pass **nem fut**.
 érvényesek, amikor a pass egyébként áll – épp ők azok, amik leállítják. Ha bizonytalan vagy, hogy
 egy szerkezet a regiszter része-e, ne nyúlj hozzá.
 
-**Átfedés más passokkal.** Az `-ás/-és` főnevesítést és a birtokosláncot a HU-F01 kezeli, a
-névutókat (`vonatkozásában`, `tekintetében`) a HU-F08. Itt ne javítsd őket újra – a halmozott
+**Átfedés más passokkal.** Az `-ás/-és` főnevesítést és a birtokosláncot a HU-F01 **csak jelöli**,
+nem javítja – és ez nem szabadítja fel őket itt. A pass mintái a saját, megnevezett jelükre futnak:
+a HU-H01 a kiüresedett **igére**, a HU-H02 a `kerül`, a HU-H03 a `történik` keretre. Puszta
+főnevesítésre egyik sem fut – ahhoz cselekvőt kellene beírni, amit a tartalmi invariáns tilt. A
+névutókat (`vonatkozásában`, `tekintetében`) a HU-F08 kezeli. Itt ne javítsd őket újra – a halmozott
 alkalmazás agresszív átírást okoz.
 
 ---

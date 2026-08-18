@@ -13,31 +13,60 @@ ez a pass magától elviszi az üres fokozók nagy részét.
 
 ---
 
-### HU-F01 · Nominalizáció és birtokoslánc · [SOFT] [AI:eros?] [kern]
+### HU-F01 · Nominalizáció és birtokoslánc · [SOFT] [jelöld] [AI:eros?] [kern]
 
-Mi ez: egymásra halmozott `-ás/-és` főnevek és `-nak/-nek a` birtokos lépcsők. A gyűjtemény
-legnagyobb és legmegbízhatóbb mintája – de éppen ezért a legveszélyesebb is: **egyetlen műveletnek
-kell tekinteni**, nem öt külön javításnak, különben halmozottan, agresszíven írja át a mondatot.
+Mi ez: `-ás/-és` főnevekből rétegzett birtokoslánc – a mondat magja főnév, nem ige. Egy bekezdés
+láncai **egyetlen jelenség**, nem több független jel. A gyűjtemény legnagyobb mintája, és éppen
+ezért a legveszélyesebb is: az igésítés minden alakja hozzátesz egy állítást, amit a forrás nem
+tett. Ezért ez a minta **jelöl, nem javít.**
 Miért írja így a gép: az angol `of`-lánc és a `-tion` főnevesítés szó szerinti útja. Az angolban
 a főnévi szerkezet a semleges forma, magyarul az igei.
-Jelek: két vagy több `-ás/-és` főnév egy mondatban; `-nak/-nek a` kétszer; `érdekében`,
-`megvalósítása`, `biztosítása`, `elősegítése`.
-ROSSZ: A projekt sikerességének biztosítása a csapat közötti kommunikáció hatékonyságának
-javításán alapul.
-JÓ:    A projekt akkor sikerül, ha a csapat jobban kommunikál.
-Mikor NE: ha a `-ás/-és` főnév **terminus** (`házkutatás`, `teljesítményértékelés`,
-`adatkezelés`), vagy ha a mondat jogi hivatkozás. `legal` profilban ez a minta csak akkor fut,
-ha a lánc háromnál hosszabb.
+Jelek: a lánc feje `-ás/-és` **deverbális** főnév, és a lánc **rétegzett**. Két alakja van: (1) a
+birtokos maga is birtokos szerkezet, `-nak/-nek` raggal vagy anélkül – `a szolgáltatás díjának
+emelése`; (2) a birtokos maga is `-ás/-és` deverbális főnév – `a bejelentés visszavonása`. Az
+`érdekében`, `megvalósítása`, `biztosítása`, `elősegítése` csak ilyen láncban jel, magában nem.
+Mikor NE: ha a mondat jogi hivatkozás. A HU-M05 megszólításkerülő megoldását ne is jelöld – ott a
+főnevesítés a jó válasz. Egybeírt, be nem vezetett elvont összetételt (`szándéktisztázás`) ne ez a
+minta vigyen: az a `06-rhythm.md` HU-R09 mintájához tartozik, a saját, független adatoltsági
+tesztjével. Az adatoltság kérdése ott áll, egy helyen.
 **Mintaszintű szigorítás:** ebből a mintából bekezdésenként legfeljebb **egy** javítás mehet ki –
 szigorúbb, mint a `SKILL.md` általános bekezdés-korlátja, és felülírja azt lefelé.
 
-**A terminus-teszt.** A „terminus-e?” kérdés eldöntetlenül hagyva kilövi ezt a mintát minden
-olyan szövegen, amely saját fogalmi szótárat épít – pedig ott érne a legtöbbet. Ezért:
-a főnév akkor terminus, ha **a szövegen kívül is használják** a szakmában, **vagy** ha a szöveg
-első előforduláskor definiálja. Ha egyik sem áll – vagyis a szerző maga találta ki, és nem vezeti
-be –, az **nem terminus**, hanem bevezetetlen coinage: ott ne igésíts, hanem add át a
-`06-rhythm.md` HU-R09 mintájának, amely a konkrét esetet kéri a szó helyett.
-Forrás: Klaudy Kinga: A fordítás elmélete és gyakorlata, grammatikai lesüllyesztés
+**A lánc-teszt.** A „terminus-e?” kérdés a mondaton nem dől el: hogy egy szót a szakmában is
+használnak-e, csak a szövegen kívül lehet megnézni, és két olvasó más választ hoz róla. A régi
+kikötés ráadásul minden `-ás/-és` főnevet két rekeszbe osztott – terminus, illetve be nem vezetett
+kitalált szó –, és mindkettőben tiltotta az igésítést: vagyis semmit nem engedett meg. Helyette a
+jel maga a teszt, és a leírt mondaton dől el: **rétegzett-e a lánc, és `-ás/-és` deverbális
+főnév-e a feje?** Deverbális az, amihez tartozik magyar ige. Ha igét csak elvonással lehetne
+gyártani belőle – `házkutatás`, `adatkezelés`, `teljesítményértékelés` –, az összetett szakszó, nem
+deverbális főnév; ugyanez az olvasat áll a `do-not-touch.md` HU-B18 elvonás-tételében. Így a
+termszerűség kérdése el sem hangzik: nem a szakmát kérdezed, hanem azt, hogy van-e ige. Egymás
+mellett álló, birtokos viszony nélküli főnevek nem lánc: `A bejelentés megérkezett, a döntés
+megszületett, a kifizetés még hátravan.` Rétegzetlen birtokos sem lánc: `a csapat képzése`, `a
+személyes adatok kezelése` – egy lépcső, és a birtokos nem deverbális. Egyikhez sem kell szótár.
+
+**Ami megdönti.** A jel túl bő, ha van olyan mondat, amelyben a lánc rétegzett, `-ás/-és` a feje, és
+mégsem létezik könnyebb alakja: `A tárgyalás elmaradásáról a felek időben értesültek.` A jel túl
+szűk, ha találsz rétegzetlen szerkezetet, ami mégis rétegzett gépi mondatként olvasható. Mindkettő
+egy mondaton eldönthető, tehát megcáfolható. A bő oldalt tudatosan vállaljuk: a minta csak jelöl,
+tehát egy téves tétel egy sort visz el a listán, nem egy mondatot a szövegből. Ha ugyanaz az alak
+futásokon át visszatér, a jel szűkítendő – az kalibráció, nem új kivétel.
+
+**Miért csak jelöl.** Két magyar ok, és mindkettő a tartalmi invariánsba fut. Az első a cselekvő: a
+magyar ige kötelezően ragozódik személyre, tehát az igésítés választ egyet. `A hibák javításának
+ellenőrzése péntekre kész.` – ebből az `ellenőrizzük`, az `ellenőrzik` és az `ellenőrizni kell`
+három különböző állítás, és egyik sincs a mondatban. Ugyanezt a korlátot a `04-officialese.md`
+HU-H03 felelősség-elrejtő alpontja már kimondja, szűkebb esetre. A második a fókusz: a
+főnevesített szerkezetben nincs igei fókuszhely, tehát az igésítés fókuszt oszt ki – `Minden hibát
+ki kell javítani.` és `Ki kell javítani minden hibát.` nem ugyanaz –, a tartalmi invariáns pedig a
+fókusz hatókörére is vonatkozik. A HU-R11 ugyanezért visel kvantor-korlátot; ennek a mintának
+eddig nem volt.
+
+Példapár szándékosan nincs: egy ROSSZ/JÓ pár pont azt az igésítést tanítaná meg, amit a fenti két
+ok miatt nem végzünk el. A gyanús-lista tétele idézi a láncot, és annyit mond, hogy rétegzett –
+onnan a szerző dönt.
+Forrás: Klaudy Kinga: A fordítás elmélete és gyakorlata, grammatikai lesüllyesztés · a jel maga a
+teszt: rétegzett lánc `-ás/-és` deverbális fejjel.
 
 ### HU-F02 · `azt a tényt, hogy` · [FIX] [AI:eros] [kern]
 

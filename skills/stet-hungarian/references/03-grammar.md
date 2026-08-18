@@ -200,7 +200,10 @@ egyszer kitenni, a lánc elején vagy végén.
 ROSSZ: A kerületi önkormányzatnak az oktatási bizottságának az elnökének a beszéde elmaradt.
 JÓ:    Elmaradt a kerületi önkormányzat oktatási bizottsága elnökének a beszéde.
 Mikor NE: a többszörös `-nak/-nek` nem agrammatikus, csak nehézkes – stílusajánlás, nem szabály.
-Ne javítsd `legal` profilban, és ne halmozd a HU-F01-gyel: **a kettő együtt egy művelet.**
+Ne javítsd `legal` profilban, és ne halmozd a HU-F01-gyel: az ugyanezt a szerkezetet **csak
+jelöli**, tehát ha ott már jelölted, itt ne írj ki külön tételt ugyanarról a mondatról – **a
+kettő együtt egy művelet.** A `-nak/-nek` lánc bontása viszont marad javítás: nem igésít, tehát
+nem tesz hozzá cselekvőt.
 Forrás: Nyelvművelő kéziszótár · e-nyelv.hu: Birtokos jelző
 
 ### HU-G19 · Vessző `illetve`, `valamint`, `továbbá` előtt · [FIX] [AI:gyenge] [kern]
@@ -231,7 +234,8 @@ Forrás: e-nyelv.hu · A magyar nyelv nagyszótára
 
 ## Precedencia
 
-- HU-G18 és HU-F01 **egy művelet**. Ne alkalmazd mindkettőt ugyanarra a mondatra.
+- HU-G18 és HU-F01 **egy művelet**. Ne alkalmazd mindkettőt ugyanarra a mondatra – és mivel a
+  HU-F01 `[jelöld]`, ugyanarról a mondatról csak az egyik tétel megy ki.
 - HU-G16 nem HU-B17. Az alárendelés elvi kerülése tilos; a háromszoros `hogy`-lánc bontása nem az.
 - HU-G04 és HU-G20 `[jelöld]`: soha ne írja át magától.
 - A mondatkezdő `azonban` kérdésében HU-B03 nyer – nincs tiltás.
