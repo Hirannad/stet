@@ -18,7 +18,7 @@ description: |
 license: MIT
 allowed-tools: Read, Grep, Glob
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
   method: 1
   lists-reviewed: "2026-08"
 ---
