@@ -11,17 +11,34 @@ generation output.
 
 `prompt.md` holds that prompt. `results.md` holds the raw counts.
 
+### `corpus/runs/` — what the skill did to those texts
+
+One recorded run per specimen, in the four-part shape `SKILL.md` specifies, parsed by
+[`../scripts/parse_run.py`](../scripts/parse_run.py) and gated in CI by `make runs`. A run that
+drifts from the shape fails there instead of being found by hand.
+
+Two things a recorded run must carry beyond that shape:
+
+- **A provenance comment on the first line**, naming the skill copy that produced it and the hash
+  of that copy's contents. This is not decoration. The Skill tool serves the **installed plugin**,
+  not the working tree, and a run driven through it measures the released version silently while
+  returning plausible output — see round 3, part one in
+  [`../docs/validation.md`](../docs/validation.md). Every run here was produced by reading the
+  working copy directly, and says so in a form a script can check. When the skill changes, the
+  parser reports the run as `stale` rather than failing: a run measures the version it names, and
+  that is exactly why it names one.
+- **Reason codes and cluster scores.** Section 3 gives every entry a code from the closed list in
+  [`../method/constants.yml`](../method/constants.yml), and section 4 prints each paragraph's
+  cluster score with the patterns it came from. The parser recomputes that arithmetic from the
+  catalogue, so a score that does not follow from the patterns beside it fails the build.
+
 This exists so the measurement in [`../docs/validation.md`](../docs/validation.md) is
 **reproducible by a stranger**. Round 1's corpus was one company's confidential document, which
 meant its numbers had to be taken on trust. These you can re-run.
 
-## `fixtures/` — hand-run specifications, not an automated suite
+## `fixtures/` — specifications, now with a runner
 
-Three synthetic inputs with declarative YAML expectations. **Nothing executes them**, and that is
-not an oversight: the thing under test is a language model following a catalogue, so the assertions
-are read by a human or an agent comparing a run against them, not by a test runner.
-
-Treat them as specifications with worked examples:
+Three synthetic inputs with declarative YAML expectations:
 
 | fixture | what it asserts |
 |---|---|
@@ -32,8 +49,43 @@ Treat them as specifications with worked examples:
 `02-clean` is the most valuable of the three, for a tool whose documented primary failure mode is
 over-correction: it is the only one where any edit at all is a defect.
 
-**What *is* mechanically enforced** is the part that can be: `scripts/check.py` gates the Hungarian
-closing-quote glyph across the whole catalogue. That is the defect `01-typography` was written for —
-validation round 1 found 69 occurrences of `„…"` with a straight closer in the catalogue's own
-printed examples, so a run matching the example emitted half-fixed output. The fixture documents it;
-the checker prevents it. Where a claim can be turned into a mechanism, it should be.
+Producing a run is still a human act — the thing under test is a language model following a
+catalogue. **Comparing one against its expectation is not**, and since the output acquired a fixed
+shape it does not have to be. `make fixtures` runs
+[`../scripts/check_fixtures.py`](../scripts/check_fixtures.py), which has two arms:
+
+- **The specifications against the catalogue.** Always. It catches the drift a fixture cannot
+  survive quietly: a pattern reclassified as `SOFT` while a fixture that forbids every soft edit
+  still names it, an expectation citing an ID the catalogue no longer defines, a register that is
+  not a profile.
+- **A recorded run against its fixture.** Whenever `fixtures/runs/` has one. Register, change
+  count, the soft prohibition, the per-paragraph cluster cap, every declared pattern actually
+  cited, and — the point of `02-clean` — nothing cited that the fixture does not declare.
+
+When no run is recorded, the summary says so instead of printing a bare `OK`. An arm that could
+not fire must not read like one that fired and found nothing.
+
+### Recording a fixture run
+
+Same contract as `corpus/runs/`: work from the **working copy**, not the installed plugin, and
+open the file with the provenance comment that says so. Then save the run as
+`fixtures/runs/<fixture>-<label>.md` — the label is free, the prefix has to match the fixture, and
+`make fixtures` picks it up on the next call.
+
+### What the runner does not check
+
+**The `expect_noop` entries.** Each names a construction and gives a reason in prose, for a
+reader — 20 of them across the three files, and the runner prints that count so a green result is
+not mistaken for a fully verified one.
+
+**Occurrence counts, exactly.** A fixture counts hits in the input (`8GB`, `4GB`, `21°C` is three);
+a run counts rows, and `SKILL.md` defines a row as one pattern in one sentence, so those three
+legitimately merge into one. What holds in both units is the bound — at least one row, never more
+rows than hits — and that is what is enforced. Zero rows means the pattern did not fire; more rows
+than hits means it fired somewhere the fixture does not account for.
+
+**One more thing is enforced elsewhere:** `scripts/check.py` gates the Hungarian closing-quote
+glyph across the whole catalogue. That is the defect `01-typography` was written for — validation
+round 1 found 69 occurrences of `„…"` with a straight closer in the catalogue's own printed
+examples, so a run matching the example emitted half-fixed output. The fixture documents it; the
+checker prevents it. Where a claim can be turned into a mechanism, it should be.

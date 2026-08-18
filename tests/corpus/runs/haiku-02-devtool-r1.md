@@ -1,3 +1,5 @@
+<!-- stet-run: source=skills/stet-hungarian sha256=22f8a1a7 date=2026-08-17 -->
+
 ## 0. Nyelv és regiszter
 
 A szöveg magyar (angol szakszavakkal tűzdelve, de a próza végig magyar). A regisztert az operátor **rögzítette**, nem én vezettem le: a szöveget `neutral` regiszterként kezelem. A Pass 5 ezért mérsékelt módban fut, a Pass 3 pedig teljesen.
@@ -64,19 +66,34 @@ Az Ellenőr ingyenes kis csapatoknál (5 fejlesztő alatt), és patnered díjú 
 
 ## 3. Gyanús, de nem javítottam
 
-- **HU-T11** – `mikor, melyik commitban, és mely fejlesztő mergelte be`: nem dőlt el, hogy felsorolás-e (akkor a vessző hibás) vagy tagmondathatár-e (akkor kötelező), mert a harmadik tagnak saját alanya és állítmánya van. Bizonytalanság esetén nem nyúlok hozzá.
-- **HU-L06** – `Nem csak azt rögzíti…, hanem azt is…`: a saját `Mikor NE`-je blokkolja, az ellentét valódi (mit vs. mikor/ki), és bekezdésenként egy ilyen keret rendben van.
-- **HU-T14** – `a teszt suite-ban`: félig fordított összetétel. A minta példái meghonosodott magyar tagpárok; itt az utótag angol marad, és a helyes írásmód (`tesztsuite`, `test suite`) nem dönthető el hipotézis nélkül.
-- **HU-G06** – `és javasol mintázatot`: angol SVO-sorrend, magyarul `mintázatot javasol` lenne a semleges. A minta `Mikor NE`-je viszont kimondja, hogy csak elveszett azonosító fókusz esetén fut – itt nincs ilyen.
-- **HU-M01** – `Rögtön kapnak…`: alany nélküli T/3, miközben a „Használat” szakasz tegez (`csatlakoztatod`, `a CI-rendszeredet`), máshol pedig T/1 áll (`debuggolunk`). Nincs önözés, tehát nincs klasszikus keveredés, és fejlesztői eszközben a tegezés legitim (HU-M04 `Mikor NE`) – a többségi forma nem állapítható meg, a szerzőé a döntés.
-- **HU-T10** – `Trend-analízis`: kétrészes összetétel fölösleges kötőjellel (`trendanalízis`). A minta a 6:3-as és a mozgószabályt írja elő, a fölös kötőjel kivételét nem – és a katalógus a rosszul kötőjelezett összetételt kifejezetten hatókörön kívülinek mondja.
-- **HU-M12** – `hibatype`: magyar–angol hibrid szóalak. A bekezdés (a teljes „Jellemzők” felsorolás) 2 `SOFT` javítási kerete elfogyott (HU-F04, HU-M12).
-- **HU-F04** – `Egy webes felület mutatja`: angolos `egy` mondat élén. Ugyanaz a kerethiány.
-- **HU-F04** – `a CI-hiba rögtön egy ticket`: angolos `egy` névszói állítmány előtt. Ugyanaz a kerethiány.
-- **nincs minta** – `mely projectek és branchek vizsgáljanak`: vonzatszerepek felcserélve, a projektek a vizsgálat tárgyai, nem alanyai (`mely projekteket és brancheket vizsgálja`). Egyik minta sem fedi, a diff-audit ID nélküli javítást visszavonatna.
-- **nincs minta** – `mely podem halasztható vagy akár kívánatos-e rá visszatérni`: a `podem` nem magyar szó, és a tagmondat két kérdésformát kever. A javításhoz ki kellene találni, mit akart mondani.
-- **nincs minta** – `Az a srác, aki…, nem mulaszthatja le`: regisztertörés a dokumentációs hangban, plusz nem létező igekötős alak (`elmulaszt` helyett). Egyik jelenségre sincs minta.
-- **nincs minta** – `fájl xyz-ből`, `ugyanabban az okból származott`: angolos szórend a jelzős szerkezetben, illetve a mutató névmás esetragja nem egyezik a főnévével (`ugyanabból az okból`). Nyelvtani hiba, nem gépi jel – nincs rá minta.
-- **nincs minta** – `kevesebb regexe`, `kódqualityről`: elrontott, illetve hibrid szóalakok. A katalógus szándékosan nem helyesírás-ellenőrző.
-- **nincs minta** – `patnered díjú csomagok`: elrontott szóalak, a jelentése sem egyértelmű (`fizetős`? `partneri`?). Ugyanaz az ok.
-- **nincs minta** – `Ez nem rosszindulat, csak tény.`: **szándékosan megtartva.** Rövid, töredékes mondat két hosszabb után – megőrizendő emberi ritmusjel, és a bekezdésben van konkrétum, tehát a HU-R11 felülírása sem tüzel.
+- **HU-T11** [uncertain] – `mikor, melyik commitban, és mely fejlesztő mergelte be`: nem dőlt el, hogy felsorolás-e (akkor a vessző hibás) vagy tagmondathatár-e (akkor kötelező), mert a harmadik tagnak saját alanya és állítmánya van. Bizonytalanság esetén nem nyúlok hozzá.
+- **HU-L06** [pattern-exception] – `Nem csak azt rögzíti…, hanem azt is…`: a saját `Mikor NE`-je blokkolja, az ellentét valódi (mit vs. mikor/ki), és bekezdésenként egy ilyen keret rendben van.
+- **HU-T14** [uncertain] – `a teszt suite-ban`: félig fordított összetétel. A minta példái meghonosodott magyar tagpárok; itt az utótag angol marad, és a helyes írásmód (`tesztsuite`, `test suite`) nem dönthető el hipotézis nélkül.
+- **HU-G06** [pattern-exception] – `és javasol mintázatot`: angol SVO-sorrend, magyarul `mintázatot javasol` lenne a semleges. A minta `Mikor NE`-je viszont kimondja, hogy csak elveszett azonosító fókusz esetén fut – itt nincs ilyen.
+- **HU-M01** [pattern-exception] – `Rögtön kapnak…`: alany nélküli T/3, miközben a „Használat” szakasz tegez (`csatlakoztatod`, `a CI-rendszeredet`), máshol pedig T/1 áll (`debuggolunk`). Nincs önözés, tehát nincs klasszikus keveredés, és fejlesztői eszközben a tegezés legitim (HU-M04 `Mikor NE`) – a többségi forma nem állapítható meg, a szerzőé a döntés.
+- **HU-T10** [pattern-exception] – `Trend-analízis`: kétrészes összetétel fölösleges kötőjellel (`trendanalízis`). A minta a 6:3-as és a mozgószabályt írja elő, a fölös kötőjel kivételét nem – és a katalógus a rosszul kötőjelezett összetételt kifejezetten hatókörön kívülinek mondja.
+- **HU-M12** [paragraph-budget] – `hibatype`: magyar–angol hibrid szóalak. A bekezdés (a teljes „Jellemzők” felsorolás) 2 `SOFT` javítási kerete elfogyott (HU-F04, HU-M12).
+- **HU-F04** [paragraph-budget] – `Egy webes felület mutatja`: angolos `egy` mondat élén. Ugyanaz a kerethiány.
+- **HU-F04** [paragraph-budget] – `a CI-hiba rögtön egy ticket`: angolos `egy` névszói állítmány előtt. Ugyanaz a kerethiány.
+- **nincs minta** [no-pattern] – `mely projectek és branchek vizsgáljanak`: vonzatszerepek felcserélve, a projektek a vizsgálat tárgyai, nem alanyai (`mely projekteket és brancheket vizsgálja`). Egyik minta sem fedi, a diff-audit ID nélküli javítást visszavonatna.
+- **nincs minta** [no-pattern] – `mely podem halasztható vagy akár kívánatos-e rá visszatérni`: a `podem` nem magyar szó, és a tagmondat két kérdésformát kever. A javításhoz ki kellene találni, mit akart mondani.
+- **nincs minta** [no-pattern] – `Az a srác, aki…, nem mulaszthatja le`: regisztertörés a dokumentációs hangban, plusz nem létező igekötős alak (`elmulaszt` helyett). Egyik jelenségre sincs minta.
+- **nincs minta** [no-pattern] – `fájl xyz-ből`, `ugyanabban az okból származott`: angolos szórend a jelzős szerkezetben, illetve a mutató névmás esetragja nem egyezik a főnévével (`ugyanabból az okból`). Nyelvtani hiba, nem gépi jel – nincs rá minta.
+- **nincs minta** [no-pattern] – `kevesebb regexe`, `kódqualityről`: elrontott, illetve hibrid szóalakok. A katalógus szándékosan nem helyesírás-ellenőrző.
+- **nincs minta** [no-pattern] – `patnered díjú csomagok`: elrontott szóalak, a jelentése sem egyértelmű (`fizetős`? `partneri`?). Ugyanaz az ok.
+- **nincs minta** [preserve] – `Ez nem rosszindulat, csak tény.`: **szándékosan megtartva.** Rövid, töredékes mondat két hosszabb után – megőrizendő emberi ritmusjel, és a bekezdésben van konkrétum, tehát a HU-R11 felülírása sem tüzel.
+
+## 4. Klaszterpontok
+
+| # | Kezdet | Pont | Minták |
+|---|---|---|---|
+| 1 | `Az Ellenőr egy fejlesztőcsapatok…` | 0 | nincs |
+| 2 | `Az Ellenőr integrálódik a CI-rendszerekkel…` | 0 | nincs |
+| 3 | `Az eszköz ezután összegyűjti…` | 0 | nincs |
+| 4 | `**Valós idejű értesítés**…` (a teljes „Jellemzők” felsorolás) | 4 | HU-F04, HU-M12 |
+| 5 | `Az Ellenőr beállítása egyszerű…` | 0 | nincs |
+| 6 | `A csapat tagjai beléphetnek…` | 0 | nincs |
+| 7 | `Mivel a CI-hibák centralizálva vannak…` | 0 | nincs |
+| 8 | `A hibamintázat-felismerés miatt…` | 2 | HU-R09 |
+| 9 | `A végeredmény: kevesebb regexe…` | 0 | nincs |
+| 10 | `Az Ellenőr ingyenes kis csapatoknál…` | 0 | nincs |

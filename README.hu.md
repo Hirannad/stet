@@ -46,9 +46,10 @@ igazán – és ott sem hibátlan, lásd az *Amit nem tud* részt.
 
 Vagy klónozd, és linkeld be a `skills/stet-hungarian` mappát a `~/.claude/skills/` alá.
 
-Utána csak kérd meg magyarul: *„nézd át ezt a szöveget”*. Visszaad három dolgot: a javított
-szöveget, egy táblázatot arról, mit miért változtatott, és egy listát arról, **mit vett észre és
-hagyott mégis békén.** A fájlodhoz nem nyúl.
+Utána csak kérd meg magyarul: *„nézd át ezt a szöveget”*. Visszaad négy dolgot: a javított
+szöveget, egy táblázatot arról, mit miért változtatott, egy listát arról, **mit vett észre és
+hagyott mégis békén** – tételenként azzal, hogy mi állította meg –, és bekezdésenként a
+klaszterpontszámot. A fájlodhoz nem nyúl.
 
 ## Mit talál meg
 

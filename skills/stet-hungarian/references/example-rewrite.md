@@ -2,8 +2,8 @@
 
 **Ez formátumpélda, nem illesztési minta.** Az itteni mondatokat ne keresd a saját szövegedben, és
 ne ezekhez hasonlítsd a bemenetet: a jeleket mindig a `01`–`06` referenciafájlokból azonosítsd.
-Ez a fájl egyetlen dolgot tanít meg – **hogyan néz ki a háromrészes kimenet**, és milyen
-részletességű a változástábla meg a gyanús-lista.
+Ez a fájl egyetlen dolgot tanít meg – **hogyan néz ki a négyrészes kimenet**, és milyen
+részletességű a változástábla, a gyanús-lista meg a klaszterpont-tábla.
 
 **A szakaszcímek és a táblázatoszlopok kötelező alakja a `SKILL.md` `## Kimenet` szakaszában áll.**
 Ez a futás azt az alakot követi; ha a kettő eltér, a `SKILL.md` nyer, és ez a fájl a hibás.
@@ -95,19 +95,31 @@ A jelentés szerint „jelentős javulás” történt, ami a csapat elköteleze
 
 ## 3. Gyanús, de nem javítottam
 
-- **HU-L06** – `nem csupán egy jogi kötelezettség, hanem egy teljesen új szemléletmód is`. A
-  bekezdés 2 `SOFT` javítási kerete elfogyott (HU-L04, HU-L01). A szerkezet magyarul egyébként helyes.
-- **HU-F04** – `egy jogi kötelezettség`, `egy teljesen új szemléletmód`: angolos `egy`. Ugyanaz a
-  kerethiány.
-- **HU-R03** – a hármas felsorolás. **Szabály szerint nem javítható:** a három tag nem párhuzamos
-  `-ás/-és` főnév, és a hármasság nem tér vissza bekezdésenként.
-- **HU-L08** – `kihívást is jelent`, üres igei körülírás. Kerethiány.
-- **HU-F01** – `a csapat képzése` / `a dokumentáció frissítése`: nominalizáció maradt az összevont
-  mondatban, de a minta jele nem teljesül – mindkettő egy lépcső, és a birtokos nem deverbális,
-  tehát nem rétegzett lánc. A keret amúgy is elfogyott volna a HU-R04 után.
-- **HU-G20** – egy `ugyanakkor`. `[jelöld]`, nem ismétlődik.
-- **nincs minta** – `legalábbis papíron`, **szándékosan megtartva.** Feloldatlan feszültség, emberi
-  jel (`06-rhythm.md`, megőrizendő jegyek).
+- **HU-L06** [paragraph-budget] – `nem csupán egy jogi kötelezettség, hanem egy teljesen új
+  szemléletmód is`. A bekezdés 2 `SOFT` javítási kerete elfogyott (HU-L04, HU-L01). A szerkezet
+  magyarul egyébként helyes.
+- **HU-F04** [paragraph-budget] – `egy jogi kötelezettség`, `egy teljesen új szemléletmód`:
+  angolos `egy`. Ugyanaz a kerethiány.
+- **HU-R03** [pattern-exception] – a hármas felsorolás. **Szabály szerint nem javítható:** a három
+  tag nem párhuzamos `-ás/-és` főnév, és a hármasság nem tér vissza bekezdésenként.
+- **HU-L08** [paragraph-budget] – `kihívást is jelent`, üres igei körülírás. Kerethiány.
+- **HU-F01** [pattern-exception] – `a csapat képzése` / `a dokumentáció frissítése`: nominalizáció
+  maradt az összevont mondatban, de a minta jele nem teljesül – mindkettő egy lépcső, és a birtokos
+  nem deverbális, tehát nem rétegzett lánc. A keret amúgy is elfogyott volna a HU-R04 után.
+- **HU-G20** [mark-only] – egy `ugyanakkor`. `[jelöld]`, nem ismétlődik.
+- **nincs minta** [preserve] – `legalábbis papíron`, **szándékosan megtartva.** Feloldatlan
+  feszültség, emberi jel (`06-rhythm.md`, megőrizendő jegyek). Nem `no-pattern`: nem a katalógus
+  hallgatott, hanem egy szabály mondta, hogy maradjon.
+
+## 4. Klaszterpontok
+
+| # | Kezdet | Pont | Minták |
+|---|---|---|---|
+| 1 | `Az adatvédelem minden szervezet…` | 8 | HU-L01, HU-L04, HU-L06, HU-F04 |
+| 2 | `A három legfontosabb előny…` | 6 | HU-F03, HU-R04, HU-L08 |
+| 3 | `A projektmenedzsment és az…` | 0 | nincs |
+| 4 | `A szabályzatot a következő ülésen…` | 4 | HU-M02, HU-F06 |
+| 5 | `A jelentés szerint…` | 4 | HU-L10, HU-L13 |
 
 ---
 
@@ -119,6 +131,13 @@ visszavonat – ha nem tudod megnevezni, melyik minta alapján nyúltál hozzá,
 **A gyanús-lista nem formalitás.** Ebben a futásban hét tétel került rá, és mind indoklással: hol
 a klaszterküszöb, hol a bekezdésenkénti keret, hol pedig maga a szabály tiltotta a javítást
 (HU-R03). Ez az a szelep, ahol a bizonytalanság kiírható ahelyett, hogy javításba menekülne.
+
+**A 4. szakasz mutatja meg, mi nem látszik a másik kettőn.** A 3. bekezdés **0 ponton áll, és hat
+javítást kapott** – mert mind `FIX`, és a `FIX` nem pontoz. A másik irányban: az 1. és a 2.
+bekezdés 8, illetve 6 ponton áll, jóval a küszöb fölött, mégis kettőt-kettőt engedett ki, mert ott
+már nem a kapu, hanem a keret dönt. A pontszám és a javítások száma **két külön szám**, és eddig csak az
+egyiket lehetett kívülről ellenőrizni. A gyanús-lista kódjai adják hozzá a hiányzó felet: három
+tétel `paragraph-budget`, vagyis a bekezdés kapuja nyitva volt, csak a keret fogyott el.
 
 **A `FIX` és a `SOFT` másképp viselkedik.** A tipográfia (HU-T*) végigfut, kerettől függetlenül –
 ezért látszik itt sok javítás. A stilisztikai (`HU-L*`, `HU-R*`) minták viszont bekezdésenként

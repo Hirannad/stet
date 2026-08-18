@@ -6,26 +6,27 @@ register: neutral
 
 expect_patterns:
   - id: HU-T01
-    count: 2
+    occurrences: 2
     note: >-
       Straight quotes in a Hungarian sentence become „…” — lower opening, UPPER closing (U+201D).
       A run that emits „…" with a straight closer is a FAILURE, not a partial pass. This is the
       exact defect validation round 1 found: the catalogue printed U+0022 as the "correct" closer
       in 69 places, and a run matching the printed example produced half-fixed output.
   - id: HU-T02
-    count: 1
+    occurrences: 1
     note: em dash → spaced en dash; the spaces were already correct, only the character changes.
   - id: HU-T03
-    count: 2
+    occurrences: 2
     note: "`2020-2024` and `Budapest-Bécs` take the en dash, unspaced."
   - id: HU-T04
-    count: 2
+    occurrences: 2
     note: "decimal point → decimal comma: `2.5` and `0.5`. There is no third English decimal."
   - id: HU-T05
-    count: 3
+    occurrences: 3
     note: "unit spacing: `8GB` → `8 GB`, `4GB` → `4 GB`, `21°C` → `21 °C`."
   - id: HU-T07
-    count: 1
+    occurrences: 1
+    where: change_or_suspect
     note: >-
       `Projekt Áttekintés` is English Title Case inside a Hungarian sentence. It is quoted as a
       document name, so this is the boundary case: the quotation is an untouchable zone, but the
@@ -41,6 +42,7 @@ expect_noop:
     reason: No number, date or magnitude may change; only its formatting.
 
 expect_no_soft: true
+expect_max_cluster_points: 0
 soft_reason: >-
   Three prose paragraphs, no LLM vocabulary, no nominalisation chain, no negative parallelism.
   Every paragraph should score 0 and no SOFT pattern may fire. If one does, the cluster gate is

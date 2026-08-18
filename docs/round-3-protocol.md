@@ -270,6 +270,24 @@ Every phase that runs the skill must state which copy it ran, and refresh or pin
 starting. This is the same lesson the `allowed-tools` finding taught in round 2, in a new place:
 **a native mechanism is not a mechanism until you have measured it.**
 
+That requirement is a check rather than an instruction. `make cache` reads Claude Code's own install
+register, byte-compares the installed skill tree against this one, and fails when they differ — so a
+phase cannot start on a stale plugin without saying so. It also resolves each recorded run's
+provenance hash against every copy on disk, which turns the parser's `stale` bit into a named copy:
+`stale` otherwise conflates *the working copy moved on after the run* with *the run read the
+installed plugin all along*, and only the second invalidates the run. Two things the check
+established rather than assumed:
+
+- **The cache directory is keyed by the version string, and a marketplace refresh does not move it.**
+  Observed rather than reasoned about: the marketplace clone had already advanced to a later commit
+  while the version-keyed extract sat at the one it was installed from, and both copies still declare
+  `0.2.0`. Refreshing is therefore not by itself the fix — the version has to move.
+- **All nine recorded runs resolve to the working copy.** That was previously the runner's word for
+  it; it is now derived from the hash each run carries.
+
+It stays out of CI and out of the pre-commit hook deliberately. Neither has an installed plugin, and
+which copy is installed is a fact about one machine at one moment, not a property of a commit.
+
 Also in phase 0:
 
 - **Dependency decision.** The repository is stdlib-only today, with no requirements file, and
@@ -433,6 +451,7 @@ argument.
 | `docs/round-3-protocol.md` | this file |
 | `docs/validation.md` | round 3 write-up, after execution |
 | `scripts/parse_run.py` | three-part output parser (phase 0) |
+| `scripts/plugin_cache.py` | working copy vs installed plugin, and each run's copy (phase 0) |
 | `scripts/measure.py` | tier A/B counting over a corpus |
 | `data/manifest.csv` | source register: URL, outlet, date, genre, word count, SHA-256, rights check |
 | `data/raw/` | local only, gitignored |

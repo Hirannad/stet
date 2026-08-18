@@ -81,8 +81,9 @@ should the tool decline to act?**
   paragraph.
 - **An edit budget** — a hard ceiling on the share of sentences touched. Above it the tool stops
   and reports instead of continuing.
-- **A three-part output** — the corrected text, a change table keyed by pattern ID, and an
-  explicit *"noticed but deliberately did not fix"* list.
+- **A four-part output** — the corrected text, a change table keyed by pattern ID, an explicit
+  *"noticed but deliberately did not fix"* list where each entry names the brake that stopped it,
+  and the cluster score of every paragraph. The last two make a run countable, not just readable.
 
 The method is documented in [METHOD.md](METHOD.md); its values live in
 [method/constants.yml](method/constants.yml), which is the single source for them. `scripts/check.py`
@@ -167,9 +168,12 @@ Measured, published, and not resolved. Each item below is an open issue.
 - **Ordinary human typos are out of reach, by design.** The catalogue is provenance-shaped: it
   hunts machine tells, so a missing consonant doubling or a compound written as two words gets
   past it.
-- **The fixtures in [tests/](tests/) are still specifications, not an automated suite.** The output
-  now *has* a fixed shape and `scripts/parse_run.py` reads it, so the blocker is gone — but wiring
-  the fixtures to it is a separate step nobody has taken.
+- **The fixtures in [tests/](tests/) are wired up, but no run has been recorded through them
+  yet.** `make fixtures` checks the three specifications against the catalogue on every commit and
+  compares any recorded run against the fixture it came from; producing that run is a human act
+  and nobody has done it. Until then the arm that would catch a regression in behaviour — as
+  opposed to one in the expectations — has not fired once, and the command says so rather than
+  reporting a clean pass.
 
 ## Coexisting with an English prose linter
 
@@ -203,6 +207,18 @@ Runs the structural checker: header grammar, severity and evidence enums, estima
 required fields, unique and resolvable pattern IDs, single-source constants, the declared pass
 inventory, link integrity across the whole repository, the Hungarian closing-quote glyph, and the
 SKILL.md size budget. It is wired to a pre-commit hook (`make hooks`) and to CI.
+
+Two more targets check the material rather than the catalogue: `make runs` parses every recorded
+run in [tests/corpus/runs/](tests/corpus/runs/) against the output shape, and `make fixtures`
+checks the [tests/fixtures/](tests/fixtures/) specifications and compares any run recorded through
+them. Both say which of their arms actually fired.
+
+`make cache` answers a different question, and it is the one that invalidates measurements:
+**which catalogue a run actually read.** The Skill tool serves the installed plugin, not this
+working tree, so a run driven through `stet:stet-hungarian` can measure the released version
+silently and return plausible output. It byte-compares the two copies, fails when they differ, and
+resolves each recorded run's provenance hash to a named copy. Local only — CI has no installed
+plugin, and which one is installed is a fact about a machine rather than about a commit.
 
 The quote-glyph check exists because the catalogue once got it wrong in its own printed example —
 69 occurrences of `„…"` with a straight closer, so a run that matched the example emitted

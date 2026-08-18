@@ -486,3 +486,145 @@ The runs surfaced more than was fixed. Recorded here rather than acted on:
 - **Is a heading a sentence?** Undefined for the row unit and for the budget denominator.
 - **Gaps with no pattern at all**: abbreviation-plus-compound hyphenation, and superfluous
   hyphenation — the catalogue fixes a missing hyphen and leaves a spurious one.
+
+---
+
+## Round 3, part two — 2026-08-17
+
+**Also not a measurement round.** Part one gave the output a shape a parser could read. It did not
+make the output say anything the parser could *check*, and two of the numbers this project most
+needs were still free prose or absent entirely: which brake stopped an edit, and how close a
+paragraph came to the cluster threshold. Both are now printed and both are now gated.
+
+### What changed
+
+`SKILL.md` §`## Kimenet` gains a fourth part and a closed vocabulary.
+
+- **Section 3's entries carry a reason code**, one per entry, from the eleven-item list in
+  [method/constants.yml](../method/constants.yml) — `register`, `pattern-exception`, `mark-only`,
+  `zone`, `preserve`, `pattern-cap`, `threshold`, `paragraph-budget`, `text-budget`, `no-pattern`,
+  `uncertain`. The list order is the order a run decides in, so two raters coding the same entry
+  land on the same code. `scripts/check.py` asserts the prose table equals the enum, in order;
+  `parse_run.py --strict` fails on an unknown code.
+- **A new `## 4. Klaszterpontok`** gives every paragraph a row: its number, its opening words, its
+  cluster score, and the patterns that score came from. `parse_run.py` recomputes the arithmetic
+  from the catalogue's own `AI:` values and fails if the stated total does not follow.
+- **Recorded runs name the skill copy that produced them**, with a hash of that copy's contents.
+  Part one's finding — the Skill tool serves the installed plugin, not the working tree — was true
+  but unenforceable as prose. All nine runs here were produced by reading the working copy
+  directly, and each says so in a form a script checks. A run whose hash no longer matches is
+  reported `stale`, not failed: it measures the version it names.
+
+### One thing the specification had to decide, and one it had to fix
+
+Section 4 cannot be written without answering **"is a heading a paragraph?"** — part one's open
+item. The answer taken here is **no**, by the same argument `SKILL.md` already makes about tables:
+the gate counts co-occurring signals inside a paragraph and the budget counts sentences, and a
+heading supports neither. The consequence is recorded rather than hidden: **`HU-M09` is now
+unreachable.** It is a `SOFT` pattern whose signs live only in headings, so it can never score, and
+it appeared on the suspect list of five of the nine runs. The other half of the question — whether
+a heading is a *sentence*, for the budget denominator — stays open.
+
+It also surfaced a contradiction in `SKILL.md`. The "not evidence" rule listed the threshold and
+the budgets among the mechanisms that void a hit's points, which is not implementable: both are
+computed **from** the point total, and the ceiling rule forbids retracting an edit already made. So
+the rule now splits. Every other mechanism voids the point; `threshold`, `paragraph-budget` and
+`text-budget` stop the edit and leave the point standing, because they read a sum they cannot then
+remove themselves from. This resolves the ambiguity round 2's finding 3 recorded, in the only
+direction that can be computed.
+
+### The cluster gate, seen from outside for the first time
+
+Nine runs, 95 paragraphs.
+
+| | paragraphs |
+|---|---|
+| scored anything at all | 18 |
+| of those, reached the gate | **3** |
+| stuck on exactly 2 — one `eros` pattern | 13 |
+| stuck on 1 | 2 |
+
+**Every `SOFT` edit in the corpus traces to those three paragraphs, plus one cluster override.**
+Seven soft edits: five from the three paragraphs that passed, two from `HU-R09` firing alone on a
+paragraph worth 2. All three passing paragraphs are Haiku-written, which is round 2's headline
+result again, now with the mechanism visible underneath it.
+
+The distribution is the finding. **Thirteen of the fifteen sub-threshold paragraphs sat on exactly
+2** — a single strong pattern, one short of the gate. The threshold of 3 is doing precisely what it
+was designed to do (a lone signal never licenses an edit), and on this corpus a second, *different*
+signal almost never showed up in the same paragraph. Whether 3 is the right cut still needs seeded
+inputs and a rater; what part two adds is that the question can now be asked of any run, because
+the number is printed.
+
+### What actually blocks an edit
+
+107 suspect entries, coded:
+
+| code | n | |
+|---|---|---|
+| `pattern-exception` | 41 | the pattern's own `Mikor NE` or `Jelek` |
+| `no-pattern` | 29 | outside the catalogue's scope |
+| `threshold` | 15 | the cluster gate |
+| `register` | 8 | |
+| `paragraph-budget` | 5 | |
+| `uncertain` | 5 | |
+| `zone` | 3 | |
+| `preserve` | 1 | |
+| `mark-only`, `pattern-cap`, `text-budget` | 0 | |
+
+**This settles round 2's finding 2 with a number.** That finding said the "not evidence" rule's
+four named reasons — register gate, untouchable zone, `[jelöld]`, uncertainty — did not match what
+actually blocks hits. Those four cover **16 of 107 entries, 15%**. A pattern's own exception clause
+alone is 38%, and it is the single largest category in seven of the nine runs.
+
+Three codes never fired. `mark-only` is unsurprising — part one already recorded that no specimen
+contains a `[jelöld]` pattern. `text-budget` not firing is more interesting: the 40% ceiling is
+described in `SKILL.md` as the strongest brake, the one that holds when every other mechanism has
+failed, and across nine runs **it never bound once.** Nothing here says it is wrong; it says it is
+untested, and that the machinery upstream of it stops nearly everything first.
+
+### What the arithmetic caught
+
+The section-4 check found a real error in the first run it was pointed at: `haiku-03`'s eleventh
+paragraph listed two patterns and a score of 4, while a third `SOFT` pattern (`HU-G09`) had been
+edited in that same paragraph and was missing from the total. The paragraph was worth 6. Nobody
+reading the run would have noticed — the score was internally consistent with the patterns printed
+beside it.
+
+That is now a permanent check: a `SOFT` pattern that produced an edit must appear in the cluster
+table, since an edit proves it survived every gate. The parser cannot verify *which* paragraph a
+change row belongs to, so this catches omission, not misattribution.
+
+### Counts, and how they compare with part one
+
+Identical, with one exception. Every `FIX` and `SOFT` count is unchanged, because these are the
+same runs re-recorded in the new shape rather than re-adjudicated. `haiku-03`'s suspect list went
+from 13 cited entries to 14: one entry cited two patterns stopped by two *different* mechanisms
+(`HU-F01` by the threshold, `HU-H03` by the register gate), and one code cannot be true of both.
+`SKILL.md` now requires splitting such an entry, which is a small tightening of the section 3 row
+unit that part one introduced.
+
+### Limitations
+
+Still no rater; nothing here says whether any edit was good. Still one run per specimen. The
+corpus is round 2's and carries every caveat it had. The reason codes were assigned by re-reading
+what each run wrote about itself, by one agent — a second coder would establish inter-rater
+agreement on the vocabulary, and that has not been done, so 38% for `pattern-exception` is one
+coder's reading of nine runs, not a measured rate. Above all, **the codes and the scores describe
+the mechanism, not its correctness**: knowing that a paragraph stopped at 2 says nothing about
+whether it should have.
+
+### Left open, deliberately
+
+- **Is a heading a sentence?** Half the question is closed above; the budget denominator half is
+  not.
+- **What counts as one list.** `haiku-02` scored five bold-led feature entries as a single
+  paragraph; `opus-01` and `opus-02` scored bold-led paragraphs separately. Both readings are
+  defensible under the current wording, and the choice moves the score and the budget.
+- **`HU-M09` is unreachable** and should either lose its `SOFT` status, acquire a document-level
+  scope, or be withdrawn. Not decided here.
+- **`text-budget` and `pattern-cap` remain untested.** No specimen has come near either.
+- **Two patterns co-cited on one edit both score.** `HU-M02` and `HU-F06` on the same `Ön`-stacking
+  fix contribute 4 points between them, which may be double-counting one signal. The cluster rule
+  covers precedence, not joint justification.
+- The gaps part one listed with no pattern at all are still gaps.

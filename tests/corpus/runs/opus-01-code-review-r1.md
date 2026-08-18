@@ -1,3 +1,5 @@
+<!-- stet-run: source=skills/stet-hungarian sha256=22f8a1a7 date=2026-08-17 -->
+
 ## 0. Nyelv és regiszter
 
 A szöveg magyar. A szöveget `informal` regiszterként kezelem, és ezt a hívó rögzítette – nem én vezettem le. (A szöveg egyébként megfelel ennek: blogbejegyzés, végig tegező, belső csapathang.)
@@ -47,10 +49,27 @@ Végül: az approve nem szívesség, és nem is vérrel írt aláírás. Azt jel
 
 ## 3. Gyanús, de nem javítottam
 
-- **HU-L14** – `a review a kódról szól, nem a szerzőről`: szimmetrikus, kiemelhető mondat, de közvetlenül mellette ott a konkrét példapár, tehát a minta saját `Mikor NE`-je (indoklás, nem ál-bölcsesség) blokkolja, és a bekezdésben van konkrétum, így a klaszter-felülírás sem tüzel.
-- **HU-R11** – `A review máshol erős`: elvont alany + mérhetetlen melléknév, a második alak. A rá következő töredék (`Rossz absztrakció, félreértett követelmény…`) és a bekezdés konkrétumai kizárják a felülírást, a küszöböt pedig nem éri el.
-- **HU-L06** – `Ez nem sértés, hanem a review működésének feltétele`: negatív párhuzam, de a szalmabáb-teszten átmegy (a sértettség valós reakció, amit a szerző megelőz), és bekezdésenként csak egy ilyen keret áll.
-- **HU-R02** – a hat félkövér vezérmondatos bekezdés egyforma sémára épül. `informal` blogban a listaszerű tagolás műfaji elem, a bekezdéshosszak egyenetlenek (van egymondatos bekezdés is), és egyik érintett bekezdés sem éri el a klaszterküszöböt.
-- **HU-T11** – `mire kell reagálnia, és mire nem`: közös alanyú, mellérendelt mellékmondatpár, tehát alakilag ugyanaz az eset, mint a két javított vessző. Itt viszont polaritásváltás és ellipszis van (`és mire nem` = `és mire nem kell reagálnia`), ami szünetet indokol, ezért nem nyúltam hozzá.
-- **HU-T11** – `az approve nem szívesség, és nem is vérrel írt aláírás`: közös alanyú halmozott névszói állítmány, de nyomatékos tagadó halmozás (`és nem is`), ahol a vessző bevett. Ugyanaz a bizonytalanság, ugyanaz a döntés.
-- **nincs minta** – `félév múlva`: itt fél évről van szó, tehát külön írandó. Hétköznapi helyesírási hiba, nem gépi jel; a katalógus hatókörén kívül esik, ezért nem javítottam.
+- **HU-L14** [pattern-exception] – `a review a kódról szól, nem a szerzőről`: szimmetrikus, kiemelhető mondat, de közvetlenül mellette ott a konkrét példapár, tehát a minta saját `Mikor NE`-je (indoklás, nem ál-bölcsesség) blokkolja, és a bekezdésben van konkrétum, így a klaszter-felülírás sem tüzel.
+- **HU-R11** [threshold] – `A review máshol erős`: elvont alany + mérhetetlen melléknév, a második alak. A rá következő töredék (`Rossz absztrakció, félreértett követelmény…`) és a bekezdés konkrétumai kizárják a felülírást, a küszöböt pedig nem éri el.
+- **HU-L06** [pattern-exception] – `Ez nem sértés, hanem a review működésének feltétele`: negatív párhuzam, de a szalmabáb-teszten átmegy (a sértettség valós reakció, amit a szerző megelőz), és bekezdésenként csak egy ilyen keret áll.
+- **HU-R02** [pattern-exception] – a hat félkövér vezérmondatos bekezdés egyforma sémára épül. `informal` blogban a listaszerű tagolás műfaji elem, a bekezdéshosszak egyenetlenek (van egymondatos bekezdés is), és egyik érintett bekezdés sem éri el a klaszterküszöböt.
+- **HU-T11** [uncertain] – `mire kell reagálnia, és mire nem`: közös alanyú, mellérendelt mellékmondatpár, tehát alakilag ugyanaz az eset, mint a két javított vessző. Itt viszont polaritásváltás és ellipszis van (`és mire nem` = `és mire nem kell reagálnia`), ami szünetet indokol, ezért nem nyúltam hozzá.
+- **HU-T11** [uncertain] – `az approve nem szívesség, és nem is vérrel írt aláírás`: közös alanyú halmozott névszói állítmány, de nyomatékos tagadó halmozás (`és nem is`), ahol a vessző bevett. Ugyanaz a bizonytalanság, ugyanaz a döntés.
+- **nincs minta** [no-pattern] – `félév múlva`: itt fél évről van szó, tehát külön írandó. Hétköznapi helyesírási hiba, nem gépi jel; a katalógus hatókörén kívül esik, ezért nem javítottam.
+
+## 4. Klaszterpontok
+
+| # | Kezdet | Pont | Minták |
+|---|---|---|---|
+| 1 | `Az elmúlt hónapokban kétféle review-t…` | 0 | nincs |
+| 2 | `Kezdjük a haszonnal…` | 0 | nincs |
+| 3 | `A második haszon a döntések nyoma…` | 2 | HU-R11 |
+| 4 | `Innen jön a hogyan.` | 0 | nincs |
+| 5 | `**A leírást olvasd először.**…` | 0 | nincs |
+| 6 | `**Nagy PR-t ne fogadj el.**…` | 0 | nincs |
+| 7 | `**Válaszd külön a blokkolót…**` | 0 | nincs |
+| 8 | `**Kérdezz, ne rendelkezz.**…` | 0 | nincs |
+| 9 | `**Huszonnégy órán belül nézz rá.**…` | 0 | nincs |
+| 10 | `**Apróságokat ne kézzel kommentelj.**…` | 0 | nincs |
+| 11 | `Egy dolgot még tegyünk hozzá…` | 0 | nincs |
+| 12 | `Végül: az approve nem szívesség…` | 0 | nincs |

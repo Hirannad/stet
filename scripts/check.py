@@ -217,6 +217,13 @@ def check_skill(skill_dir, cfg, shape):
                          f"found {n_audit} numbered items")
     if not re.search(r"^\s*method:\s*1\s*$", sm, flags=re.M):
         fail("SKILL.md", "frontmatter must declare 'method: 1'")
+    # The suspect list's reason codes are a closed vocabulary, and the order is the resolution
+    # rule rather than presentation — so the prose table must be the enum, in the enum's order.
+    codetable = re.search(r"^\| kód \| mikor \|\n\|[-| ]+\|\n((?:\|.*\n)+)", sm, flags=re.M)
+    codes = re.findall(r"^\| `([a-z-]+)` \|", codetable.group(1), flags=re.M) if codetable else []
+    if codes != shape["suspect_reasons"]:
+        fail("SKILL.md", f"suspect reason codes {codes} do not match the constants "
+                         f"{shape['suspect_reasons']} (the order is the resolution rule)")
     if "Nyelvi kapu" not in sm:
         fail("SKILL.md", "missing language-guard section")
     found = re.findall(r"^\*\*Pass ([−-]?\d+) [—–-]", sm, flags=re.M)

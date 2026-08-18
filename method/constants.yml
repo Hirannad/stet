@@ -28,6 +28,13 @@ shape:
   # Extra header slot: mark but do not fix.
   annotations: ["jelöld"]                         # [declared]
 
+  # Closed vocabulary for a run's suspect list: which mechanism stopped the edit. Exactly one
+  # per entry, and the order below is the resolution order — the first that applies is the one
+  # written. Free prose was the old answer, and round 2's finding 2 is what it cost: the rule's
+  # own enumeration of blockers disagreed with what was actually blocking, and nobody could count
+  # the difference. A closed list can be counted; that is the whole of its claim.
+  suspect_reasons: [register, pattern-exception, mark-only, zone, preserve, pattern-cap, threshold, paragraph-budget, text-budget, no-pattern, uncertain]   # [checked]
+
   # Required fields on an edit-prescribing pattern. NEVER patterns are exempt —
   # they are prohibitions, so "when not to apply" is meaningless for them.
   required_fields: ["Forrás"]                     # [checked]

@@ -1,3 +1,5 @@
+<!-- stet-run: source=skills/stet-hungarian sha256=22f8a1a7 date=2026-08-17 -->
+
 ## 0. Nyelv és regiszter
 
 A szöveg magyar. A regisztert a hívó **rögzítette**, nem én következtettem ki: a szöveget `formal` regiszterként kezelem. (Önkormányzati lakossági tájékoztató, végig önöző megszólítással; a pass-mátrix szerint így a Pass 3 gyakorlatilag zárva van, a Pass 5-ből pedig csak a HU-R09, HU-R10 és HU-R11 fut.)
@@ -59,9 +61,26 @@ Az elkövetkező hónapokban további ügytípusokat nyitunk meg elektronikusan 
 
 ## 3. Gyanús, de nem javítottam
 
-- **nincs minta** – `a Önnel egy lakcímen élő kiskorú gyermeke`: a névelő rossz alakja, `az Önnel` lenne. Kétségtelen hiba, de hétköznapi helyesírási típusú, nincs rá minta a katalógusban, és minta-ID nélküli javítást az 1. önellenőrzés visszavonat. Kézzel javítandó.
-- **nincs minta** – `csak írásos meghatalmazással, személyesen intézhető ügy`: elliptikus névszói állítmány, nehézkes. A HU-F13 nem fogja meg (az igenév jelzői helyzetben van), a HU-F01 sem (nincs `-ás/-és` lánc és nincs birtokoslépcső).
-- **HU-H01** – `adunk tájékoztatást`: valódi funkcióigés szerkezet (`tájékoztatunk`), de a minta profillistája `informal, neutral` – a `formal` pass-mátrix szerint a Pass 3-ból egyedül a HU-H04 fut, klaszterben. A regiszterkapu zárja.
-- **HU-F04** – `Egy e-mail-cím`: angolos határozatlan névelő gyanúja, de számnévi olvasata is van („egy darab e-mail-cím”). `SOFT`, és a felsorolás mint bekezdés 2 pontja nem éri el a hármas küszöböt.
-- **HU-M09** – `Kinek jó ez`, `Mi kell hozzá`, `Mennyibe kerül`: kérdés alakú alcímsorok, a SEO-blog sablon jele. A minta saját `Mikor NE`-je zárja: lakossági tájékoztatóban a kérdés a keresés belépője, tehát funkció.
-- **HU-R08** – tíz félkövér kiemelés mondaton belül. A Pass 5 `formal`-ban áll (csak a HU-R09, HU-R10, HU-R11 fut), és a minta magyar-specifikus kivétele is véd: a kiemelések az operatív tényekre esnek (határidő, díjmentesség, elérhetőség), ez fókuszjelölés, nem díszítés.
+- **nincs minta** [no-pattern] – `a Önnel egy lakcímen élő kiskorú gyermeke`: a névelő rossz alakja, `az Önnel` lenne. Kétségtelen hiba, de hétköznapi helyesírási típusú, nincs rá minta a katalógusban, és minta-ID nélküli javítást az 1. önellenőrzés visszavonat. Kézzel javítandó.
+- **nincs minta** [no-pattern] – `csak írásos meghatalmazással, személyesen intézhető ügy`: elliptikus névszói állítmány, nehézkes. A HU-F13 nem fogja meg (az igenév jelzői helyzetben van), a HU-F01 sem (nincs `-ás/-és` lánc és nincs birtokoslépcső).
+- **HU-H01** [register] – `adunk tájékoztatást`: valódi funkcióigés szerkezet (`tájékoztatunk`), de a minta profillistája `informal, neutral` – a `formal` pass-mátrix szerint a Pass 3-ból egyedül a HU-H04 fut, klaszterben. A regiszterkapu zárja.
+- **HU-F04** [threshold] – `Egy e-mail-cím`: angolos határozatlan névelő gyanúja, de számnévi olvasata is van („egy darab e-mail-cím”). `SOFT`, és a felsorolás mint bekezdés 2 pontja nem éri el a hármas küszöböt.
+- **HU-M09** [pattern-exception] – `Kinek jó ez`, `Mi kell hozzá`, `Mennyibe kerül`: kérdés alakú alcímsorok, a SEO-blog sablon jele. A minta saját `Mikor NE`-je zárja: lakossági tájékoztatóban a kérdés a keresés belépője, tehát funkció.
+- **HU-R08** [register] – tíz félkövér kiemelés mondaton belül. A Pass 5 `formal`-ban áll (csak a HU-R09, HU-R10, HU-R11 fut), és a minta magyar-specifikus kivétele is véd: a kiemelések az operatív tényekre esnek (határidő, díjmentesség, elérhetőség), ez fókuszjelölés, nem díszítés.
+
+## 4. Klaszterpontok
+
+| # | Kezdet | Pont | Minták |
+|---|---|---|---|
+| 1 | `**Kertvárad Város Önkormányzata** tájékoztatja…` | 0 | nincs |
+| 2 | `Aki eddig azért vett ki fél napot…` | 0 | nincs |
+| 3 | `Az igazolás a saját lakcíméről…` | 0 | nincs |
+| 4 | `- **Azonosítás:**…` (a teljes hárompontos felsorolás) | 2 | HU-F04 |
+| 5 | `1. Nyissa meg az **ugyintezes.kertvarad.hu**…` (a teljes négypontos felsorolás) | 0 | nincs |
+| 6 | `Az elektronikus igazolás **három munkanapon belül**…` | 0 | nincs |
+| 7 | `A lakcímigazolás kiadása **díjmentes**…` | 0 | nincs |
+| 8 | `A személyes és a papíralapú ügyintézés **megmarad**…` | 0 | nincs |
+| 9 | `Aki szeretné az online utat használni…` | 0 | nincs |
+| 10 | `Kérdés esetén hívja a **06 1 234 5678**…` | 0 | nincs |
+| 11 | `Az elkövetkező hónapokban további ügytípusokat…` | 0 | nincs |
+| 12 | `*Kertvárad Város Önkormányzata*` | 0 | nincs |

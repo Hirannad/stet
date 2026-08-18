@@ -106,12 +106,17 @@ Humanity is not faked by adding flavour — and never by introducing an error.
 Numbered yes/no questions, not "read it again". Each one is falsifiable, and the first is the
 strongest: every change must trace to a pattern ID, or it gets reverted.
 
-## The three-part output
+## The four-part output
 
-Corrected text; a change table keyed by pattern ID; and an explicit **"noticed but did not fix"**
-list. The third part is not a formality — it is the pressure valve that lets the tool record
-uncertainty instead of escaping into an edit. It is the single mechanism that most reduces
-over-correction.
+Corrected text; a change table keyed by pattern ID; an explicit **"noticed but did not fix"**
+list; and the cluster score of every paragraph. The third part is not a formality — it is the
+pressure valve that lets the tool record uncertainty instead of escaping into an edit. It is the
+single mechanism that most reduces over-correction.
+
+Each suspect entry carries a **reason code from a closed list**, and the fourth part prints the
+score the cluster gate actually read. Both exist for the same reason: which brake binds, and how
+close a paragraph came to the threshold, are measurable questions, and free prose could not answer
+them. That is what makes every run calibration data rather than only a corrected text.
 
 ## Porting to another language
 

@@ -47,7 +47,8 @@ expect_noop:
       — a 2-to-20 spread, far outside the ±30 % band that defines uniform rhythm.
 
 expect_no_soft: true
+expect_max_cluster_points: 0
 soft_reason: >-
-  Every paragraph should score 0. Any SOFT edit here is an over-correction. Nothing executes this
-  file — see tests/README.md for why — so it is a specification a reader or an agent checks a run
-  against, not a build gate.
+  Every paragraph should score 0 — which section 4 of a run now states outright, so
+  expect_max_cluster_points carries that claim and this line only explains it. Any SOFT edit here
+  is an over-correction.

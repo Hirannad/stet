@@ -28,6 +28,11 @@ jobs:
       - name: Recorded run shapes
         run: make runs
 
+      # The specification arm runs on every commit; the comparison arm waits for a recorded
+      # fixture run. Both report which of the two happened.
+      - name: Fixture specifications
+        run: make fixtures
+
       - name: Agent Skills discovery
         run: npx --yes skills@1.5.20 add . --list
 

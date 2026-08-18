@@ -181,10 +181,14 @@ felülvizsgálandó.
 - **Amire nem tudsz rálépni, az nem bizonyíték.** Ez **elv, nem felsorolás**: ha egy találatot
   bármi megállított, a pontja **nem számít** a bekezdés összegébe. Bármi – a regiszterkapu, egy
   érinthetetlen zóna, a `[jelöld]` címke, a bizonytalanságod, a minta **saját `Mikor NE`-je**, a
-  „megőrizendő jegyek” listája, a minta belső plafonja, a bekezdés-költségvetés, a küszöb, vagy az,
-  hogy egyszerűen nincs rá minta. A korábbi négyelemű felsorolás túl szűk volt: a valódi
-  blokkolások többsége a minták saját `Mikor NE`-jéből jön. A szabály értelme a lényeg – olyan jel
-  ne legitimáljon más javítást, amire a skill maga nem mert rálépni.
+  „megőrizendő jegyek” listája, a minta belső plafonja, vagy az, hogy egyszerűen nincs rá minta.
+  **Kivétel a küszöb és a két költségvetés.** Azok a pontösszeg *után* futnak: nem vehetik ki
+  magukat abból, amit épp ők olvastak, és utólag sem vonnak vissza semmit (lásd lent: a plafon
+  megelőző). Ott a javítás marad el, nem a pont. A korábbi négyelemű felsorolás túl szűk volt: a
+  valódi blokkolások többsége a minták saját `Mikor NE`-jéből jön. A szabály értelme a lényeg – olyan jel
+  ne legitimáljon más javítást, amire a skill maga nem mert rálépni. **Az elv marad az elsődleges**,
+  a `## Kimenet` indokkódjai a megszámolható vetülete: ha egy blokkolás egyik kódba sem fér, az elv
+  nyer, és a kód hiányzik – nem fordítva.
 - **Bekezdés = egy prózai bekezdés vagy egy teljes felsorolás.** A felsorolás pontjai együtt
   számítanak egynek; nem öt külön keret.
 - **Táblázat nem bekezdés, és `SOFT` minta táblázatban nem fut.** Sem a sor, sem a cella, sem a
@@ -304,7 +308,7 @@ Plusz egy olcsó, objektív ellenőrzés: futtasd újra a Pass 1 tipográfiai li
 
 ## Kimenet
 
-Három rész, elöl a nyelv és a regiszter kimondásával – amit a nyelvi kapu és a Regiszter szakasz
+Négy rész, elöl a nyelv és a regiszter kimondásával – amit a nyelvi kapu és a Regiszter szakasz
 amúgy is kötelezővé tesz. **A címsorok szó szerint ezek, `##` szinten, ebben a sorrendben:**
 
 ```
@@ -312,13 +316,14 @@ amúgy is kötelezővé tesz. **A címsorok szó szerint ezek, `##` szinten, ebb
 ## 1. A javított szöveg
 ## 2. Változástábla
 ## 3. Gyanús, de nem javítottam
+## 4. Klaszterpontok
 ```
 
 Ez nem formázási ízlés. A 2. kör azért nem tudta géppel ellenőrizni a saját számait, mert a kimenet
 alakja futásonként változott: az egyik változástábla két sor volt, a másik tizenöt, alszakasszal.
 Kézi átnézés lett belőle. A rögzített alak ezt oldja meg.
 
-- **Mind a négy szakasz megjelenik**, akkor is, ha üres. Üres szakasz törzse egyetlen szó: `nincs`.
+- **Mind az öt szakasz megjelenik**, akkor is, ha üres. Üres szakasz törzse egyetlen szó: `nincs`.
   Így a „megnéztem, nem volt mit javítani” megkülönböztethető attól, hogy a szakasz elmaradt.
 - **A 0. szakasz kettőt mond ki:** a **szöveg nyelvét** és a **regisztert**, a profilnevet
   visszapipálva. Pontosan **egy profilnév** álljon benne – a mondatok száma nem számít. Ha a
@@ -345,12 +350,68 @@ Kézi átnézés lett belőle. A rögzített alak ezt oldja meg.
   (front matter, property), változatlanul. Az érinthetetlen zóna nem azt jelenti, hogy kimarad,
   hanem hogy nem módosul.
 - **A 3. szakasz felsorolás.** Minden tétel `- ` jellel kezdődik, utána `**minta-ID**` (többet
-  vesszővel, ahogy a 2. szakaszban) vagy `**nincs minta**`, majd ` – `, majd a részlet és az indok.
+  vesszővel, ahogy a 2. szakaszban) vagy `**nincs minta**`, majd egy szögletes zárójeles
+  **indokkód**, majd ` – `, majd a részlet és az indok.
   **Egysége ugyanaz, mint a 2. szakaszé: egy minta egy mondatban.** Egy gyanús tétel nem javított
   javítás, tehát ugyanúgy kell számolni – enélkül ugyanaz a futás 6-ot vagy 11-et is jelenthet.
   Ezt a szabályt a `parse_run.py` **nem tudja kikényszeríteni**, csak kiírni; itt a fegyelem tartja.
+- **A 4. szakasz táblázat**, pontosan ezekkel az oszlopokkal: `| # | Kezdet | Pont | Minták |`.
+  - **Minden bekezdés kap egy sort**, 1-től folyamatosan számozva, a javított szöveg sorrendjében –
+    a 0 pontos is. Enélkül nem látszik a nevező: hány bekezdésben nem nyílt ki a kapu.
+  - **Bekezdés az, amit a klaszterszabály annak mond:** prózai bekezdés vagy egy teljes felsorolás.
+    Táblázat, kódblokk, strukturált metaadat és **címsor nem bekezdés** – ahogy a klaszterszabály a
+    táblázatról kimondja, `SOFT` minta ott nem fut, tehát nem is pontoz. Ami csak ilyen helyen ült,
+    a 3. szakaszba megy `threshold` kóddal: nincs bekezdés, amire a kapu számolhatna.
+  - `Kezdet` = a bekezdés első néhány szava, hogy a sor visszakereshető legyen.
+  - `Minták` = a bekezdés `SOFT` mintáinak ID-i, amelyek **élők voltak, amikor a kapu számolt** –
+    vesszővel, mindegyik egyszer; ha egy sincs, a cella `nincs`. A `threshold`, a
+    `paragraph-budget` és a `text-budget` **nem** vesz ki mintát: azok a javítást állítják meg, nem
+    a pontot. Minden más indokkód igen.
+  - `Pont` = ezeknek a pontértéke összeadva. Így a `Pont` a felsorolt mintákból mindig kijön, és
+    kívülről ellenőrizhető – ez a szakasz értelme.
 - **Alcímsor egyik szakaszban sem áll.** „Átnéztem, tiszta volt” típusú alszakasz a
   változástáblában tilos: az a 3. szakaszba tartozik, vagy sehova.
+
+**A 3. szakasz indokkódjai.** Egy gyanús tétel arról szól, hogy valamire **nem tudtál rálépni** –
+a kód azt mondja meg, **mi állította meg.** A lista a fenti „Amire nem tudsz rálépni” szabály
+mechanizmusait sorolja fel egyenként:
+
+| kód | mikor |
+|---|---|
+| `register` | a regiszterkapu zárva: a pass-mátrix leállítja a passzt, vagy a profil nincs a minta `FIX-IF` listáján |
+| `pattern-exception` | a minta saját leírása zárja ki: a `Mikor NE`, vagy a `Jelek` feltétele nem teljesül |
+| `mark-only` | a minta `[jelöld]` címkés |
+| `zone` | érinthetetlen zóna, tartalmi invariáns vagy a sűrítés-fék |
+| `preserve` | a „megőrizendő jegyek” listája (`references/06-rhythm.md`) |
+| `pattern-cap` | a minta belső plafonja – például bekezdésenként egy keret |
+| `threshold` | a bekezdés pontösszege nem éri el a klaszterküszöböt – vagy nincs is bekezdés, amin számolni lehetne (címsor, táblázat) |
+| `paragraph-budget` | a bekezdés `SOFT` kerete elfogyott |
+| `text-budget` | a szövegszintű plafon: a következő javítás átvinné az arányt |
+| `no-pattern` | a katalógus nem ér el odáig – csak `**nincs minta**` címkével jár |
+| `uncertain` | nem dőlt el, illeszkedik-e a minta – a nem javítás alapértelmezése |
+
+**Pontosan egy kód áll a tételen: a kötő ok.** Ha több mechanizmus is fog, a **táblázat sorrendje
+dönt** – az elsőt írd ki, a többit mondd el a prózában. **Kivéve, ha két minta más-más
+mechanizmuson akadt el: az két tétel**, mert egy kód az egyikükre biztosan hamis lenne – és a 4.
+szakaszban is másképp viselkednek, hiszen nem ugyanaz a kód veszi el a pontot.
+
+**A sorrend nem díszítés: ez a kiértékelés sorrendje.** Előbb az dől el, hogy a minta egyáltalán
+fut-e (regiszter), aztán hogy fog-e itt (a saját leírása), aztán hogy szabad-e ott hozzányúlni,
+és csak a végén számol a kapu meg a keret. A `no-pattern` és az `uncertain` nem lépés ebben a
+sorban, hanem **maradék**, ezért állnak hátul: egy `**nincs minta**` tétel is kaphat `preserve`
+vagy `zone` kódot, ha **valami tiltotta**, nem pusztán a katalógus hallgatott. Az `uncertain` sem
+a kényelmes válasz: csak akkor jár, ha egyik nevesített mechanizmus sem áll a tétel mögött.
+
+**A lista zárt, és ez fogadás.** Ha egy valódi blokkolás egyik kódba sem fér, az **hiányzó kód, nem
+szabad szöveg**: írj `uncertain`-t, és a prózában mondd ki, mi zárta – abból lesz a következő kód.
+A szabad szövegű indok olvasható volt, de megszámolhatatlan, és épp az a kalibráció kérdése, hogy
+**melyik fék köt valójában.**
+
+**Miért van 4. szakasz.** A klasztergépezet a katalógus legújszerűbb része, és eddig kívülről
+láthatatlan volt: a futásból nem derült ki, melyik bekezdés hány ponton állt, tehát a küszöb helyét
+nem lehetett kalibrálni – csak elhinni. A 4. szakasz a pontszámítást írja ki, a 3. szakasz kódjai
+pedig azt, mi maradt ki belőle. Ettől lesz **minden futás kalibrációs adat**, nem csak javított
+szöveg.
 
 A harmadik rész nem formalitás. Ez az a szelep, ahol a bizonytalanságodat kiírhatod ahelyett, hogy
 javításba menekülnél – közvetlenül ez csökkenti a túljavítást.

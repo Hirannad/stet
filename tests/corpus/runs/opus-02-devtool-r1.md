@@ -1,3 +1,5 @@
+<!-- stet-run: source=skills/stet-hungarian sha256=22f8a1a7 date=2026-08-17 -->
+
 ## 0. Nyelv és regiszter
 
 A szöveg magyar; az angol szakszavak (`stack trace`, `failed assertion`, `flaky`) idegen nyelvű betétek, tehát érinthetetlen zónák. A regisztert a hívó rögzítette: `neutral` – nem következtettem rá, és nem is mérlegeltem. A megszólítás végig tegező (`nem kell látnod`, `a mintáid alapján`), ezt a HU-M01 szerint megtartom.
@@ -53,12 +55,27 @@ A csapatok nálunk két dolgot említenek. Az egyik a keresés megszűnése: a h
 
 ## 3. Gyanús, de nem javítottam
 
-- **HU-H05** – `GitHub Actions, GitLab CI és Jenkins esetén`: `neutral` profilban a kapu nyitva állna, de egyetlen `esetén` áll a mondatban, halmozódás nincs. A `ha`-mellékmondatra bontás három idegen terméknév toldalékolását kívánná (HU-T12), és az `és`-t `vagy`-ra váltaná, ami a kvantor hatókörét érinti – ezt a tartalmi invariáns tiltja.
-- **HU-F01** – `a keresés megszűnése`, `a vita megszűnése`: két `-és` főnév egy-egy birtokos szerkezetben, igésíthető lenne. A bekezdés `SOFT` pontösszege 2, a küszöb 3 – a klaszterkapu zárva.
-- **HU-G14** – `nem tippel arról, melyik commit okozta`: a `tippel` vonzata ingadozik, és a minta `Mikor NE`-je épp a többvonzatú igéket zárja ki. A `lista tetején` esetével szemben itt nincs egyértelmű hiba.
-- **HU-L06** – `nem tizennégy piros futást látsz, hanem…` és `nem üres felülettel indulsz, hanem…`: a negatív párhuzam visszatér a szövegben, de bekezdésenként csak egyszer, és mindkettő átmegy a szalmabáb-teszten. A klaszter-felülíráshoz kettő kellene egy bekezdésen belül.
-- **HU-R03** – `más sorszám, más konténer-ID, más időbélyeg`, illetve `mi nyílt, mi zárult, mi eszi a legtöbb CI-időt`: a hármasság visszatér, de a tagok nem párhuzamos `-ás/-és` főnevek, és nem áll minden bekezdésben hármas. A minta saját szabálya tiltja a javítást.
-- **HU-R02, HU-R08** – négy egymást követő bekezdés azonos sémára épül: félkövér nyitómondat, majd kifejtés. Dokumentációban a tagolás funkció, nem dísz, a Pass 5 pedig `neutral` profilban mérsékelt, 4-es küszöbbel – kétszeresen zárt.
-- **HU-M09** – a címsorséma (`Mit csinál`, `Hogyan kapcsolható be`, `Amit nem csinál`, `Mit nyersz vele`) terméklap-sablonra emlékeztet. Kérdőjel és átvezető kérdés viszont sehol nincs, a címsorok állító tagmondatok; a szerkezet a szerző döntése.
-- **HU-M04, HU-M01** – a szöveg végig tegez. A HU-M04 `neutral` profilban önözést kérne, de a HU-M01 felülírja: a meglévő, következetes forma nyer. Szándékos nem-javítás.
-- **nincs minta** – `küld egy értesítést Slackre vagy e-mailben`: a két bővítmény eltérő ragot visel, ezért a mellérendelés döccen. A katalógusban nincs erre minta, és mindkét vonzat önmagában helyes.
+- **HU-H05** [pattern-exception] – `GitHub Actions, GitLab CI és Jenkins esetén`: `neutral` profilban a kapu nyitva állna, de egyetlen `esetén` áll a mondatban, halmozódás nincs. A `ha`-mellékmondatra bontás három idegen terméknév toldalékolását kívánná (HU-T12), és az `és`-t `vagy`-ra váltaná, ami a kvantor hatókörét érinti – ezt a tartalmi invariáns tiltja.
+- **HU-F01** [threshold] – `a keresés megszűnése`, `a vita megszűnése`: két `-és` főnév egy-egy birtokos szerkezetben, igésíthető lenne. A bekezdés `SOFT` pontösszege 2, a küszöb 3 – a klaszterkapu zárva.
+- **HU-G14** [pattern-exception] – `nem tippel arról, melyik commit okozta`: a `tippel` vonzata ingadozik, és a minta `Mikor NE`-je épp a többvonzatú igéket zárja ki. A `lista tetején` esetével szemben itt nincs egyértelmű hiba.
+- **HU-L06** [pattern-exception] – `nem tizennégy piros futást látsz, hanem…` és `nem üres felülettel indulsz, hanem…`: a negatív párhuzam visszatér a szövegben, de bekezdésenként csak egyszer, és mindkettő átmegy a szalmabáb-teszten. A klaszter-felülíráshoz kettő kellene egy bekezdésen belül.
+- **HU-R03** [pattern-exception] – `más sorszám, más konténer-ID, más időbélyeg`, illetve `mi nyílt, mi zárult, mi eszi a legtöbb CI-időt`: a hármasság visszatér, de a tagok nem párhuzamos `-ás/-és` főnevek, és nem áll minden bekezdésben hármas. A minta saját szabálya tiltja a javítást.
+- **HU-R02, HU-R08** [pattern-exception] – négy egymást követő bekezdés azonos sémára épül: félkövér nyitómondat, majd kifejtés. Dokumentációban a tagolás funkció, nem dísz, a Pass 5 pedig `neutral` profilban mérsékelt, 4-es küszöbbel – kétszeresen zárt.
+- **HU-M09** [pattern-exception] – a címsorséma (`Mit csinál`, `Hogyan kapcsolható be`, `Amit nem csinál`, `Mit nyersz vele`) terméklap-sablonra emlékeztet. Kérdőjel és átvezető kérdés viszont sehol nincs, a címsorok állító tagmondatok; a szerkezet a szerző döntése.
+- **HU-M04, HU-M01** [pattern-exception] – a szöveg végig tegez. A HU-M04 `neutral` profilban önözést kérne, de a HU-M01 felülírja: a meglévő, következetes forma nyer. Szándékos nem-javítás.
+- **nincs minta** [no-pattern] – `küld egy értesítést Slackre vagy e-mailben`: a két bővítmény eltérő ragot visel, ezért a mellérendelés döccen. A katalógusban nincs erre minta, és mindkét vonzat önmagában helyes.
+
+## 4. Klaszterpontok
+
+| # | Kezdet | Pont | Minták |
+|---|---|---|---|
+| 1 | `A pipeline pirosra vált…` | 0 | nincs |
+| 2 | `Az Ellenőr erre készült…` | 0 | nincs |
+| 3 | `**Kigyűjti a hibát a logból.**…` | 0 | nincs |
+| 4 | `**Csoportosítja.**…` | 0 | nincs |
+| 5 | `**Megmutatja, mi új és mi visszatérő.**…` | 0 | nincs |
+| 6 | `**Szól, de nem gyakran.**…` | 0 | nincs |
+| 7 | `Az Ellenőr a CI-szolgáltató API-ján…` | 0 | nincs |
+| 8 | `Az első futásokból az Ellenőr…` | 0 | nincs |
+| 9 | `Nem javítja meg a hibát…` | 0 | nincs |
+| 10 | `A csapatok nálunk két dolgot említenek…` | 2 | HU-F01 |

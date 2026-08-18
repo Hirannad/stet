@@ -70,6 +70,18 @@ make check
 `make hooks` installs it as a pre-commit hook. CI runs the same script, plus
 `claude plugin validate . --strict` and Agent Skills discovery.
 
+## Before you run the skill for a measurement
+
+```bash
+make cache
+```
+
+The Skill tool serves the **installed plugin**, not this working tree, and the two drift apart
+without saying so — a run driven through `stet:stet-hungarian` can measure the released catalogue
+and return plausible output while doing it. This fails when the copies differ, and names the copy
+behind every recorded run. It is not part of the commit gate: which plugin is installed is a fact
+about your machine, not about the change you are making.
+
 ## Reviewing a disputed pattern
 
 Look at the source before defending the pattern. Four patterns were removed or softened during

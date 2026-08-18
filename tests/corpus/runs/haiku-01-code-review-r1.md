@@ -1,3 +1,5 @@
+<!-- stet-run: source=skills/stet-hungarian sha256=22f8a1a7 date=2026-08-17 -->
+
 ## 0. Nyelv és regiszter
 
 A szöveg magyar (angol szakszavakkal és egy német betéttel; ezek érinthetetlen zónák). A regisztert
@@ -57,52 +59,75 @@ Szóval kezdjünk el. Ha eddig nem csináltatok reviewt, állítsatok be egy ala
 
 ## 3. Gyanús, de nem javítottam
 
-- **HU-L14** – `A code review olyan, mint egy szellemi biztosíték.` Idézhetőre csiszolt metafora, a
-  LinkedIn-teszt elbukik, és a bekezdésben nincs konkrét eset (szám, dátum, név), amire cserélhetném.
-  A minta saját szabálya szerint ilyenkor jelzés a kimenet, nem átírás.
-- **HU-F10** – `minden pár szem jobban lát, mint egy`: a `Több szem többet lát` szólás tükörfordított
-  változata. A bekezdés `SOFT` pontösszege nem éri el a küszöböt – a HU-L14 találat blokkolt, tehát
-  nem ad pontot –, a szólás behelyettesítése pedig a sűrítés-fékbe ütközne.
-- **HU-G01** – `mindenki lát meg valamit`: igekötő-hátravetés látszólag fókusz nélkül. A `mindenki`
-  kvantoros, szembeállító olvasata védhető, ezért nem nyúltam hozzá.
-- **HU-R11** – `A leggyakoribb hiba az önbizalom.` Elvont névszói állítás, de tételmondat, és a
-  bekezdésben van földet érés (`saját kódodon`, `függvényt`, `edge case`) – a minta saját `Mikor NE`-je
-  zárja ki.
-- **nincs minta** – `Egy fáradt szem másképp olvas végig egy függvényt, mint a fő szerző szempontja.`
-  Az összehasonlítás két oldala nem azonos (`szem` vs. `szempontja`); a javítás új tartalmat igényelne.
-- **nincs minta** – `amelyeket az eredeti fejlesztő gondolkodásmódjában nem voltak köztudatban`: a
-  vonatkozói mellékmondat egyeztetése és vonzata is hibás, a szándékolt állítás nem rekonstruálható.
-- **HU-M01** – `Az elküldő (a patch szerzője) készüljön fel`: a harmadik személyű felszólító alakok
-  (`készüljön`, `olvaszon`, `beszéljen`, `szervezzen`) saját, megnevezett alanyt kapnak, tehát nem
-  önözés a tegező szövegben, hanem harmadik személyű leírás. Nincs mit egységesíteni.
-- **nincs minta** – `A reviewer olvaszon végig konzentrieren, egyszer vagy kétszer.` Az `olvaszon`
-  elmaradt kettőzés – emberi típusú helyesírási hiba, a katalógus hatókörén kívül –, a `konzentrieren`
-  pedig német betét, vagyis érinthetetlen idegen nyelvű szakasz.
-- **nincs minta** – `Ne írjon a kódba beletörődve.` A mondat értelmezhetetlen; a `beletörődve`
-  igenévnek nincs mihez kapcsolódnia.
-- **nincs minta** – `Egy jó megjegyzés konkrét, nem pedig vag.` A `vag` csonka szó; a kiegészítése
-  találgatás lenne.
-- **nincs minta** – `Felraknánk egy guard clauseb?` A `clauseb` csonka toldalékolás; a helyes alak
-  attól függ, mit akart a szerző mondani.
-- **HU-R03** – `a működő, érthető, fenntartható kód` és `nem zárógát, nem börtön-orvos, nem a verseny`:
-  két hármas felsorolás. **Szabály szerint nem javítható:** a tagok nem párhuzamos `-ás/-és` főnevek,
-  és a hármasság nem tér vissza bekezdésenként.
-- **nincs minta** – `nem vagyis blokkolni kell`: a `vagyis` itt nem értelmezhető, a mondat vége romlott.
-- **nincs minta** – `Ne ragozz kis stílusproblémákon.` A `ragoz` tárgyas ige, `-on/-en` vonzattal nem
-  áll; a szándékolt szó valószínűleg más, de ezt nem találhatom ki.
-- **nincs minta** – `hagyd erre azt`: a mutató névmások keverednek, a szerkezet romlott.
-- **HU-T10** – `börtön-orvos`: kétrészes összetétel fölösleges kötőjellel. A minta a **hiányzó**
-  kötőjelet írja elő, a fölöslegeset nem, és a `SKILL.md` kimondja, hogy a rosszul kötőjelezett
-  összetétel emberi hibaként szándékosan kicsúszik.
-- **HU-L14** – `A csapat közös tulajdona minden sor.` Aforizma-formula; a bekezdésben nincs konkrét
-  eset, amit a mondat körülírna, ezért a minta nem cserél és nem is töröl.
-- **nincs minta** – `Minél gyorsabban és kedvesebbek vagyunk egymással a reviewban`: eltérő szófajú
-  tagok mellérendelése (`gyorsabban` vs. `kedvesebbek`).
-- **HU-F11** – `biztonságosan felvetni a kérdéseket`: tükörfordított kollokáció (`safely raise
-  questions`). A bekezdés nem éri el a klaszterküszöböt, a magyaros alak pedig (`nem mer majd kérdezni`)
-  átfogalmazná az állítást.
-- **nincs minta** – `akinek sérült a ége a kritikáktól`: az `ége` csonka szó.
-- **nincs minta** – `Szóval kezdjünk el.` A `kezdjünk el` bővítmény nélkül csonka; a `Szóval`
-  diskurzusjelölő viszont maradt (HU-B14).
-- **HU-M09** – `## Miért szükséges?` és `## Hogyan csináljuk?`: kérdés-alcímes blogsablon. `SOFT`
-  minta, de a klaszterkapu bekezdésre számol, a címsor pedig nem bekezdés – nem tudok rálépni.
+- **HU-L14** [pattern-exception] – `A code review olyan, mint egy szellemi biztosíték.` Idézhetőre
+  csiszolt metafora, a LinkedIn-teszt elbukik, és a bekezdésben nincs konkrét eset (szám, dátum,
+  név), amire cserélhetném. A minta saját szabálya szerint ilyenkor jelzés a kimenet, nem átírás.
+- **HU-F10** [zone] – `minden pár szem jobban lát, mint egy`: a `Több szem többet lát` szólás
+  tükörfordított változata. A szólás behelyettesítése a sűrítés-fékbe ütközne – idiómát nem szúrok
+  be oda, ahol nem volt. (A bekezdés amúgy sem érné el a küszöböt: a HU-L14 találat blokkolt.)
+- **HU-G01** [pattern-exception] – `mindenki lát meg valamit`: igekötő-hátravetés látszólag fókusz
+  nélkül. A `mindenki` kvantoros, szembeállító olvasata védhető, és a minta `Mikor NE`-je épp a
+  fókuszos esetet zárja ki.
+- **HU-R11** [pattern-exception] – `A leggyakoribb hiba az önbizalom.` Elvont névszói állítás, de
+  tételmondat, és a bekezdésben van földet érés (`saját kódodon`, `függvényt`, `edge case`) – a
+  minta saját `Mikor NE`-je zárja ki.
+- **nincs minta** [no-pattern] – `Egy fáradt szem másképp olvas végig egy függvényt, mint a fő
+  szerző szempontja.` Az összehasonlítás két oldala nem azonos (`szem` vs. `szempontja`); a javítás
+  új tartalmat igényelne.
+- **nincs minta** [no-pattern] – `amelyeket az eredeti fejlesztő gondolkodásmódjában nem voltak
+  köztudatban`: a vonatkozói mellékmondat egyeztetése és vonzata is hibás, a szándékolt állítás nem
+  rekonstruálható.
+- **HU-M01** [pattern-exception] – `Az elküldő (a patch szerzője) készüljön fel`: a harmadik
+  személyű felszólító alakok (`készüljön`, `olvaszon`, `beszéljen`, `szervezzen`) saját, megnevezett
+  alanyt kapnak, tehát nem önözés a tegező szövegben, hanem harmadik személyű leírás. Nincs mit
+  egységesíteni.
+- **nincs minta** [no-pattern] – `A reviewer olvaszon végig konzentrieren, egyszer vagy kétszer.`
+  Az `olvaszon` elmaradt kettőzés – emberi típusú helyesírási hiba, a katalógus hatókörén kívül. A
+  `konzentrieren` ráadásul német betét, vagyis érinthetetlen idegen nyelvű szakasz.
+- **nincs minta** [no-pattern] – `Ne írjon a kódba beletörődve.` A mondat értelmezhetetlen; a
+  `beletörődve` igenévnek nincs mihez kapcsolódnia.
+- **nincs minta** [no-pattern] – `Egy jó megjegyzés konkrét, nem pedig vag.` A `vag` csonka szó; a
+  kiegészítése találgatás lenne.
+- **nincs minta** [no-pattern] – `Felraknánk egy guard clauseb?` A `clauseb` csonka toldalékolás; a
+  helyes alak attól függ, mit akart a szerző mondani.
+- **HU-R03** [pattern-exception] – `a működő, érthető, fenntartható kód` és `nem zárógát, nem
+  börtön-orvos, nem a verseny`: két hármas felsorolás. **Szabály szerint nem javítható:** a tagok
+  nem párhuzamos `-ás/-és` főnevek, és a hármasság nem tér vissza bekezdésenként.
+- **nincs minta** [no-pattern] – `nem vagyis blokkolni kell`: a `vagyis` itt nem értelmezhető, a
+  mondat vége romlott.
+- **nincs minta** [no-pattern] – `Ne ragozz kis stílusproblémákon.` A `ragoz` tárgyas ige, `-on/-en`
+  vonzattal nem áll; a szándékolt szó valószínűleg más, de ezt nem találhatom ki.
+- **nincs minta** [no-pattern] – `hagyd erre azt`: a mutató névmások keverednek, a szerkezet romlott.
+- **HU-T10** [pattern-exception] – `börtön-orvos`: kétrészes összetétel fölösleges kötőjellel. A
+  minta a **hiányzó** kötőjelet írja elő, a fölöslegeset nem, és a `SKILL.md` kimondja, hogy a
+  rosszul kötőjelezett összetétel emberi hibaként szándékosan kicsúszik.
+- **HU-L14** [pattern-exception] – `A csapat közös tulajdona minden sor.` Aforizma-formula; a
+  bekezdésben nincs konkrét eset, amit a mondat körülírna, ezért a minta nem cserél és nem is töröl.
+- **nincs minta** [no-pattern] – `Minél gyorsabban és kedvesebbek vagyunk egymással a reviewban`:
+  eltérő szófajú tagok mellérendelése (`gyorsabban` vs. `kedvesebbek`).
+- **HU-F11** [threshold] – `biztonságosan felvetni a kérdéseket`: tükörfordított kollokáció
+  (`safely raise questions`). A bekezdés 2 ponton áll, a küszöb 3 – ez a szöveg egyetlen olyan
+  bekezdése, ahol egyáltalán van élő `SOFT` pont. A magyaros alak (`nem mer majd kérdezni`) amúgy
+  is átfogalmazná az állítást.
+- **nincs minta** [no-pattern] – `akinek sérült a ége a kritikáktól`: az `ége` csonka szó.
+- **nincs minta** [no-pattern] – `Szóval kezdjünk el.` A `kezdjünk el` bővítmény nélkül csonka; a
+  `Szóval` diskurzusjelölő viszont maradt (HU-B14).
+- **HU-M09** [threshold] – `## Miért szükséges?` és `## Hogyan csináljuk?`: kérdés-alcímes
+  blogsablon. `SOFT` minta, de a klaszterkapu bekezdésre számol, a címsor pedig nem bekezdés –
+  nincs mire számolni, tehát pontot sem ad.
+
+## 4. Klaszterpontok
+
+| # | Kezdet | Pont | Minták |
+|---|---|---|---|
+| 1 | `A code review olyan, mint…` | 0 | nincs |
+| 2 | `A leggyakoribb hiba az önbizalom…` | 0 | nincs |
+| 3 | `A biztonság mellett van még…` | 0 | nincs |
+| 4 | `Egy review nem lehetőség…` | 0 | nincs |
+| 5 | `Az elküldő (a patch szerzője)…` | 0 | nincs |
+| 6 | `A reviewer olvaszon végig…` | 0 | nincs |
+| 7 | `Egy jó megjegyzés konkrét…` | 0 | nincs |
+| 8 | `Egy review célja nem a tökéletes…` | 0 | nincs |
+| 9 | `Ne ragozz kis stílusproblémákon…` | 0 | nincs |
+| 10 | `A code review nem zárógát…` | 2 | HU-F11 |
+| 11 | `Szóval kezdjünk el…` | 0 | nincs |

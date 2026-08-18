@@ -1,3 +1,5 @@
+<!-- stet-run: source=skills/stet-hungarian sha256=22f8a1a7 date=2026-08-17 -->
+
 ## 0. Nyelv és regiszter
 
 A szöveg magyar. A regisztert a hívó **rögzítette**: a szöveget `neutral` regiszterként kezelem, nem én vezettem le. (A szöveg egyébként is ide esne: fejlesztői termékdokumentáció, nincs benne jogi terminus, közvetlen megszólítás sincs, a szerző T/1-et használ.)
@@ -49,11 +51,25 @@ Az Ellenőr nem helyettesíti a CI-rendszert, csak a hibák utólagos átlátás
 
 ## 3. Gyanús, de nem javítottam
 
-- **HU-T02** – `Ellenőr — CI hibák egy helyen`: a front matter `title` mezőjében em dash áll szóközös gondolatjel helyett. A strukturált metaadat érinthetetlen zóna, ezért változatlanul hagytam; a mező javítása a szerző döntése.
-- **HU-F04** – `Az Ellenőr egy fejlesztői eszköz`: angolos `egy` a névszói állítmány előtt, magyarul `Az Ellenőr fejlesztői eszköz` a semlegesebb. A minta `Jelek` feltétele viszont nem teljesül (egyetlen `egy` a bekezdésben, és nem elvont főnév előtt), a bekezdés pontszáma pedig nem éri el a küszöböt.
-- **HU-H03** – `A finomhangolás … a beállítások menüben történik`: alakilag a `történik`-minta, de itt a `történik` valódi helyhatározói jelentésű, a mondat állítása maga a hely. Bármelyik igésítés vagy cselekvőt találna ki, vagy szétverné a közbevetett felsorolást, ezért a minta saját `Mikor NE`-je alá esik.
-- **HU-T14** – `build logokat`: kéttagú, teljes egészében idegen írásmódú kifejezés, amit a magyar különírva hagy. Ez más eset, mint a `logkimenet`, ahol a magyar utótag miatt az összetétel egyértelmű, ezért ezt nem vontam össze.
-- **HU-M09** – a `Mi a probléma, amit megold` és a `Hogyan működik` kérdés alakú alcímsor. A minta másik fele hiányzik: nincsenek átvezető kérdések és retorikai lezárások, a műfaj pedig dokumentáció, ahol a kérdés a keresés belépője lehet.
-- **nincs minta** – `trend-nézet`: fölösleges kötőjel kéttagú összetételben, helyesen `trendnézet`. A katalógus eredet-alakú, a túlkötőjelezés hétköznapi helyesírási hiba, nincs rá minta.
-- **nincs minta** – `kód-módosítás nélkül`: ugyanaz a fölösleges kötőjel, helyesen `kódmódosítás`. Szintén minta nélkül.
-- **HU-B01** – `A logok általában szét vannak szórva`: szándékosan megtartva. A `-va/-ve van` állapotjelölő szerkezet érinthetetlen, a cselekvő múltra cserélése jelentést változtatna.
+- **HU-T02** [zone] – `Ellenőr — CI hibák egy helyen`: a front matter `title` mezőjében em dash áll szóközös gondolatjel helyett. A strukturált metaadat érinthetetlen zóna, ezért változatlanul hagytam; a mező javítása a szerző döntése.
+- **HU-F04** [pattern-exception] – `Az Ellenőr egy fejlesztői eszköz`: angolos `egy` a névszói állítmány előtt, magyarul `Az Ellenőr fejlesztői eszköz` a semlegesebb. A minta `Jelek` feltétele viszont nem teljesül (egyetlen `egy` a bekezdésben, és nem elvont főnév előtt), a bekezdés pontszáma pedig nem éri el a küszöböt.
+- **HU-H03** [pattern-exception] – `A finomhangolás … a beállítások menüben történik`: alakilag a `történik`-minta, de itt a `történik` valódi helyhatározói jelentésű, a mondat állítása maga a hely. Bármelyik igésítés vagy cselekvőt találna ki, vagy szétverné a közbevetett felsorolást, ezért a minta saját `Mikor NE`-je alá esik.
+- **HU-T14** [pattern-exception] – `build logokat`: kéttagú, teljes egészében idegen írásmódú kifejezés, amit a magyar különírva hagy. Ez más eset, mint a `logkimenet`, ahol a magyar utótag miatt az összetétel egyértelmű, ezért ezt nem vontam össze.
+- **HU-M09** [pattern-exception] – a `Mi a probléma, amit megold` és a `Hogyan működik` kérdés alakú alcímsor. A minta másik fele hiányzik: nincsenek átvezető kérdések és retorikai lezárások, a műfaj pedig dokumentáció, ahol a kérdés a keresés belépője lehet.
+- **nincs minta** [no-pattern] – `trend-nézet`: fölösleges kötőjel kéttagú összetételben, helyesen `trendnézet`. A katalógus eredet-alakú, a túlkötőjelezés hétköznapi helyesírási hiba, nincs rá minta.
+- **nincs minta** [no-pattern] – `kód-módosítás nélkül`: ugyanaz a fölösleges kötőjel, helyesen `kódmódosítás`. Szintén minta nélkül.
+- **HU-B01** [pattern-exception] – `A logok általában szét vannak szórva`: szándékosan megtartva. A `-va/-ve van` állapotjelölő szerkezet érinthetetlen, a cselekvő múltra cserélése jelentést változtatna.
+
+## 4. Klaszterpontok
+
+| # | Kezdet | Pont | Minták |
+|---|---|---|---|
+| 1 | `Az Ellenőr egy fejlesztői eszköz…` | 0 | nincs |
+| 2 | `Egy közepes méretű csapatnál naponta…` | 0 | nincs |
+| 3 | `Az Ellenőr egy könnyű ügynököt köt…` | 0 | nincs |
+| 4 | `A felületen szűrhetünk repository…` | 0 | nincs |
+| 5 | `Elsősorban azoknak a csapatoknak hasznos…` | 0 | nincs |
+| 6 | `A telepítés egy CLI-paranccsal indul…` | 0 | nincs |
+| 7 | `Az Ellenőr nem helyettesíti a CI-rendszert…` | 0 | nincs |
+
+A front matter nem szerepel a táblázatban: strukturált metaadat, nem bekezdés.

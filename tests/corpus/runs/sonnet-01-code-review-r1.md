@@ -1,3 +1,5 @@
+<!-- stet-run: source=skills/stet-hungarian sha256=22f8a1a7 date=2026-08-17 -->
+
 ## 0. Nyelv és regiszter
 
 A szöveg magyar. A regisztert a hívó rögzítette, nem következtetem ki: a szöveget `informal` profil szerint kezelem.
@@ -45,14 +47,33 @@ Ha valakinek van javaslata a folyamat finomítására, dobjátok be nyugodtan �
 
 ## 3. Gyanús, de nem javítottam
 
-- **HU-M07** – `Szia csapat,` + kisbetűs folytatás. A magyar levélmegszólítás után felkiáltójel áll, a minta saját kikötése szerint viszont `informal` profilban csak akkor javítandó, ha a szöveg egyébként formális. Ez belső csapatlevél, tehát marad.
+- **HU-M07** [pattern-exception] – `Szia csapat,` + kisbetűs folytatás. A magyar levélmegszólítás után felkiáltójel áll, a minta saját kikötése szerint viszont `informal` profilban csak akkor javítandó, ha a szöveg egyébként formális. Ez belső csapatlevél, tehát marad.
 
-- **HU-T11** – `csak átfut rajta, és rábólint` – és ugyanez a vessző az `és` előtt még három mondatban (`bontsuk logikai lépésekre, és…`, `kétszer annyi ideig tart a review, és…`, `blokkolja a szerzőt, és…`). Halmozott állítmányként vessző nélkül volna helyes, de mindegyik második állítmánynak saját bővítménye van, tehát tagmondatként is olvasható – ott pedig a vessző kötelező. A rendszeresség inkább szerzői szokásra vall, mint gépi jelre, ezért nem nyúltam hozzá.
+- **HU-T11** [pattern-exception] – `csak átfut rajta, és rábólint` – és ugyanez a vessző az `és` előtt még három mondatban (`bontsuk logikai lépésekre, és…`, `kétszer annyi ideig tart a review, és…`, `blokkolja a szerzőt, és…`). Halmozott állítmányként vessző nélkül volna helyes, de mindegyik második állítmánynak saját bővítménye van, tehát tagmondatként is olvasható – ott pedig a vessző kötelező. A rendszeresség inkább szerzői szokásra vall, mint gépi jelre, ezért nem nyúltam hozzá.
 
-- **HU-R03** – `Egyrészt… Másrészt… Harmadrészt…`. **Szabály szerint nem javítható:** a három tag nem párhuzamos `-ás/-és` főnév, és a hármasság nem tér vissza bekezdésenként. Ugyanez áll a reviewer-bekezdés három egymás utáni kérdésére.
+- **HU-R03** [pattern-exception] – `Egyrészt… Másrészt… Harmadrészt…`. **Szabály szerint nem javítható:** a három tag nem párhuzamos `-ás/-és` főnév, és a hármasság nem tér vissza bekezdésenként. Ugyanez áll a reviewer-bekezdés három egymás utáni kérdésére.
 
-- **HU-F10** – `nem a hibavadászatról szól elsősorban`, az `it's not about X` tükre. A `vmi vmiről szól` fordulat magyarul meghonosodott, és a bekezdés `SOFT` pontszáma a 3-as küszöb alatt maradt: a másik két jelet a saját `Mikor NE`-jük állította meg, tehát nem adnak pontot.
+- **HU-F10** [pattern-exception] – `nem a hibavadászatról szól elsősorban`, az `it's not about X` tükre. A `vmi vmiről szól` fordulat magyarul meghonosodott, és a bekezdés `SOFT` pontszáma a 3-as küszöb alatt maradt: a másik két jelet a saját `Mikor NE`-jük állította meg, tehát nem adnak pontot.
 
-- **HU-L06** – négy tagadó szembeállítás a szövegben (`nem a hibavadászatról szól`, `az kockázat, nem érdem`, `A review a kódról szól, nem rólunk`, `Ez nem bürokrácia akar lenni, hanem védőháló`). Egyik sem bukik el a szalmabáb-teszten – az első bekezdés épp azt rögzíti, hogy sokan formalitásnak látják a review-t –, így a klaszter-felülírás nem tüzel, és a szerkezet magyarul egyébként is helyes.
+- **HU-L06** [pattern-exception] – négy tagadó szembeállítás a szövegben (`nem a hibavadászatról szól`, `az kockázat, nem érdem`, `A review a kódról szól, nem rólunk`, `Ez nem bürokrácia akar lenni, hanem védőháló`). Egyik sem bukik el a szalmabáb-teszten – az első bekezdés épp azt rögzíti, hogy sokan formalitásnak látják a review-t –, így a klaszter-felülírás nem tüzel, és a szerkezet magyarul egyébként is helyes.
 
-- **HU-H01** – `Különbséget érdemes tenni`. Funkcióigés szerkezetnek látszik, de a `különbséget tesz` idiomatikus, és a `megkülönböztet` más vonzatkeretet kíván – HU-B18 szerint hagyni kell.
+- **HU-H01** [pattern-exception] – `Különbséget érdemes tenni`. Funkcióigés szerkezetnek látszik, de a `különbséget tesz` idiomatikus, és a `megkülönböztet` más vonzatkeretet kíván – HU-B18 szerint hagyni kell.
+
+## 4. Klaszterpontok
+
+| # | Kezdet | Pont | Minták |
+|---|---|---|---|
+| 1 | `Szia csapat,` | 0 | nincs |
+| 2 | `az elmúlt hetekben többször felmerült…` | 0 | nincs |
+| 3 | `A code review nem a hibavadászatról szól…` | 0 | nincs |
+| 4 | `Néhány alapelv, amit érdemes betartani.` | 0 | nincs |
+| 5 | `Kis PR-okat nyissunk…` | 0 | nincs |
+| 6 | `A PR leírása legyen érdemi…` | 0 | nincs |
+| 7 | `Reviewerként ne csak a szintaxist nézzük…` | 0 | nincs |
+| 8 | `Kommentben legyünk konkrétak és kedvesek…` | 0 | nincs |
+| 9 | `Íróként ne vegyük személyeskedésnek…` | 0 | nincs |
+| 10 | `Válaszidőre is figyeljünk…` | 0 | nincs |
+| 11 | `Ez nem bürokrácia akar lenni…` | 0 | nincs |
+| 12 | `Ha valakinek van javaslata…` | 0 | nincs |
+
+A front matter nem szerepel a táblázatban: strukturált metaadat, nem bekezdés.
