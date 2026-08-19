@@ -6,6 +6,7 @@ __pycache__/
 docs/STATE.md
 docs/DECISIONS.md
 docs/GAPS.md
+docs/ROADMAP.md
 
 # machine-local Claude settings must never be committed (docs/GAPS.md F4)
 .claude/settings.local.json
