@@ -2,7 +2,25 @@
 
 All notable changes to this plugin. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/);
 versions follow semver as far as a prose catalogue allows: a behaviour change in what the
-skill may edit is a minor bump, wording and documentation are patches.
+skill may edit is a minor bump, wording and documentation are patches. A change to *when* the
+skill is invoked — the description's routing surface — is a patch too, unless it also moves what
+the skill may edit. 0.3.1 is the first release to test that clause.
+
+## [0.3.1] - 2026-08-21
+
+### Fixed
+
+- The description excluded translation by saying the skill wants Hungarian text, which reads as a
+  rule about the *input*. A request to translate into Hungarian has a non-Hungarian input and a
+  Hungarian result, and the router took the result: asked to translate a German paragraph into
+  Hungarian, the skill fired in three of four measured runs. The exclusion now names the direction
+  — a Hungarian result is not a Hungarian source — and says that writing fresh Hungarian is out of
+  scope for the same reason. The catalogue is untouched; only the routing surface moved.
+
+  Measured on the installed 0.3.0 copy in 31 headless runs started outside the repository, on
+  Opus 5. The same measurement found the five positive prompts firing five out of five when actual
+  text accompanies the request; two of them fire only about half the time on the bare prompt, which
+  is the prompts referring to absent text rather than a routing defect.
 
 ## [0.3.0] - 2026-08-18
 

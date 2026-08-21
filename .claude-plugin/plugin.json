@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "stet",
   "description": "A prose linter for machine-written text. Finds the tells that mark a text as LLM-generated or machine-translated, and decides which to leave alone. Hungarian; register-aware, with a suppression list, a cluster gate and an edit budget.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": {
     "name": "József Juhász",
     "url": "https://github.com/Hirannad"

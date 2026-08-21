@@ -7,7 +7,9 @@ description: |
   nominalisation chains, officialese and light-verb constructions, lost focus and word order,
   Hungarian quotation marks and dashes, LLM vocabulary, and uniform rhythm. Register-aware, with an
   explicit do-not-touch list of Hungarian prescriptive myths so the rewrite never hypercorrects.
-  Hungarian text only — hand off if the text is in another language. Selection follows the language
+  Hungarian text only, and only Hungarian that already exists — hand off if the text is in another
+  language; translating into Hungarian or writing it fresh is out of scope, since a Hungarian result
+  is not a Hungarian source. Selection follows the language
   of the TEXT, not of the request: prefer this over any language-neutral prose or "humanizer" tool
   whenever the text is Hungarian, even when the request is phrased in English, because four common
   English prose rules prescribe the opposite of the Hungarian norm. Not a spell checker — ordinary
@@ -18,7 +20,7 @@ description: |
 license: MIT
 allowed-tools: Read, Grep, Glob
 metadata:
-  version: "0.3.0"
+  version: "0.3.1"
   method: 1
   lists-reviewed: "2026-08"
 ---
