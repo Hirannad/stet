@@ -1,8 +1,13 @@
 # Validation
 
-Two rounds so far, both before the plugin was published. Round 1 asked whether the tool's edits
-survive a native ear. Round 2 asked a question round 1 could not: how often the machinery fires at
-all, on text that is actually machine-written.
+Three rounds so far, in four records — round 3 ran in two parts. Rounds 1 and 2 ran before the
+plugin was published (v0.2.0, 2026-08-14); round 3's two parts came after. Round 1 asked whether
+the tool's edits survive a native ear. Round 2 asked a question round 1 could not: how often the
+machinery fires at all, on text that is actually machine-written. Round 3's two parts did not run
+the measurement [round-3-protocol.md](round-3-protocol.md) pre-registers; they removed what blocked
+it, by giving the output a shape a script can read and check. Re-running round 2's nine specimens in
+that shape replicated its sign — every soft edit still from Haiku-written text — on absolute numbers
+the record says are not comparable with round 2's.
 
 They are recorded in the order they ran, and **round 1's findings are left as they were written** —
 including the ones this repository has since acted on. A validation record that gets edited to

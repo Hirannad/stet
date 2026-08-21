@@ -2,7 +2,7 @@
 title: Round 3 protocol — four-arm corpus measurement
 type: spec
 status: draft
-updated: 2026-08-15
+updated: 2026-08-21
 ---
 
 # Round 3 protocol — four-arm corpus measurement
@@ -50,18 +50,18 @@ into the catalogue. That would be wrong here, and three of this repository's own
 The corpus's role in this round is **evidence, not exemplar**. Nothing from it is quoted into a
 pattern.
 
-### One claim in the README that this protocol contradicts
+### One claim in the README that this protocol contradicted
 
-[README.md](../README.md) currently says calibrating the cluster gate "needs seeded inputs, not
-real text." That is half right and the half that is wrong matters.
+[README.md](../README.md) said, when this was written, that calibrating the cluster gate "needs
+seeded inputs, not real text." That was half right and the half that was wrong matters.
 
 Seeded inputs test **mechanics**: does the gate fire when a cluster is constructed? They cannot
 **calibrate**, because the density of the seeded cluster is chosen by someone who already believes
 3 is the right threshold. The reasoning is circular. Where the cut belongs is a question about the
 distribution of paragraph scores in each arm, and only two arms of real text can answer it.
 
-Seeded inputs and this round are complementary, not alternatives. The README sentence will be
-corrected whether or not the rest of this round succeeds.
+Seeded inputs and this round are complementary, not alternatives. The README sentence has since
+been corrected — `grep -n seeded README.md` now lands on the argument above.
 
 ---
 
@@ -279,11 +279,20 @@ installed plugin all along*, and only the second invalidates the run. Two things
 established rather than assumed:
 
 - **The cache directory is keyed by the version string, and a marketplace refresh does not move it.**
-  Observed rather than reasoned about: the marketplace clone had already advanced to a later commit
-  while the version-keyed extract sat at the one it was installed from, and both copies still declare
-  `0.2.0`. Refreshing is therefore not by itself the fix — the version has to move.
-- **All nine recorded runs resolve to the working copy.** That was previously the runner's word for
-  it; it is now derived from the hash each run carries.
+  Observed rather than reasoned about: on 2026-08-17 the marketplace clone had already advanced to a
+  later commit while the version-keyed extract sat at the one it was installed from, and both copies
+  declared `0.2.0`. Refreshing is therefore not by itself the fix — the version has to move. The
+  finding held: the release that moved the version is what finally moved the installed copy.
+- **The provenance of the nine recorded runs is unrecoverable.** `make cache` resolves all nine to
+  `unknown`: the hash they declare, `22f8a1a7`, matches no copy on disk and no commit either —
+  replaying `parse_run.digest` over `skills/` at every commit in the history, the reflog and the one
+  dangling commit included, produces it nowhere, and neither does any mix of the file versions
+  committed between 2026-08-16 and HEAD. It was already stale at `2ac5112`, the commit that
+  introduced it. What the hash does establish is negative: the copy the Skill tool served on
+  2026-08-17 is the `0.2.0` extract, still on disk untouched, and it digests `291e1b6b`, so these
+  runs did not read the installed plugin. They read a tree that was never committed, and no hash
+  brings it back. The mechanism starts naming a copy with the next run recorded against a committed
+  tree.
 
 It stays out of CI and out of the pre-commit hook deliberately. Neither has an installed plugin, and
 which copy is installed is a fact about one machine at one moment, not a property of a commit.
@@ -446,16 +455,18 @@ argument.
 
 ## 10. Artefacts
 
-| path | contents |
-|---|---|
-| `docs/round-3-protocol.md` | this file |
-| `docs/validation.md` | round 3 write-up, after execution |
-| `scripts/parse_run.py` | three-part output parser (phase 0) |
-| `scripts/plugin_cache.py` | working copy vs installed plugin, and each run's copy (phase 0) |
-| `scripts/measure.py` | tier A/B counting over a corpus |
-| `data/manifest.csv` | source register: URL, outlet, date, genre, word count, SHA-256, rights check |
-| `data/raw/` | local only, gitignored |
-| `tests/corpus/` | extended with A3 and A4 material plus generation prompts |
+| path | contents | status |
+|---|---|---|
+| `docs/round-3-protocol.md` | this file | in the tree |
+| `docs/validation.md` | round 3 write-up, after execution | in the tree; the write-up of the four-arm measurement is **planned**, since that measurement has not run |
+| `scripts/parse_run.py` | three-part output parser (phase 0) | in the tree |
+| `scripts/plugin_cache.py` | working copy vs installed plugin, and each run's copy (phase 0) | in the tree |
+| `scripts/measure.py` | tier A/B counting over a corpus | **planned**; not in the tree |
+| `data/manifest.csv` | source register: URL, outlet, date, genre, word count, SHA-256, rights check | **planned**; `data/` does not exist |
+| `data/raw/` | local only, gitignored | **planned**; `.gitignore` has no `data` line either, so §5.1's phase 0 item is outstanding too |
+| `tests/corpus/` | extended with A3 and A4 material plus generation prompts | directory in the tree, extension **planned**: it holds nine LLM specimens and one generation prompt, no A3 or A4 material |
+
+`git ls-files docs scripts tests data` and `cat .gitignore` are the check on that column.
 
 Placement note: `scripts/check.py` globs `docs/*.md`, not `docs/**/*.md`. A protocol filed under a
 `docs/research/` subdirectory would be exempt from link-integrity and pattern-ID checking, which is
