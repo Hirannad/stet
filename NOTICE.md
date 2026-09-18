@@ -43,6 +43,30 @@ recorded in [`docs/design-rationale.md`](docs/design-rationale.md).
 Four of the English rules would prescribe the *opposite* of the Hungarian norm, which is why this
 is a separate catalogue and not a translation. That, too, is documented rather than assumed.
 
+## Measurement corpus
+
+The validation rounds described in [`docs/round-3-protocol.md`](docs/round-3-protocol.md) measure
+the catalogue against human-written Hungarian. That material is third-party text, and two things
+about it are separate and stay separate:
+
+- **Mining is permitted.** The Hungarian copyright act's general text-and-data-mining exception
+  (Szjt. 35/A) covers lawfully accessed content for any purpose, unless the rightsholder has
+  reserved rights in machine-readable form. That reservation is checked per source, before
+  anything is fetched, and the check is recorded.
+- **Redistribution is not covered by it.** Raw third-party text does not enter this repository.
+
+What ships instead is `data/manifest.csv`: per text, the URL, outlet, author, publication date,
+genre, word count, SHA-256 and the rights-reservation check. Raw material stays in `data/raw/`,
+which is gitignored. A stranger can re-fetch from the manifest and re-derive the counts; they
+cannot diff against the bytes we held, and that is a weaker reproducibility guarantee than
+`tests/corpus/` gives. The difference is stated rather than glossed.
+
+Each source and its terms are named in the manifest as the corpus is built, not here — this
+section states the rule, the manifest carries the record.
+
+No corpus text is quoted into a pattern. The corpus's role is **evidence, not exemplar**: every
+example sentence in the catalogue is invented, and that rule does not bend for measured material.
+
 ## Hungarian sources
 
 The linguistic sources — the Hungarian Academy's orthographic rules, Szepesy, Klaudy, É. Kiss,

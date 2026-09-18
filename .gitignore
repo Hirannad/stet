@@ -10,3 +10,7 @@ docs/ROADMAP.md
 
 # machine-local Claude settings must never be committed (docs/GAPS.md F4)
 .claude/settings.local.json
+
+# measurement corpus: mining is permitted, redistribution is not (see NOTICE.md).
+# Raw third-party text stays local; data/manifest.csv is what ships.
+data/raw/
