@@ -4,6 +4,7 @@
 method/constants.yml is authoritative; this script asserts the prose agrees with it.
 Run before every commit: `make check`.
 """
+import json
 import re
 import sys
 from pathlib import Path
@@ -307,6 +308,59 @@ COUNT_CLAIMS = [
     (r"The (\d+) patterns are not equally measurable", "total"),
 ]
 
+# Claims made by the manifests — the one surface a user reads *before* installing, and the one
+# `check_counts` could never reach because it globbed Markdown only.
+#
+# Kept separate from the prose list rather than merged into it: this exact string also appears in
+# docs/STATE.md, quoted as the defect that file records. A finding record is not a claim, which is
+# the same reason docs/validation.md is exempt below — so the manifest string is gated where it is
+# asserted, and left alone where it is cited.
+MANIFEST_COUNT_CLAIMS = [
+    (r"Currently Hungarian: (\d+) patterns", "total"),
+]
+
+
+def check_versions():
+    """The version is declared in three places, and the plugin cache keys on it.
+
+    A skill-content change that does not move the version makes `plugin update` a silent no-op:
+    the update succeeds and serves the old catalogue, because the cache directory is keyed by the
+    version string rather than by the commit. So the release ritual has to touch all three sites,
+    and the 0.3.1 release is the argument for a gate rather than care — the number was carried
+    across by hand and verified afterwards, not guarded.
+
+    The git tag is deliberately not checked here: it is a push-time fact, not a commit-time one.
+    """
+    declared = {}
+    manifest = ROOT / ".claude-plugin" / "plugin.json"
+    try:
+        declared["plugin.json"] = json.loads(manifest.read_text(encoding="utf-8"))["version"]
+    except (OSError, ValueError, KeyError) as e:
+        fail(".claude-plugin/plugin.json", f"no readable version: {e}")
+        return
+
+    market = ROOT / ".claude-plugin" / "marketplace.json"
+    try:
+        for entry in json.loads(market.read_text(encoding="utf-8"))["plugins"]:
+            declared[f"marketplace.json:{entry['name']}"] = entry["version"]
+    except (OSError, ValueError, KeyError) as e:
+        fail(".claude-plugin/marketplace.json", f"no readable plugin versions: {e}")
+
+    for skill_md in sorted(ROOT.glob("skills/*/SKILL.md")):
+        rel = str(skill_md.relative_to(ROOT))
+        # Indented, because it sits under `metadata:` — a top-level `version:` is a different key.
+        m = re.search(r"^\s+version:\s*\"?([\w.+-]+)\"?\s*$",
+                      skill_md.read_text(encoding="utf-8"), flags=re.M)
+        if m:
+            declared[rel] = m.group(1)
+        else:
+            fail(rel, "frontmatter metadata declares no version")
+
+    if len(set(declared.values())) > 1:
+        fail("version", "the declaration sites disagree, so `plugin update` would be a silent "
+                        "no-op for one of them: "
+                        + ", ".join(f"{k}={v}" for k, v in sorted(declared.items())))
+
 
 def check_counts(total, soft):
     """Prose restatements of the catalogue size must match the catalogue.
@@ -335,6 +389,15 @@ def check_counts(total, soft):
                     fail(rel, f"stale {kind} count: prose says {found}, "
                               f"catalogue has {want[kind]} (matched /{pattern}/)")
 
+    for f in sorted(ROOT.glob(".claude-plugin/*.json")):
+        rel = f.relative_to(ROOT)
+        text = f.read_text(encoding="utf-8")
+        for pattern, kind in MANIFEST_COUNT_CLAIMS:
+            for found in re.findall(pattern, text):
+                if int(found) != want[kind]:
+                    fail(rel, f"stale {kind} count: the manifest says {found}, "
+                              f"catalogue has {want[kind]} (matched /{pattern}/)")
+
 
 def main():
     cfgfile = ROOT / "method" / "constants.yml"
@@ -348,6 +411,7 @@ def main():
         soft_ids |= softs
     check_repo_surface(known_ids)
     check_counts(len(known_ids), len(soft_ids))
+    check_versions()
 
     if FAIL:
         print(f"\n{len(FAIL)} problem(s):\n")
