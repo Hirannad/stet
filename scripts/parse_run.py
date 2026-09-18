@@ -29,7 +29,10 @@ under tests/corpus/runs/ must open with a provenance comment naming the skill co
 it, because the Skill tool serves the installed plugin rather than the working tree and a run
 that cannot say which copy it read is not evidence about either. A recorded hash that no longer
 matches is reported as `stale`, not as a failure — a run measures the version it names, and that
-is exactly why it names one.
+is exactly why it names one. A source outside this tree — which is what a run that read the
+installed plugin names — is reported as `extern`: the hashes here are relative to the repository
+root, so this parser has nothing comparable to say about such a copy. `plugin_cache.py` resolves
+those; this one only has to stop pretending, and stop raising.
 """
 import hashlib
 import json
@@ -79,6 +82,36 @@ def digest(path):
     for f in files:
         h.update(f.relative_to(ROOT).as_posix().encode() + b"\0" + f.read_bytes())
     return h.hexdigest()
+
+
+def under_root(path):
+    """Can `digest` hash this path at all?
+
+    `digest` hashes each file's path relative to ROOT, which is what makes its output comparable
+    between runs — and what makes it uncomputable for a copy living outside the tree. A run that
+    read the installed plugin names exactly such a source, and that is the one case the provenance
+    mechanism exists to report: before this check it raised ValueError instead, failing loudest
+    precisely where it most needed to speak.
+    """
+    try:
+        path.relative_to(ROOT)
+        return True
+    except ValueError:
+        return False
+
+
+def skill_state(prov):
+    """The `skill` column: which copy a run read, as far as this parser can tell.
+
+    `extern` is not a worse `stale`. Stale means the named copy is in the tree and has moved on,
+    so the run is still evidence about the version it names. Extern means the run read something
+    this parser cannot hash at all, and only `plugin_cache.py` can say what.
+    """
+    if prov is None:
+        return "?"
+    if prov["extern"]:
+        return "extern"
+    return "same" if prov["current"] else "stale"
 
 
 def catalogue():
@@ -151,11 +184,13 @@ def parse(text, cat=None):
     provenance = None
     if prov:
         src = ROOT / prov["source"]
-        if not src.exists():
+        inside = under_root(src)
+        if inside and not src.exists():
             problems.append(f"provenance names a file that does not exist: {prov['source']}")
         provenance = {
             "source": prov["source"], "sha256": prov["sha"], "date": prov["date"],
-            "current": src.exists() and digest(src).startswith(prov["sha"]),
+            "extern": not inside,
+            "current": inside and src.exists() and digest(src).startswith(prov["sha"]),
         }
 
     if [n for n, _ in order] != [n for n, _ in SECTIONS]:
@@ -363,7 +398,7 @@ def main(argv):
                   f"{str(c['soft']) + '/' + str(c['soft_patterns']):>7} "
                   f"{str(c['suspect_cited']) + '/' + str(c['suspect_nopattern']):>8} "
                   f"{str(c['paragraphs_scored']) + '/' + str(c['paragraphs']):>7} "
-                  f"{('same' if prov['current'] else 'stale') if prov else '?':>6}  "
+                  f"{skill_state(prov):>6}  "
                   f"{'ok' if not n else str(n) + ' problem(s)'}")
         reasons = {}
         for r in results.values():
