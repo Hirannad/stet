@@ -10,7 +10,7 @@ catalogues had already diverged. A run driven through the Skill tool therefore m
 docs/validation.md, round 3. The protocol's answer was a sentence telling every phase to state
 which copy it ran. A claim that can be turned into a mechanism has to be, so this is it.
 
-Two questions, and they are not the same one:
+Three questions, and they are not the same one:
 
   1. **Can the two copies disagree at all?** Byte-compare the skill trees. If they are identical,
      provenance is moot: either copy gives the same answer. Exit 1 when they have drifted, so a
@@ -26,6 +26,16 @@ Two questions, and they are not the same one:
      not to a verdict. That is the honest reading — the copy that produced the run is gone, and no
      amount of hashing brings it back.
 
+  3. **Does this machine run the release?** `plugin install` delivers the marketplace clone's HEAD
+     under whatever version its plugin.json declares — not the commit that version is tagged at. So
+     one version string can name two contents on two machines, and since the cache keys on the
+     string, neither ever updates to the other. Both the installed copy and the clone must sit on
+     the exact commit `v<version>` points at, and neither may be older than the latest release.
+
+     Commit equality, not tree equality, by owner decision: a tooling-only commit pushed after a
+     release turns this red until the next release is tagged at main's tip. That is the price of
+     guarding "tag the release at the tip of main" by machine instead of by habit.
+
 Usage:
     python3 scripts/plugin_cache.py                        # the copies, and whether they agree
     python3 scripts/plugin_cache.py tests/corpus/runs/*.md  # also resolve each run to a copy
@@ -35,6 +45,7 @@ about one machine at one moment rather than a property of a commit.
 """
 import hashlib
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -44,6 +55,7 @@ from check import ROOT  # noqa: E402
 from parse_run import PROVENANCE_RE, digest as parser_digest  # noqa: E402
 
 REGISTER = Path.home() / ".claude" / "plugins" / "installed_plugins.json"
+MARKETPLACES = Path.home() / ".claude" / "plugins" / "known_marketplaces.json"
 
 
 def manifest():
@@ -55,12 +67,14 @@ def installed(name):
 
     The register is keyed `<plugin>@<marketplace>`, and the path it names is the version-keyed
     cache extract — the copy the Skill tool actually serves. The intermediate marketplace clone
-    under `marketplaces/<name>/` is not read at run time, so it is not compared here.
+    under `marketplaces/<name>/` is not read at run time, so its content is not compared here; its
+    commit is, by `check_release`, because it is what the next install delivers.
     """
     if not REGISTER.exists():
         return []
     reg = json.loads(REGISTER.read_text(encoding="utf-8")).get("plugins", {})
-    return [e for key, entries in reg.items() if key.split("@")[0] == name for e in entries]
+    return [{**e, "marketplace": key.split("@", 1)[-1]}
+            for key, entries in reg.items() if key.split("@")[0] == name for e in entries]
 
 
 def digest(base, path):
@@ -172,6 +186,74 @@ def report(entry, here, version):
     return "drift"
 
 
+def git(*args, cwd=ROOT):
+    """A git command's stdout, or None if git cannot say."""
+    try:
+        r = subprocess.run(["git", "-C", str(cwd), *args], capture_output=True, text=True,
+                           timeout=10)
+        return r.stdout.strip() if r.returncode == 0 else None
+    except OSError:
+        return None
+
+
+def release_commit(version):
+    """The commit `v<version>` points at, from this repository.
+
+    `^{}` because the tags are annotated: without it rev-parse returns the tag object's SHA, which
+    no install ever records, and the gate would fail on every release. Resolved here rather than
+    in the clone, because the clone is shallow and carries no tags.
+    """
+    return git("rev-parse", "--verify", "-q", f"v{version}^{{}}")
+
+
+def as_tuple(version):
+    """Versions as integers, so 0.10.0 sorts above 0.9.1 — string order gets it backwards."""
+    return tuple(int(n) for n in re.findall(r"\d+", version))
+
+
+def check_release(entries):
+    """Whether this machine runs the release: installed copies and their clones, against the tags.
+
+    Returns the problems found, each a line for the reader. See question 3 in the module docstring.
+    """
+    tags = [t[1:] for t in (git("tag", "-l", "v*") or "").split()]
+    latest = max(tags, key=as_tuple) if tags else None
+    print(f"\nrelease  latest tag {'v' + latest if latest else 'none'}")
+    problems = []
+
+    def against_tag(what, version, sha):
+        want = release_commit(version)
+        if not sha:
+            problems.append(f"{what} {version}: no commit recorded, so nothing can be compared")
+        elif want is None:
+            problems.append(f"{what} {version}: this repository has no tag v{version}")
+        elif sha != want:
+            problems.append(f"{what} {version} is commit {sha[:7]}, but v{version} is {want[:7]} — "
+                            f"the same version string names a different commit")
+        else:
+            print(f"  {what:<9}  {version} at {sha[:7]}, the commit v{version} points at")
+        if latest and as_tuple(version) < as_tuple(latest):
+            problems.append(f"{what} {version} is older than the latest release v{latest}")
+
+    known = (json.loads(MARKETPLACES.read_text(encoding="utf-8"))
+             if MARKETPLACES.exists() else {})
+    for e in entries:
+        against_tag("installed", e.get("version", "?"), e.get("gitCommitSha", ""))
+    for name in sorted({e["marketplace"] for e in entries}):
+        loc = known.get(name, {}).get("installLocation")
+        manifest_path = Path(loc or "") / ".claude-plugin" / "plugin.json"
+        if not loc or not manifest_path.exists():
+            problems.append(f"clone {name}: no marketplace clone on disk, so what the next "
+                            f"install delivers is unknown")
+            continue
+        version = json.loads(manifest_path.read_text(encoding="utf-8"))["version"]
+        against_tag("clone", version, git("rev-parse", "HEAD", cwd=loc))
+
+    for p in problems:
+        print(f"  ✗ {p}")
+    return problems
+
+
 def resolve(runs, copies):
     """Name the copy each run's declared hash belongs to. `copies` is [(label, {source: sha})]."""
     print(f"\nrecorded runs ({len(runs)}):\n")
@@ -220,6 +302,8 @@ def main(argv):
             if path.exists():
                 copies.append((f"installed {e.get('version', '?')}", sources(path)))
 
+    release = check_release(entries) if entries else []
+
     if runs:
         resolve(runs, copies)
 
@@ -230,6 +314,17 @@ def main(argv):
     if "missing" in states:
         print("\n✗ the install register names a copy that is not on disk. Nothing can be said about\n"
               "  what a Skill-tool run would read until the register and the disk agree.")
+        return 1
+    if release:
+        print("\n✗ this machine does not run the release. `plugin install` delivers the clone's HEAD\n"
+              "  under whatever version it declares, so this passes only when the clone and the\n"
+              "  installed copy both sit on the commit their version is tagged at. After a release\n"
+              "  tagged at the tip of main, with main and the tag both pushed:\n\n"
+              "      claude plugin marketplace update stet\n"
+              "      claude plugin update stet@stet\n"
+              "      make cache\n\n"
+              "  If main has moved past the tag with no release since, this stays red until the next\n"
+              "  release: a fresh install would serve main's tip under the old number.")
         return 1
     if not entries:
         print("\nOK — no installed copy can shadow the working one")

@@ -22,8 +22,10 @@ fixtures:
 # Which catalogue a Skill-tool run reads: this working copy, or the installed plugin. Round 3
 # found the two had drifted, so measuring through the Skill tool measured the release instead —
 # silently, with plausible output. Fails when they differ, and names the copy behind every
-# recorded run. Local only: CI has no installed plugin, and this is a fact about a machine at a
-# moment rather than a property of a commit.
+# recorded run. Also fails when this machine does not run the release: the installed copy and the
+# marketplace clone must both sit on the commit their version is tagged at. Local only: CI has
+# no installed plugin, and this is a fact about a machine at a moment rather than a property of a
+# commit.
 cache:
 	@if ls tests/corpus/runs/*.md >/dev/null 2>&1; then \
 		python3 scripts/plugin_cache.py tests/corpus/runs/*.md; \
