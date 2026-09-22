@@ -2,7 +2,7 @@
 title: Round 3 protocol — four-arm corpus measurement
 type: spec
 status: draft
-updated: 2026-08-21
+updated: 2026-09-23
 ---
 
 # Round 3 protocol — four-arm corpus measurement
@@ -463,11 +463,12 @@ argument.
 | `scripts/plugin_cache.py` | working copy vs installed plugin, and each run's copy (phase 0) | in the tree |
 | `scripts/measure.py` | tier A/B counting over a corpus | **planned**; not in the tree |
 | `data/manifest.csv` | source register: URL, outlet, date, genre, word count, SHA-256, rights check | **planned**; `data/` does not exist |
-| `data/raw/` | local only, gitignored | **planned**; `.gitignore` has no `data` line either, so §5.1's phase 0 item is outstanding too |
+| `data/raw/` | local only, gitignored | the `.gitignore` line is in place (`1203f70`), with the [NOTICE.md](../NOTICE.md) section §5.1 asks for; that section states the rule and leaves naming each source to the manifest. The directory itself is local by design |
 | `tests/corpus/` | extended with A3 and A4 material plus generation prompts | directory in the tree, extension **planned**: it holds nine LLM specimens and one generation prompt, no A3 or A4 material |
 
 `git ls-files docs scripts tests data` and `cat .gitignore` are the check on that column.
 
-Placement note: `scripts/check.py` globs `docs/*.md`, not `docs/**/*.md`. A protocol filed under a
-`docs/research/` subdirectory would be exempt from link-integrity and pattern-ID checking, which is
-the kind of unenforced convention this repository tries not to accumulate. It is filed flat instead.
+Placement note: `scripts/check.py` globs `docs/**/*.md`, so a protocol filed under a
+`docs/research/` subdirectory would be gated like this one. An earlier version of this note said the
+glob was `docs/*.md` and made that the reason for filing flat; the commit that wrote the note
+(`33b72b8`) had already widened it. The file stays flat, because nothing argues for moving it.
