@@ -6,6 +6,7 @@ Run before every commit: `make check`.
 """
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -362,6 +363,53 @@ def check_versions():
                         + ", ".join(f"{k}={v}" for k, v in sorted(declared.items())))
 
 
+# A home directory and a credential have the same failure shape: a fact about one machine or one
+# account, committed into a tree anyone can clone. Written so that this file's own source does not
+# match — each pattern needs a character right after its literal prefix that the regex syntax
+# here never supplies.
+LEAKS = [
+    (r"(?:/Users|/home)/[A-Za-z0-9._-]+/", "absolute home-directory path"),
+    (r"\b[A-Za-z]:\\Users\\[A-Za-z0-9._-]+", "absolute Windows home path"),
+    (r"sk-ant-[A-Za-z0-9_-]{20,}", "Anthropic API key"),
+    (r"\bgh[pousr]_[A-Za-z0-9]{30,}", "GitHub token"),
+    (r"\bgithub_pat_[A-Za-z0-9_]{30,}", "GitHub token"),
+    (r"\bAKIA[0-9A-Z]{16}\b", "AWS access key"),
+    (r"\bxox[abprs]-[A-Za-z0-9-]{10,}", "Slack token"),
+    (r"-----BEGIN [A-Z ]*PRIVATE KEY-----", "private key"),
+]
+
+
+def check_leaks():
+    """No tracked file may carry a machine-specific path or something shaped like a credential.
+
+    The claim was true before this gate existed, but only a hand-run grep proved it — and a local
+    working document quoting a run's provenance already carries an absolute home path, one
+    `git add -f` away from the tree. Tracked files only: ignored ones are local by design, and
+    `git ls-files` is the list a clone actually receives.
+    """
+    try:
+        r = subprocess.run(["git", "-C", str(ROOT), "ls-files", "-z"], capture_output=True,
+                           timeout=10)
+    except OSError as e:
+        fail("leaks", f"cannot list tracked files, so nothing was checked: {e}")
+        return
+    if r.returncode != 0:
+        fail("leaks", "cannot list tracked files, so nothing was checked: "
+                      + r.stderr.decode(errors="replace").strip())
+        return
+    for rel in r.stdout.decode().split("\0"):
+        f = ROOT / rel
+        if not rel or not f.is_file():
+            continue
+        try:
+            text = f.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            continue  # binary; nothing in this tree is, and a key would not survive in one
+        for pattern, what in LEAKS:
+            for m in re.finditer(pattern, text):
+                fail(rel, f"line {text[:m.start()].count(chr(10)) + 1}: {what}")
+
+
 def check_counts(total, soft):
     """Prose restatements of the catalogue size must match the catalogue.
 
@@ -412,6 +460,7 @@ def main():
     check_repo_surface(known_ids)
     check_counts(len(known_ids), len(soft_ids))
     check_versions()
+    check_leaks()
 
     if FAIL:
         print(f"\n{len(FAIL)} problem(s):\n")

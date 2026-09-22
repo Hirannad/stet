@@ -205,8 +205,10 @@ make check
 
 Runs the structural checker: header grammar, severity and evidence enums, estimate markers,
 required fields, unique and resolvable pattern IDs, single-source constants, the declared pass
-inventory, link integrity across the whole repository, the Hungarian closing-quote glyph, and the
-SKILL.md size budget. It is wired to a pre-commit hook (`make hooks`) and to CI.
+inventory, link integrity across the whole repository, the Hungarian closing-quote glyph, the
+SKILL.md size budget, a version that agrees across its three declaration sites, and no tracked file
+carrying a home-directory path or a credential-shaped string. It is wired to a pre-commit hook
+(`make hooks`) and to CI.
 
 Two more targets check the material rather than the catalogue: `make runs` parses every recorded
 run in [tests/corpus/runs/](tests/corpus/runs/) against the output shape, and `make fixtures`
