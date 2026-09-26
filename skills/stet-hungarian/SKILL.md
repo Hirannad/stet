@@ -20,7 +20,7 @@ description: |
 license: MIT
 allowed-tools: Read, Grep, Glob
 metadata:
-  version: "0.3.1"
+  version: "0.3.2"
   method: 1
   lists-reviewed: "2026-08"
 ---
