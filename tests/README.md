@@ -72,6 +72,12 @@ open the file with the provenance comment that says so. Then save the run as
 `fixtures/runs/<fixture>-<label>.md` — the label is free, the prefix has to match the fixture, and
 `make fixtures` picks it up on the next call.
 
+The three runs there were recorded headless (`claude -p`) on Opus 5, with the Skill tool
+disallowed and only `Read`, `Grep` and `Glob` allowed, so the model read the working copy's
+`SKILL.md` and references directly. The prompt names that path, asks for the five-section output
+and nothing else, and does not name the register. The provenance line was written by the recording
+script from the catalogue digest before the run and checked again after it — not by the model.
+
 ### What the runner does not check
 
 **The `expect_noop` entries.** Each names a construction and gives a reason in prose, for a

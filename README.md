@@ -168,12 +168,12 @@ Measured, published, and not resolved. Each item below is an open issue.
 - **Ordinary human typos are out of reach, by design.** The catalogue is provenance-shaped: it
   hunts machine tells, so a missing consonant doubling or a compound written as two words gets
   past it.
-- **The fixtures in [tests/](tests/) are wired up, but no run has been recorded through them
-  yet.** `make fixtures` checks the three specifications against the catalogue on every commit and
-  compares any recorded run against the fixture it came from; producing that run is a human act
-  and nobody has done it. Until then the arm that would catch a regression in behaviour — as
-  opposed to one in the expectations — has not fired once, and the command says so rather than
-  reporting a clean pass.
+- **The fixtures in [tests/](tests/) have one recorded run each, from one model.** `make fixtures`
+  checks the three specifications against the catalogue on every commit and compares the recorded
+  runs against them; all three pass, including `02-clean`, where any edit at all fails. One run per
+  fixture on Opus 5 is a floor, not a distribution: round 2 saw the suspect list move 24% between
+  two runs of the same text. And a run measures the catalogue it names, so a changed catalogue
+  needs a fresh recording before this arm says anything about it.
 
 ## Coexisting with an English prose linter
 
