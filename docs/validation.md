@@ -1,3 +1,10 @@
+---
+title: Validation
+type: research
+status: active
+updated: 2026-08-21
+---
+
 # Validation
 
 Three rounds so far, in four records — round 3 ran in two parts. Rounds 1 and 2 ran before the

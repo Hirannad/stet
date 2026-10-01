@@ -1,3 +1,10 @@
+---
+title: stet project instructions
+type: guide
+status: active
+updated: 2026-08-18
+---
+
 # stet — project instructions
 
 A prose linter for machine-written text, shipped as a Claude Code plugin. One skill

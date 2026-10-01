@@ -1,0 +1,14 @@
+# Globs relative to the repo root; everything else carries title/type/status/updated.
+# Claude Code owns the SKILL.md schema.
+skills/*/SKILL.md
+# Shipped skill content, loaded into the model through SKILL.md; scripts/parse_run.py reads it.
+skills/*/references/*.md
+# Test inputs and recorded runs: a header would change what the skill reads and what
+# scripts/parse_run.py parses.
+tests/*
+# Rendered by GitHub, where a frontmatter block shows as a table.
+README.md
+README.hu.md
+CHANGELOG.md
+CONTRIBUTING.md
+NOTICE.md

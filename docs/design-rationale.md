@@ -1,3 +1,10 @@
+---
+title: Design rationale — what was rejected, and why
+type: adr
+status: active
+updated: 2026-08-14
+---
+
 # Design rationale — what was rejected, and why
 
 A catalogue is defined as much by what it refuses to flag as by what it flags. This file records

@@ -1,3 +1,10 @@
+---
+title: The stet method
+type: reference
+status: active
+updated: 2026-08-18
+---
+
 # The stet method
 
 *Non-normative.* `method/constants.yml` is authoritative; `scripts/check.py` enforces it.
